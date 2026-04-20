@@ -1,0 +1,226 @@
+{
+  "main": {
+    "id": "a0dc172e98f01b32",
+    "type": "split",
+    "children": [
+      {
+        "id": "c4557ec2a4367ad4",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "db50ccac912a96cc",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Stochastics/19 April 2026.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "19 April 2026"
+            }
+          },
+          {
+            "id": "27f318d24ee402fa",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Stochastics/20 April 2026.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "20 April 2026"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "4572bca86ec22f31",
+    "type": "split",
+    "children": [
+      {
+        "id": "b07c8f453dc9474b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "51901770f0bdd8d1",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "8d0d3c2f4a18a146",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "tag:#Credit",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "e296f9075f45e713",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200
+  },
+  "right": {
+    "id": "70f8c0e746a7fc7d",
+    "type": "split",
+    "children": [
+      {
+        "id": "b22f8d2666173e42",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7e87901aeb0fd3fd",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Introduction.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Introduction"
+            }
+          },
+          {
+            "id": "709e90e215869e2e",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Introduction.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Introduction"
+            }
+          },
+          {
+            "id": "2779edbfcf5aed22",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "8712651f73f2a895",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "1a9a83289f125b19",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Introduction.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Introduction"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "51901770f0bdd8d1",
+  "lastOpenFiles": [
+    "Stochastics/19 April 2026.md",
+    "Stochastics/20 April 2026.md",
+    "Stochastics/13 April 2026.md",
+    "Stochastics/10 April 2026.md",
+    "Fixed Income Securities/10 April 2026.md",
+    "Stochastics/Weekend Review 12 April 2026.md",
+    "Stochastics/Proof of Ito's Lemma.md",
+    "Stochastics/Itô Integral of Simple Processes.md",
+    "Fixed Income Securities/15 April 2026.md",
+    "Fixed Income Securities/15 April online Excercise.md",
+    "Images/Screenshot 2026-04-15 at 16.30.17.png",
+    "Images",
+    "QUANTFRAME/Linear Algebra/span, subspace, orthogonality, projections and residuals.md",
+    "QUANTFRAME/Linear Algebra/projections.md",
+    "Financial Theory/Introduction.md",
+    "QUANTFRAME/Linear Algebra",
+    "QUANTFRAME",
+    "Financial Theory",
+    "Time Series/10 April 2026.md",
+    "Fixed Income Securities",
+    "Time Series",
+    "Stochastics"
+  ]
+}
