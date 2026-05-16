@@ -27,16 +27,220 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Stochastics/20 April 2026.md",
+                "file": "Fixed Income Securities/15 April online Excercise.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "20 April 2026"
+              "title": "15 April online Excercise"
+            }
+          },
+          {
+            "id": "57fc52f023642bb2",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Fixed Income Securities/22 April online excercise.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "22 April online excercise"
+            }
+          },
+          {
+            "id": "e63874bbd3ac7eea",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Financial Theory/Introduction.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Introduction"
+            }
+          },
+          {
+            "id": "1126c93700d10fb4",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Financial Theory/22 April 2026.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "22 April 2026"
+            }
+          },
+          {
+            "id": "aaa61f38277f1378",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Financial Theory/21 April 2026 A.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "21 April 2026 A"
+            }
+          },
+          {
+            "id": "e42734667fad5206",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Time Series/10 April 2026.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "10 April 2026"
+            }
+          },
+          {
+            "id": "0b37d2eef0515c81",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Time Series/24 April Assignment.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "24 April Assignment"
+            }
+          },
+          {
+            "id": "6716a0b40a201a95",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Fixed Income Securities/22 April online excercise.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "22 April online excercise"
+            }
+          },
+          {
+            "id": "8b432e9fd2e50259",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Fixed Income Securities/29 April online excercise.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "29 April online excercise"
+            }
+          },
+          {
+            "id": "3f565c02fcfcc04a",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "Images/WhatsApp Image 2026-05-05 at 17.50.56.jpeg"
+              },
+              "icon": "lucide-image",
+              "title": "WhatsApp Image 2026-05-05 at 17.50.56"
+            }
+          },
+          {
+            "id": "46f9829746361859",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Stochastics/13 April 2026.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "13 April 2026"
+            }
+          },
+          {
+            "id": "92782f300f2bcddc",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Derivatives/7 May 2026 - Personal Notes 1.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "7 May 2026 - Personal Notes 1"
+            }
+          },
+          {
+            "id": "b10444ae697b7269",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Fixed Income Securities/22 April 2026.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "22 April 2026"
+            }
+          },
+          {
+            "id": "351b50fd1017a096",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Derivatives/Lehman Brothers 2007.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Lehman Brothers 2007"
+            }
+          },
+          {
+            "id": "94551e7119f7e3da",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Untitled 1.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Untitled 1"
+            }
+          },
+          {
+            "id": "617be234096dc1dc",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 15
       }
     ],
     "direction": "vertical"
@@ -198,30 +402,53 @@
       "bases:Create new base": false
     }
   },
-  "active": "27f318d24ee402fa",
+  "active": "94551e7119f7e3da",
   "lastOpenFiles": [
-    "LICENSE",
-    "Stochastics/19 April 2026.md",
-    "Stochastics/20 April 2026.md",
+    "Derivatives/Lehman Brothers 2007.md",
+    "Untitled 1.md",
+    "Derivatives/7 May 2026 - Personal Notes 1.md",
+    "Untitled.md",
+    "Fixed Income Securities/22 April 2026.md",
+    "Introduction to stochastic calculus with applications/Preliminaries of calculus Rough Notes.md",
+    "Introduction to stochastic calculus with applications",
     "Stochastics/13 April 2026.md",
     "Stochastics/10 April 2026.md",
+    "Fixed Income Securities/22 April online excercise.md",
+    "Images/WhatsApp Image 2026-05-05 at 17.50.56.jpeg",
+    "Images/WhatsApp Image 2026-05-05 at 17.50.56 (2).jpeg",
+    "Images/WhatsApp Image 2026-05-05 at 17.50.57.jpeg",
+    "Images/WhatsApp Image 2026-05-05 at 17.50.57 (3).jpeg",
+    "Images/WhatsApp Image 2026-05-05 at 17.50.57 (2).jpeg",
+    "Images/WhatsApp Image 2026-05-05 at 17.50.57 (1).jpeg",
+    "Images/WhatsApp Image 2026-05-05 at 17.50.56 (3).jpeg",
+    "Fixed Income Securities/29 April online excercise.md",
+    "Images/Pasted image 20260506062741.png",
+    "Fixed Income Securities/15 April online Excercise.md",
+    "Fixed Income Securities/15 April 2026.md",
     "Fixed Income Securities/10 April 2026.md",
+    "Financial Theory/22 April 2026.md",
+    "Financial Theory/21 April 2026 B.md",
+    "Financial Theory/21 April 2026 A.md",
+    "Financial Theory/01 Introduction.md",
+    "Volatility Tradaing",
+    "QUANTFRAME/Linear Algebra/projections.md",
+    "Research",
+    "QUANTFRAME/Concepts/BackGround to Kelly Criterion.md",
+    "Time Series/24 April Assignment.md",
+    "QUANTFRAME/Concepts",
+    "Images/WhatsApp Image 2026-04-24 at 09.17.47.jpeg",
+    "Images/Screenshot 2026-04-15 at 16.30.17.png",
+    "Time Series/10 April 2026.md",
+    "Images/IMG_0667 1.heic",
+    "Images/IMG_0666 1.heic",
+    "Images/IMG_0667.heic",
+    "Images/IMG_0666.heic",
+    "Derivatives",
+    "Stochastics/20 April 2026.md",
+    "LICENSE",
+    "Stochastics/19 April 2026.md",
     "Stochastics/Weekend Review 12 April 2026.md",
     "Stochastics/Proof of Ito's Lemma.md",
-    "Stochastics/Itô Integral of Simple Processes.md",
-    "Fixed Income Securities/15 April 2026.md",
-    "Fixed Income Securities/15 April online Excercise.md",
-    "Images/Screenshot 2026-04-15 at 16.30.17.png",
-    "Images",
-    "QUANTFRAME/Linear Algebra/span, subspace, orthogonality, projections and residuals.md",
-    "QUANTFRAME/Linear Algebra/projections.md",
-    "Financial Theory/Introduction.md",
-    "QUANTFRAME/Linear Algebra",
-    "QUANTFRAME",
-    "Financial Theory",
-    "Time Series/10 April 2026.md",
-    "Fixed Income Securities",
-    "Time Series",
-    "Stochastics"
+    "Stochastics/Itô Integral of Simple Processes.md"
   ]
 }

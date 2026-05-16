@@ -1,4 +1,4 @@
-![[Screenshot 2026-04-15 at 16.30.17.png]]
+![[Images/Screenshot 2026-04-15 at 16.30.17.png]]
 
 A #repo is essentially a short-term collateralized loan. The "seller" of the bond is borrowing money from the "buyer" and using that Treasury bond as collateral.
 **a) Repo haircut**.
