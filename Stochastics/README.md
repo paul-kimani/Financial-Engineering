@@ -48,10 +48,7 @@ $$
 
 **Geometric Brownian Motion closed form:**
 
-$$
-S_t \;=\; S_0 \exp\!\Bigl\{\bigl(\mu - \tfrac{1}{2}\sigma^2\bigr)t + \sigma W_t\Bigr\},
-\qquad \ln\!\bigl(S_t/S_0\bigr) \sim \mathcal{N}\!\bigl((\mu-\tfrac{1}{2}\sigma^2)t,\;\sigma^2 t\bigr).
-$$
+$$S_t \;=\; S_0 \exp\!\Bigl\{\bigl(\mu - \tfrac{1}{2}\sigma^2\bigr)t + \sigma W_t\Bigr\},\qquad \ln\!\bigl(S_t/S_0\bigr) \sim \mathcal{N}\!\bigl((\mu-\tfrac{1}{2}\sigma^2)t,\;\sigma^2 t\bigr).$$
 
 ---
 
