@@ -1,0 +1,9 @@
+# macOS
+.DS_Store
+
+# Obsidian workspace state (per-user UI; not source content)
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+
+# Local-only source images (extracted into notes; HEIC files are large and don't render on GitHub)
+Images/stochastic images/
