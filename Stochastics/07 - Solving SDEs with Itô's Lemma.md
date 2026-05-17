@@ -170,7 +170,7 @@ $$
 $$
 
 $$
-\boxed{\;S_t \;=\; S_0 \exp\!\left\{\bigl(\mu - \tfrac{1}{2}\sigma^2\bigr)\,t + \sigma\,W_t\right\}.\;}
+\boxed{\; S_t = S_0 \exp\left[ \left(\mu - \tfrac{1}{2}\sigma^2\right) t + \sigma W_t \right]. \;}
 $$
 
 ### Why the $-\tfrac{1}{2}\sigma^2$?
