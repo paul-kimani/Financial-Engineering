@@ -222,7 +222,7 @@ The closed‑form solution (Itô + log trick — see
 [[07 - Solving SDEs with Itô's Lemma]]) is
 
 $$
-S_t \;=\; S_s\,\exp\!\Bigl\{\bigl(r - \tfrac{1}{2}\sigma^2\bigr)(t - s) + \sigma\bigl(W_t^{\mathbb{Q}} - W_s^{\mathbb{Q}}\bigr)\Bigr\}.
+S_t = S_s \exp\left[ \left(r - \tfrac{1}{2}\sigma^2\right)(t - s) + \sigma\left(W_t^{\mathbb{Q}} - W_s^{\mathbb{Q}}\right) \right].
 $$
 
 ### Showing $\mathbb{E}_{\mathbb{Q}}[\tilde S_t \mid \mathcal{F}_s] = \tilde S_s$
@@ -230,7 +230,7 @@ $$
 The discounted price is $\tilde S_t = e^{-r t} S_t$. Substitute:
 
 $$
-\tilde S_t = e^{-r t}\,S_s\,\exp\!\Bigl\{\bigl(r - \tfrac{1}{2}\sigma^2\bigr)(t - s) + \sigma(W_t^{\mathbb{Q}} - W_s^{\mathbb{Q}})\Bigr\}.
+\tilde S_t = e^{-r t} S_s \exp\left[ \left(r - \tfrac{1}{2}\sigma^2\right)(t - s) + \sigma(W_t^{\mathbb{Q}} - W_s^{\mathbb{Q}}) \right].
 $$
 
 Compute the conditional expectation. The factor $S_s = e^{r s}\tilde S_s$

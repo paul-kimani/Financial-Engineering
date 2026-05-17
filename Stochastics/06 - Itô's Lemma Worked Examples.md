@@ -69,7 +69,7 @@ $$
 Plug $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$:
 
 $$
-df(t, S_t) \;=\; -r\,S_t\,e^{r(T-t)}\,dt + e^{r(T-t)}\bigl\{\mu S_t\,dt + \sigma S_t\,dW_t\bigr\}.
+df(t, S_t) = -r S_t\, e^{r(T-t)}\, dt + e^{r(T-t)} \left( \mu S_t\, dt + \sigma S_t\, dW_t \right).
 $$
 
 Expanding,
@@ -126,7 +126,7 @@ $$
 Use $(dS_t)^2 = \sigma^2\,S_t^2\,dt$ and $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$:
 
 $$
-dY(t, S_t) \;=\; -r\,\frac{e^{r(T-t)}}{S_t}\,dt \;-\; \frac{e^{r(T-t)}}{S_t^2}\bigl\{\mu S_t\,dt + \sigma S_t\,dW_t\bigr\} \;+\; \frac{e^{r(T-t)}}{S_t^3}\bigl(\sigma^2\,S_t^2\,dt\bigr).
+dY(t, S_t) = -r\, \frac{e^{r(T-t)}}{S_t}\, dt \;-\; \frac{e^{r(T-t)}}{S_t^2} \left( \mu S_t\, dt + \sigma S_t\, dW_t \right) \;+\; \frac{e^{r(T-t)}}{S_t^3} \left( \sigma^2 S_t^2\, dt \right).
 $$
 
 ### Step 4 — simplify and group

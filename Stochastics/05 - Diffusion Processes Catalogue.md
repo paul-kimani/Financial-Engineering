@@ -28,7 +28,7 @@ $$
 **Closed‑form solution**
 
 $$
-\boxed{\;S_t \;=\; S_0\,\exp\!\left\{\left(\mu - \tfrac{1}{2}\sigma^2\right)t + \sigma W_t\right\}\;}
+\boxed{\; S_t = S_0 \exp\left[ \left(\mu - \tfrac{1}{2}\sigma^2\right) t + \sigma W_t \right] \;}
 $$
 
 **Distribution**
