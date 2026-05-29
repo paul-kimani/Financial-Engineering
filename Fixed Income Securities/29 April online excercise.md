@@ -6,3 +6,13 @@ To properly calibrate this tree, we will eventually need to make sure it accurat
 To construct the tree, our first step is to establish the starting point or the "root" of the tree today.
 
 Based on the spot rate table provided in the image, what is the 1-year interest rate 📈 for Time 0?
+
+---
+
+## Cross‑references
+
+- [[22 April 2026]] — the calibration target bond uses the same PV / YTM valuation formula.
+- [[22 April online excercise]] — forward-rate discounting counterpart.
+- [[../Stochastics/01 - Introduction to Stochastic Processes]] — discrete-time stochastic process foundations underlying the tree.
+- [[../Stochastics/05 - Diffusion Processes Catalogue]] — Vasicek / CIR are the continuous-time analogue of this tree.
+- [[../Stochastics/09 - Martingales]] — risk-neutral pricing on the tree (no-arbitrage condition).
