@@ -203,3 +203,11 @@ Focus on just ONE idea:
 Everything else (least squares, regression, normal equations) comes from that.
 
 ---
+
+## Cross‑references
+
+- [[projections]] — companion note (already linked at the top of this file).
+- [[../../Time Series/24 April Assignment]] — column space of the design matrix; residuals as orthogonal complement, applied to multiple linear regression.
+- [[../../Stochastics/02 - The Itô Integral]] — Itô isometry as an $L^2$ projection / orthogonality statement.
+
+---

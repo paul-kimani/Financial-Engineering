@@ -223,3 +223,12 @@ Think of it like a negotiation between:
 - **Edge** → how likely you are to win (( p ))
 - **Reward** → how much you win (( b ))
 - **Risk** → full loss when wrong
+
+---
+
+## Cross‑references
+
+- [[../../Stochastics/10 - Geometric Brownian Motion]] — log-wealth growth carries the same $\tfrac{1}{2}\sigma^2$ correction as the Itô drag for GBM.
+- [[../../Stochastics/12 - GBM Parameter Estimation]] — log-return machinery shared with these growth-rate calculations.
+- [[../../Financial Theory/22 April 2026]] — log utility is the canonical utility consistent with the axioms of choice.
+- [[../../Financial Theory/21 April 2026 B]] — optimal Kelly fraction is the discrete-bet analogue of the marginal real-investment decision on the concave frontier.
