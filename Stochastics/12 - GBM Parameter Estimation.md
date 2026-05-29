@@ -183,4 +183,7 @@ real data:
   and $\hat\sigma$.
 - [[05 - Diffusion Processes Catalogue]] — more realistic models when GBM
   assumptions break down.
-- [[../Time Series/]] — econometric techniques for parameter estimation.
+- [[../Time Series/10 April 2026]] — log-return transformation and the
+  stationarity requirement.
+- [[../Time Series/24 April Assignment]] — OLS methodology, the statistical
+  analogue when fitting parameters.

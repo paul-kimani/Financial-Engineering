@@ -180,3 +180,5 @@ reflecting the convexity of $1/x$.
   using Itô's lemma to find closed‑form solutions to SDEs.
 - [[10 - Geometric Brownian Motion]] — properties and full derivation of
   GBM.
+- [[../Derivatives/7 May 2026 - Personal Notes 1]] — derivative pricing
+  applies the forward-contract SDE worked here.

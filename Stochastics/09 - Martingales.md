@@ -264,4 +264,8 @@ martingale.
 - [[07 - Solving SDEs with Itô's Lemma]] — derives the GBM closed form
   used here.
 - [[10 - Geometric Brownian Motion]] — pre‑measure‑change dynamics of $S_t$.
-- [[../Derivatives/]] — risk‑neutral pricing applications.
+- [[../Derivatives/Lehman Brothers 2007]] — risk‑neutral / no-arbitrage
+  context behind OTC derivatives blow-ups.
+- [[../Derivatives/7 May 2026 - Personal Notes 1]] — direct application to
+  derivatives pricing.
+- [[../Introduction to stochastic calculus with applications/Preliminaries of calculus Rough Notes]] — càdlàg paths matter once jumps enter the martingale framework.
