@@ -47,3 +47,11 @@ Finally:
 $$
 3.6808+3.5816 + 3.4593 + 91.9159 = 102.6367
 $$
+
+---
+
+## Cross‑references
+
+- [[22 April 2026]] — the base PV / YTM bond-valuation formula this exercise applies.
+- [[29 April online excercise]] — forward rates feed into the one-period rate-tree calibration.
+- [[../Stochastics/05 - Diffusion Processes Catalogue]] — forward-rate dynamics are the continuous-time analogue.

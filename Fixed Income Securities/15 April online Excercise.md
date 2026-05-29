@@ -47,3 +47,11 @@ So, we just add them together:
 $$Repurchase Price = 9,523,809.52 + 4,232.80$$
 
 9,528,042.32 KES is the repurchase price. 
+
+---
+
+## Cross‑references
+
+- [[22 April 2026]] — PV / discounting is the same machinery used to value the underlying bond.
+- [[10 April 2026]] — broader FI guide; repos sit in the money-market subsection.
+- [[../Stochastics/09 - Martingales]] — risk-neutral discounting is the formal version of "interest earned over the term".
