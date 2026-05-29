@@ -49,3 +49,12 @@ million transactions outstanding with about 8,000 diﬀerent counterparties. Leh
 counterparties were often required to post collateral and this collateral had in many
 
 cases been used by Lehman for various purposes. It is easy to
+
+---
+
+## Cross‑references
+
+- [[../Stochastics/09 - Martingales]] — risk-neutral / no-arbitrage context behind OTC derivatives books.
+- [[../Financial Theory/01 Introduction]] — research cycle and how model failure feeds back into theory.
+- [[../Fixed Income Securities/15 April 2026]] — credit quality, structured-finance sector, securitization of subprime mortgages.
+- [[7 May 2026 - Personal Notes 1]] — derivatives overview.
