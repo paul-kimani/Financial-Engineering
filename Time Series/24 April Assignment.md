@@ -85,3 +85,13 @@ Substitute $\beta_1$ and $\beta_2$ back into the original Equation 1 to find
 **Estimated Regression Line:**
 
 $$Y = 8.867 + 1.722X_1 - 0.278X_2$$
+
+---
+
+## Cross‑references
+
+- [[10 April 2026]] — TS fundamentals; the framework these regression coefficients fit into.
+- [[../QUANTFRAME/Linear Algebra/projections]] — OLS is geometrically a projection onto the column space; the normal equations here are exactly that computation.
+- [[../QUANTFRAME/Linear Algebra/span, subspace, orthogonality, projections and residuals]] — residuals as orthogonal complement of the column space.
+- [[../Stochastics/12 - GBM Parameter Estimation]] — the statistical-estimation analogue for GBM parameters.
+- [[../Financial Theory/21 April 2026 A]] — CAPM is a linear regression; this is the fit method.
