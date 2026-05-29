@@ -238,3 +238,11 @@ $$
 # One Sentence to Remember Forever
 
 > **Projection finds the best approximation inside a #span, and the error is always orthogonal.**
+
+---
+
+## Cross‑references
+
+- [[span, subspace, orthogonality, projections and residuals]] — companion note (reciprocates the existing inbound link from there).
+- [[../../Time Series/24 April Assignment]] — OLS multiple regression is exactly projection onto the column space; the normal equations there are this computation.
+- [[../../Stochastics/02 - The Itô Integral]] — the Itô isometry is structurally an $L^2$ projection statement.
