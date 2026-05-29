@@ -184,5 +184,9 @@ two observed values in path simulation.
 - [[07 - Solving SDEs with Itô's Lemma]] — full derivation of the GBM
   closed‑form solution.
 - [[10 - Geometric Brownian Motion]] — dedicated chapter on GBM.
-- [[../Fixed Income Securities/]] — Vasicek and CIR in the context of term
-  structure models.
+- [[../Fixed Income Securities/22 April 2026]] — bond valuation built on the
+  same discounting / spot-rate machinery that Vasicek and CIR drive.
+- [[../Fixed Income Securities/29 April online excercise]] — one-period
+  interest-rate tree, the discrete analogue of Vasicek / CIR.
+- [[../Derivatives/7 May 2026 - Personal Notes 1]] — GBM is the workhorse
+  SDE for the underlying in derivatives pricing.

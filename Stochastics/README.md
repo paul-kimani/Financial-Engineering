@@ -70,6 +70,12 @@ $$
 
 ## Related folders
 
-- [[../Derivatives/]] — applications to options pricing.
-- [[../Fixed Income Securities/]] — interest‑rate models built on these SDEs.
-- [[../Introduction to stochastic calculus with applications/]] — textbook rough notes.
+- [[../Derivatives/7 May 2026 - Personal Notes 1]] — derivatives definition; GBM as the underlying.
+- [[../Derivatives/Lehman Brothers 2007]] — case study in OTC derivatives risk.
+- [[../Fixed Income Securities/22 April 2026]] — bond valuation; the PV machinery that feeds into rate-tree models.
+- [[../Fixed Income Securities/29 April online excercise]] — one-period interest-rate tree, the discrete analogue of Vasicek / CIR from [[05 - Diffusion Processes Catalogue]].
+- [[../Financial Theory/21 April 2026 A]] — Black-Scholes presented as the statistical option-pricing model assuming GBM.
+- [[../Time Series/10 April 2026]] — the discrete-time / stationarity vocabulary that overlaps [[00 - Foundations Review]].
+- [[../Time Series/24 April Assignment]] — OLS regression methodology used in [[12 - GBM Parameter Estimation]].
+- [[../QUANTFRAME/Concepts/BackGround to Kelly Criterion]] — log-wealth and the $\tfrac{1}{2}\sigma^2$ correction shared with GBM.
+- [[../Introduction to stochastic calculus with applications/Preliminaries of calculus Rough Notes]] — continuity, càdlàg, total variation prerequisites.

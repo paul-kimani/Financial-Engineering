@@ -181,3 +181,7 @@ Putting all the pieces together:
   historical prices.
 - [[09 - Martingales]] — switching to the risk‑neutral measure to obtain
   the discounted‑price martingale.
+- [[../Financial Theory/21 April 2026 A]] — Black-Scholes is the statistical
+  model that assumes this SDE.
+- [[../QUANTFRAME/Concepts/BackGround to Kelly Criterion]] — log-wealth
+  growth carries the same $\tfrac{1}{2}\sigma^2$ correction as the Itô drag here.

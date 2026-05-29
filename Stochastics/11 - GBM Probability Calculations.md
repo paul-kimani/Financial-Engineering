@@ -178,5 +178,5 @@ When you face a "probability/CI under GBM" problem:
   distribution that drives every formula on this page.
 - [[12 - GBM Parameter Estimation]] — where the inputs $\mu$ and $\sigma$
   come from when working with historical data.
-- [[../Derivatives/]] — the same probability calculation is the building
-  block for option payoff expectations.
+- [[../Derivatives/7 May 2026 - Personal Notes 1]] — "probability a call
+  option is exercised" is the motivating application.

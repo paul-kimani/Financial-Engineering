@@ -144,3 +144,5 @@ the rigorous proof lives in [[04 - Proof of Itô's Lemma]].
 - [[03 - Itô's Lemma - Statement and Derivation]] — derivation via Taylor +
   box calculus.
 - [[05 - Diffusion Processes Catalogue]] — canonical SDEs used in finance.
+- [[../Time Series/10 April 2026]] — stochastic vs deterministic time series.
+- [[../Financial Theory/01 Introduction]] — uncertainty as one of the three pillars of financial decisions.

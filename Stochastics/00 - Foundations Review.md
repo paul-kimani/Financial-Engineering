@@ -132,3 +132,5 @@ Full derivations and worked examples are in [[05 - Diffusion Processes Catalogue
 - [[02 - The Itô Integral]] — rigorous construction of $\int X_s\,dW_s$.
 - [[03 - Itô's Lemma - Statement and Derivation]] — the stochastic chain rule.
 - [[09 - Martingales]] — the martingale property and risk‑neutral pricing.
+- [[../Introduction to stochastic calculus with applications/Preliminaries of calculus Rough Notes]] — continuity, differentiability, càdlàg, total variation prerequisites.
+- [[../Time Series/10 April 2026]] — discrete vs continuous and stochastic vs deterministic taxonomy mirrors §1.

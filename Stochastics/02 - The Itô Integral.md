@@ -179,3 +179,4 @@ processes.
 - [[07 - Solving SDEs with Itô's Lemma]] — closes the loop by evaluating
   $\int_0^t W_s\,dW_s$ in closed form.
 - [[09 - Martingales]] — the martingale property of the Itô integral.
+- [[../Introduction to stochastic calculus with applications/Preliminaries of calculus Rough Notes]] — the infinite total variation of Brownian motion that motivates this construction.
