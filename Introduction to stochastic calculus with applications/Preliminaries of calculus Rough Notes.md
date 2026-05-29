@@ -79,3 +79,11 @@ Think of a function's graph plotted with a piece of string on a wall. If you pul
 - But its **variation** is $10 ($5 of upward movement + $5 of downward movement). It is the "odometer" of the function's vertical travel.
 
 **The Takeaway:** If you can pull the string straight and it has a measurable length, it has **finite variation**. But here's the wild part: in stochastic calculus, true random processes (like "Brownian motion" used to model stock volatility) vibrate so violently up and down that if you tried to pull the string straight, it would be infinitely long! That's why traditional calculus breaks down, and they need this specific terminology to handle functions that never stop wiggling.
+
+---
+
+## Cross‑references
+
+- [[../Stochastics/00 - Foundations Review]] — the consolidated vocabulary chapter these prelims feed into.
+- [[../Stochastics/02 - The Itô Integral]] — the infinite total variation of Brownian motion (§1.2 here) is the reason a new integral is needed.
+- [[../Stochastics/09 - Martingales]] — càdlàg paths matter once jumps enter the martingale framework.
