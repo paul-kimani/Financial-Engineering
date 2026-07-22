@@ -187,3 +187,6 @@ real data:
   stationarity requirement.
 - [[../Time Series/24 April Assignment]] — OLS methodology, the statistical
   analogue when fitting parameters.
+- [[23 - Statistical Distribution of the O-U Process]] — estimating mean-reversion speed via the discretised AR(1) recursion.
+- [[../Financial Theory/CAT]] — the same log-transform-then-OLS recipe on an exponential growth curve.
+

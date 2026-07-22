@@ -269,3 +269,7 @@ martingale.
 - [[../Derivatives/7 May 2026 - Personal Notes 1]] — direct application to
   derivatives pricing.
 - [[../Introduction to stochastic calculus with applications/Preliminaries of calculus Rough Notes]] — càdlàg paths matter once jumps enter the martingale framework.
+- [[14 - Asset Dynamics under the probability measures]] — discounted traded assets as $\mathbb{Q}$-martingales.
+- [[16 - Equivalent Probability Measures and Girsanov's Theorem]] — how the martingale measure $\mathbb{Q}$ is actually constructed.
+- [[20 - Proof of Replicating Portfolio]] · [[21 - Martingale Pricing Of European Contingent Claims]] — the martingale property turned into the risk-neutral pricing formula.
+

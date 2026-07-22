@@ -95,3 +95,6 @@ $$Y = 8.867 + 1.722X_1 - 0.278X_2$$
 - [[../QUANTFRAME/Linear Algebra/span, subspace, orthogonality, projections and residuals]] — residuals as orthogonal complement of the column space.
 - [[../Stochastics/12 - GBM Parameter Estimation]] — the statistical-estimation analogue for GBM parameters.
 - [[../Financial Theory/21 April 2026 A]] — CAPM is a linear regression; this is the fit method.
+- [[../Financial Theory/CAT]] — OLS regression fitted to an exponential growth curve.
+- [[../Stochastics/12 - GBM Parameter Estimation]] — the same estimation methodology applied to log returns.
+

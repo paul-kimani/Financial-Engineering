@@ -172,3 +172,6 @@ RRA indices.
   $\tfrac{1}{2}\sigma^2$ Itô drag is the continuous-time analogue of
   the risk premium an investor *receives* for taking on diffusion
   risk.
+- [[09.1 - Expected Utility theory Question]] · [[12.1 - Revision CAT1]] — worked problems classifying risk attitudes and computing CE / risk premium.
+- [[../Stochastics/13 - Probability Measures]] — the risk premium seen on the pricing side, as the market price of risk.
+

@@ -16,3 +16,5 @@ Based on the spot rate table provided in the image, what is the 1-year interest 
 - [[../Stochastics/01 - Introduction to Stochastic Processes]] — discrete-time stochastic process foundations underlying the tree.
 - [[../Stochastics/05 - Diffusion Processes Catalogue]] — Vasicek / CIR are the continuous-time analogue of this tree.
 - [[../Stochastics/09 - Martingales]] — risk-neutral pricing on the tree (no-arbitrage condition).
+- [[../Stochastics/25 - Vasicek Model]] — the continuous-time short-rate model this one-period rate tree discretises.
+

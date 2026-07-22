@@ -191,3 +191,5 @@ VNM axioms in chapter [[10 - VNM Axioms and Utility Function]].
   growth optimum.
 - [[../Stochastics/10 - Geometric Brownian Motion]] — the GBM
   log-return distribution interacts naturally with log utility.
+- [[09.1 - Expected Utility theory Question]] — a worked expected-utility decision under two utility functions.
+

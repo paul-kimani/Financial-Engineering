@@ -241,3 +241,6 @@ into the CAPM and other equilibrium models discussed in
 - [[../Stochastics/12 - GBM Parameter Estimation]] — empirical
   $\sigma$ from log returns is the input to risk-premium calculations
   in practice.
+- [[09.1 - Expected Utility theory Question]] — the sign of $U''$ deciding risk-seeking vs risk-averse choices.
+- [[../Stochastics/13 - Probability Measures]] — risk aversion and the market price of risk $\theta = (\mu-r)/\sigma$.
+

@@ -180,3 +180,6 @@ processes.
   $\int_0^t W_s\,dW_s$ in closed form.
 - [[09 - Martingales]] — the martingale property of the Itô integral.
 - [[../Introduction to stochastic calculus with applications/Preliminaries of calculus Rough Notes]] — the infinite total variation of Brownian motion that motivates this construction.
+- [[22.1 - Properties of Ito Integral And the O-U Process]] — Itô isometry and the mean/variance properties reused to solve the Ornstein–Uhlenbeck SDE.
+- [[16 - Equivalent Probability Measures and Girsanov's Theorem]] — the stochastic integral $\int \gamma_s\,dW_s$ sitting inside the Radon–Nikodym density.
+
