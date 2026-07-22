@@ -88,8 +88,8 @@ When randomness outnumbers traded assets (e.g. stochastic volatility, or more ri
 **Within Stochastics**
 - [[09 - Martingales]] — both $D_t$ and $E_t$ must be $\mathbb{Q}$-martingales for the MRT to apply.
 - [[02 - The Itô Integral]] — the representation $dY_t = \phi_t\,dX_t$ is an Itô integral against $X_t$.
-- [[16 Equivalent Probability Measures and Girsanov's Theorem]] — supplies the measure $\mathbb{Q}$; MRT then supplies the strategy.
-- [[19 The self financing Portfolio]] · [[20 Proof of Replicating Portfolio]] — the strategy $\phi_t$ realised as a self-financing portfolio.
+- [[16 - Equivalent Probability Measures and Girsanov's Theorem]] — supplies the measure $\mathbb{Q}$; MRT then supplies the strategy.
+- [[19 - The self financing Portfolio]] · [[20 - Proof of Replicating Portfolio]] — the strategy $\phi_t$ realised as a self-financing portfolio.
 
 **Across the programme**
 - [[../Derivatives/Lehman Brothers 2007]] — what happens when the neat replication story meets incomplete, illiquid markets.

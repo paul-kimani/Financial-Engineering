@@ -140,7 +140,7 @@ This completes the proof.
 
 ## 3. Two Routes to the Same Price (Feynman–Kac)
 
-The formula $V_t = e^{-r(T-t)} E^\mathbb{Q}[V_T \mid \mathcal{F}_t]$ is the **probabilistic** face of derivative pricing. The **Feynman–Kac theorem** says it has an exact analytic twin: the same $V(S_t, t)$ solves the [[28 Derivation of the Black Scholes PDE .|Black–Scholes PDE]] with terminal condition $V(S,T) = \text{payoff}(S)$. So a price can be computed *either* as an expectation (Monte-Carlo, or a closed-form integral — see [[29 Derivation of The Black Scholes merton formula.]]) *or* by solving a PDE (finite differences). This equivalence is the single most useful bridge in quantitative finance, letting practitioners pick whichever tool the payoff makes easier — path-dependent options favour the expectation; American/barrier features favour the PDE.
+The formula $V_t = e^{-r(T-t)} E^\mathbb{Q}[V_T \mid \mathcal{F}_t]$ is the **probabilistic** face of derivative pricing. The **Feynman–Kac theorem** says it has an exact analytic twin: the same $V(S_t, t)$ solves the [[28 - Derivation of the Black Scholes PDE|Black–Scholes PDE]] with terminal condition $V(S,T) = \text{payoff}(S)$. So a price can be computed *either* as an expectation (Monte-Carlo, or a closed-form integral — see [[29 - Derivation of The Black Scholes merton formula]]) *or* by solving a PDE (finite differences). This equivalence is the single most useful bridge in quantitative finance, letting practitioners pick whichever tool the payoff makes easier — path-dependent options favour the expectation; American/barrier features favour the PDE.
 
 ---
 
@@ -148,12 +148,12 @@ The formula $V_t = e^{-r(T-t)} E^\mathbb{Q}[V_T \mid \mathcal{F}_t]$ is the **pr
 
 **Within Stochastics**
 - [[09 - Martingales]] — the martingale property is the load-bearing wall of the whole derivation.
-- [[14 Asset Dynamics under the probability measures]] — the $\mathbb{Q}$-dynamics substituted into $d\Pi_t$.
-- [[20 Proof of Replicating Portfolio]] — the self-financing $\iff$ martingale equivalence used in Step 3.
-- [[22 General Formula]] — the 3-step recipe and the standard payoffs plugged into this formula.
-- [[28 Derivation of the Black Scholes PDE .]] · [[29 Derivation of The Black Scholes merton formula.]] — the PDE twin and the closed-form solution.
+- [[14 - Asset Dynamics under the probability measures]] — the $\mathbb{Q}$-dynamics substituted into $d\Pi_t$.
+- [[20 - Proof of Replicating Portfolio]] — the self-financing $\iff$ martingale equivalence used in Step 3.
+- [[22 - General Formula]] — the 3-step recipe and the standard payoffs plugged into this formula.
+- [[28 - Derivation of the Black Scholes PDE]] · [[29 - Derivation of The Black Scholes merton formula]] — the PDE twin and the closed-form solution.
 
 **Across the programme**
 - [[../Derivatives/7 May 2026 - Personal Notes 1]] — the option contracts this formula prices.
 - [[../Fixed Income Securities/29 April online excercise]] — the one-period rate-tree, a discrete cousin of this expectation.
-- [[21.1 Less Technical Explanation of Martingale Pricing Of European Contingent Claims]] — the same derivation, intuition-first.
+- [[21.1 - Less Technical Explanation of Martingale Pricing Of European Contingent Claims]] — the same derivation, intuition-first.

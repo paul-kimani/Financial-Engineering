@@ -108,9 +108,9 @@ This $Z_t$ is itself a positive $\mathbb{P}$-martingale with $Z_0 = 1$ — the d
 **Within Stochastics**
 - [[02 - The Itô Integral]] — the stochastic integral $\int_0^t \gamma_s\,dW_s$ inside the density $Z_t$.
 - [[09 - Martingales]] — $Z_t$ is the positive martingale that defines the new measure.
-- [[15 Lets understand the brownian motion under Q]] — the intuition this note makes rigorous.
-- [[17 Example application of Girsanov's Theorem]] — Girsanov applied to a concrete pricing problem.
-- [[18 Previsible Process and Martingale Representation Theorem]] — the companion theorem that turns "a measure exists" into "a hedge exists".
+- [[15 - Lets understand the brownian motion under Q]] — the intuition this note makes rigorous.
+- [[17 - Example application of Girsanov's Theorem]] — Girsanov applied to a concrete pricing problem.
+- [[18 - Previsible Process and Martingale Representation Theorem]] — the companion theorem that turns "a measure exists" into "a hedge exists".
 
 **Across the programme**
 - [[../Financial Theory/11 - Risk Aversion - Certainty Equivalent and Risk Premium]] — the economic meaning of the market price of risk $\theta$.

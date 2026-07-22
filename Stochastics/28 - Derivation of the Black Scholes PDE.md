@@ -121,7 +121,7 @@ A PDE alone does not price anything — it needs **boundary/terminal conditions*
 - **European call:** $V(S,T) = \max(S-K, 0)$, with $V(0,t)=0$ and $V(S,t)\to S - Ke^{-r(T-t)}$ as $S\to\infty$.
 - **European put:** $V(S,T) = \max(K-S, 0)$.
 
-Solving the PDE under these conditions returns the Black–Scholes formulae — but you never have to solve it by hand, because the **Feynman–Kac theorem** identifies that solution with the risk-neutral expectation $V_t = e^{-r(T-t)}E^\mathbb{Q}[V_T \mid \mathcal{F}_t]$ of [[21 Martingale Pricing Of European Contingent Claims|chapter 21]]. PDE and expectation are two windows onto one price.
+Solving the PDE under these conditions returns the Black–Scholes formulae — but you never have to solve it by hand, because the **Feynman–Kac theorem** identifies that solution with the risk-neutral expectation $V_t = e^{-r(T-t)}E^\mathbb{Q}[V_T \mid \mathcal{F}_t]$ of [[21 - Martingale Pricing Of European Contingent Claims|chapter 21]]. PDE and expectation are two windows onto one price.
 
 The partial derivatives appearing in the PDE are the **Greeks**, the hedge sensitivities:
 
@@ -136,9 +136,9 @@ Read this way, the Black–Scholes PDE is just the statement that a delta-hedged
 **Within Stochastics**
 - [[03 - Itô's Lemma - Statement and Derivation]] — the expansion of $dV$ that starts the derivation.
 - [[10 - Geometric Brownian Motion]] — the underlying's assumed dynamics.
-- [[19 The self financing Portfolio]] — the delta-hedged portfolio as a self-financing strategy.
-- [[21 Martingale Pricing Of European Contingent Claims]] — the Feynman–Kac twin of this PDE.
-- [[29 Derivation of The Black Scholes merton formula.]] — solving the PDE / expectation for the closed form.
+- [[19 - The self financing Portfolio]] — the delta-hedged portfolio as a self-financing strategy.
+- [[21 - Martingale Pricing Of European Contingent Claims]] — the Feynman–Kac twin of this PDE.
+- [[29 - Derivation of The Black Scholes merton formula]] — solving the PDE / expectation for the closed form.
 
 **Across the programme**
 - [[../Derivatives/Swaps/03 Interest Rate Swap Terminology & Risk Profiles]] — delta/greeks as the language of managing a derivatives book.

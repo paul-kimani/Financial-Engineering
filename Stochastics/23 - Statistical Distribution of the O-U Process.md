@@ -157,9 +157,9 @@ The exponentially-decaying autocorrelation is precisely the continuous-time sign
 ## Connections
 
 **Within Stochastics**
-- [[22.1 Properties of Ito Integral And the O-U Process.]] — the solution and Itô isometry used to get the variance.
-- [[24 Long-Term Statistical Distribution Of the O-U Process]] — the $t \to \infty$ limit of these formulas.
-- [[25 Vasicek Model]] · [[26 Statistical Distribution of the Vasicek Model]] — the same distribution with a non-zero mean level.
+- [[22.1 - Properties of Ito Integral And the O-U Process]] — the solution and Itô isometry used to get the variance.
+- [[24 - Long-Term Statistical Distribution Of the O-U Process]] — the $t \to \infty$ limit of these formulas.
+- [[25 - Vasicek Model]] · [[26 - Statistical Distribution of the Vasicek Model]] — the same distribution with a non-zero mean level.
 - [[05 - Diffusion Processes Catalogue]] — the O-U entry in the catalogue.
 
 **Across the programme**

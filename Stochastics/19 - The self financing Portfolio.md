@@ -93,7 +93,7 @@ The continuous condition $dV_t = \phi_t\,dS_t + \psi_t\,dB_t$ is the limit of a 
 
 $$\phi_{t+\Delta t} S_t + \psi_{t+\Delta t} B_t = \phi_t S_t + \psi_t B_t$$
 
-i.e. any extra shares bought are paid for *entirely* by selling bonds (or vice-versa) — no cash is injected or removed. Rearranging and taking $\Delta t \to 0$ kills the $(S_t\,d\phi_t + B_t\,d\psi_t)$ term, which is why only the market-move terms survive. This is the exact continuous-time analogue of the rebalancing rule in the discrete [[27 Stochastic Models of Derivative Prices|binomial model]].
+i.e. any extra shares bought are paid for *entirely* by selling bonds (or vice-versa) — no cash is injected or removed. Rearranging and taking $\Delta t \to 0$ kills the $(S_t\,d\phi_t + B_t\,d\psi_t)$ term, which is why only the market-move terms survive. This is the exact continuous-time analogue of the rebalancing rule in the discrete [[27 - Stochastic Models of Derivative Prices|binomial model]].
 
 ---
 
@@ -101,9 +101,9 @@ i.e. any extra shares bought are paid for *entirely* by selling bonds (or vice-v
 
 **Within Stochastics**
 - [[05 - Diffusion Processes Catalogue]] — the GBM/bond SDEs substituted into $dV_t$.
-- [[18 Previsible Process and Martingale Representation Theorem]] — supplies the previsible strategy $\phi_t$ that this portfolio implements.
-- [[20 Proof of Replicating Portfolio]] — proves self-financing $\iff$ discounted value is a $\mathbb{Q}$-martingale.
-- [[28 Derivation of the Black Scholes PDE .]] — the delta-hedged portfolio is a self-financing portfolio in disguise.
+- [[18 - Previsible Process and Martingale Representation Theorem]] — supplies the previsible strategy $\phi_t$ that this portfolio implements.
+- [[20 - Proof of Replicating Portfolio]] — proves self-financing $\iff$ discounted value is a $\mathbb{Q}$-martingale.
+- [[28 - Derivation of the Black Scholes PDE]] — the delta-hedged portfolio is a self-financing portfolio in disguise.
 
 **Across the programme**
 - [[../Financial Theory/06 - Real Investment Decision]] — the budget-constraint logic (no external funds) mirrored in real investment.

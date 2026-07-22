@@ -312,5 +312,5 @@ _Note: If the question truly intended $Y = aX^\beta$, then $x = 0$ makes the log
 
 **Across the programme**
 - [[../Stochastics/12 - GBM Parameter Estimation]] — the *same* log-transform-then-OLS recipe, applied to estimate GBM drift and volatility from log returns.
-- [[../Stochastics/23 Statistical Distribution of the O-U Process]] — where the exponential-decay structure of a fitted series meets its continuous-time cousin, the AR(1)/O-U process.
-- [[12.1 Revision CAT1]] — the Theory-of-Finance CAT solutions filed alongside this one.
+- [[../Stochastics/23 - Statistical Distribution of the O-U Process]] — where the exponential-decay structure of a fitted series meets its continuous-time cousin, the AR(1)/O-U process.
+- [[12.1 - Revision CAT1]] — the Theory-of-Finance CAT solutions filed alongside this one.

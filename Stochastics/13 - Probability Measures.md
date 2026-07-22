@@ -36,7 +36,7 @@ The **risk-neutral measure** is a mathematical construct—an artificial "virtua
 
 - **Risk Preferences:** In this parallel universe, investors are assumed to be entirely indifferent (neutral) to risk. They do not demand any extra return for holding a volatile asset over a risk-free government bond.
 
-- **Equivalence:** Crucially, $\mathbb{Q}$ is "equivalent" to $\mathbb{P}$ in a measure-theoretic sense (by Girsanov's Theorem — see [[16 Equivalent Probability Measures and Girsanov's Theorem]]). This means they agree on what is _possible_ (they share the same set of zero-probability events), but they disagree on the _likelihood_ of those events occurring.
+- **Equivalence:** Crucially, $\mathbb{Q}$ is "equivalent" to $\mathbb{P}$ in a measure-theoretic sense (by Girsanov's Theorem — see [[16 - Equivalent Probability Measures and Girsanov's Theorem]]). This means they agree on what is _possible_ (they share the same set of zero-probability events), but they disagree on the _likelihood_ of those events occurring.
 
 - **Use Case:** We use $\mathbb{Q}$ strictly for **derivatives pricing** (like options and swaps).
 
@@ -94,7 +94,7 @@ Once we establish a martingale framework, we unlock the entire toolkit of probab
 
 ## 4. The Formal Bridge Between the Two Worlds
 
-The switch from $\mathbb{P}$ to $\mathbb{Q}$ is not hand-waving — it is a genuine **change of probability measure**, made rigorous by the Radon–Nikodym derivative $\frac{d\mathbb{Q}}{d\mathbb{P}}$ and, in continuous time, by [[16 Equivalent Probability Measures and Girsanov's Theorem|Girsanov's theorem]]. The quantity that governs the shift is the **market price of risk** (Sharpe ratio):
+The switch from $\mathbb{P}$ to $\mathbb{Q}$ is not hand-waving — it is a genuine **change of probability measure**, made rigorous by the Radon–Nikodym derivative $\frac{d\mathbb{Q}}{d\mathbb{P}}$ and, in continuous time, by [[16 - Equivalent Probability Measures and Girsanov's Theorem|Girsanov's theorem]]. The quantity that governs the shift is the **market price of risk** (Sharpe ratio):
 
 $$\theta = \frac{\mu - r}{\sigma}$$
 
@@ -107,8 +107,8 @@ This is exactly the excess return per unit of volatility that a **risk-averse** 
 **Within Stochastics**
 - [[09 - Martingales]] — under $\mathbb{Q}$, discounted traded assets become martingales; this note explains *why* we go looking for such a measure.
 - [[10 - Geometric Brownian Motion]] — the $\mathbb{P}$-dynamics $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$ that $\mathbb{Q}$ re-weights.
-- [[14 Asset Dynamics under the probability measures]] — the same assets written out under $\mathbb{Q}$.
-- [[15 Lets understand the brownian motion under Q]] · [[16 Equivalent Probability Measures and Girsanov's Theorem]] — the mechanism that performs the change.
+- [[14 - Asset Dynamics under the probability measures]] — the same assets written out under $\mathbb{Q}$.
+- [[15 - Lets understand the brownian motion under Q]] · [[16 - Equivalent Probability Measures and Girsanov's Theorem]] — the mechanism that performs the change.
 
 **Across the programme**
 - [[../Financial Theory/11 - Risk Aversion - Certainty Equivalent and Risk Premium]] — the risk premium $\mu - r$ that $\mathbb{Q}$ removes, seen from the utility side.

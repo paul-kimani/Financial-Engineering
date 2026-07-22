@@ -16,7 +16,7 @@ Let's go through this final piece of the puzzle step-by-step.
 
 ## 1. The Baseline O-U Conditional Distribution
 
-At the top of the page, we summarize the conditional distribution we just finished building (in [[23 Statistical Distribution of the O-U Process]]):
+At the top of the page, we summarize the conditional distribution we just finished building (in [[23 - Statistical Distribution of the O-U Process]]):
 
 $$X_t \mid X_0 \sim N\left( X_0 e^{-\theta t}, \frac{\sigma^2}{2\theta} \left( 1 - e^{-2\theta t} \right) \right)$$
 
@@ -87,9 +87,9 @@ Reaching a limiting law that is independent of the start $X_0$ is exactly the pr
 ## Connections
 
 **Within Stochastics**
-- [[23 Statistical Distribution of the O-U Process]] — the finite-time law whose limit is taken here.
+- [[23 - Statistical Distribution of the O-U Process]] — the finite-time law whose limit is taken here.
 - [[10 - Geometric Brownian Motion]] — the non-stationary counterpoint.
-- [[25 Vasicek Model]] · [[26 Statistical Distribution of the Vasicek Model]] — the same limit, mean-reverting to $b$ instead of $0$.
+- [[25 - Vasicek Model]] · [[26 - Statistical Distribution of the Vasicek Model]] — the same limit, mean-reverting to $b$ instead of $0$.
 
 **Across the programme**
 - [[../Time Series/10 April 2026]] — stationarity and the $\lvert\phi\rvert<1$ condition for AR(1).

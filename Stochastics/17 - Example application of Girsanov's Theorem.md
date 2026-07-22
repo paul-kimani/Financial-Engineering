@@ -114,7 +114,7 @@ This elegant mathematical step is what allows us to price derivatives without ev
 
 ## 5. Why This Proof Matters
 
-Notice what disappeared: the subjective drift $\mu$. The whole point of the exercise is that the *discounted* stock is a martingale under $\mathbb{Q}$, which is the precondition for the [[21 Martingale Pricing Of European Contingent Claims|risk-neutral pricing formula]]. The same $\mathbb{Q}$-dynamics $dS_t = rS_t\,dt + \sigma S_t\,dW_t^\mathbb{Q}$ are the starting point for both routes to Black–Scholes: the [[28 Derivation of the Black Scholes PDE .|PDE via delta-hedging]] and the [[29 Derivation of The Black Scholes merton formula.|direct integration of the expectation]]. This is the "engine room" step that everything downstream relies on.
+Notice what disappeared: the subjective drift $\mu$. The whole point of the exercise is that the *discounted* stock is a martingale under $\mathbb{Q}$, which is the precondition for the [[21 - Martingale Pricing Of European Contingent Claims|risk-neutral pricing formula]]. The same $\mathbb{Q}$-dynamics $dS_t = rS_t\,dt + \sigma S_t\,dW_t^\mathbb{Q}$ are the starting point for both routes to Black–Scholes: the [[28 - Derivation of the Black Scholes PDE|PDE via delta-hedging]] and the [[29 - Derivation of The Black Scholes merton formula|direct integration of the expectation]]. This is the "engine room" step that everything downstream relies on.
 
 ---
 
@@ -122,9 +122,9 @@ Notice what disappeared: the subjective drift $\mu$. The whole point of the exer
 
 **Within Stochastics**
 - [[03 - Itô's Lemma - Statement and Derivation]] · [[07 - Solving SDEs with Itô's Lemma]] — the Itô calculus used to differentiate $S_t e^{-rt}$.
-- [[16 Equivalent Probability Measures and Girsanov's Theorem]] — the theorem being applied here.
-- [[14 Asset Dynamics under the probability measures]] — the target $\mathbb{Q}$-dynamics obtained at the end.
-- [[18 Previsible Process and Martingale Representation Theorem]] · [[21 Martingale Pricing Of European Contingent Claims]] — where the martingale property is put to work.
+- [[16 - Equivalent Probability Measures and Girsanov's Theorem]] — the theorem being applied here.
+- [[14 - Asset Dynamics under the probability measures]] — the target $\mathbb{Q}$-dynamics obtained at the end.
+- [[18 - Previsible Process and Martingale Representation Theorem]] · [[21 - Martingale Pricing Of European Contingent Claims]] — where the martingale property is put to work.
 
 **Across the programme**
 - [[../Derivatives/7 May 2026 - Personal Notes 1]] — GBM as the underlying whose measure we are changing.

@@ -31,7 +31,7 @@ The difference only appears when we look at the **drift of the asset** they are 
 
 ## 2. The Difference: Girsanov's Theorem
 
-The relationship between $W_t^\mathbb{P}$ and $W_t^\mathbb{Q}$ is governed by **Girsanov's Theorem**, which is the mathematical bridge used to change probability measures (developed fully in [[16 Equivalent Probability Measures and Girsanov's Theorem]]).
+The relationship between $W_t^\mathbb{P}$ and $W_t^\mathbb{Q}$ is governed by **Girsanov's Theorem**, which is the mathematical bridge used to change probability measures (developed fully in [[16 - Equivalent Probability Measures and Girsanov's Theorem]]).
 
 In the real world ($\mathbb{P}$), a stock price $S_t$ has a high drift $\mu$ because investors demand a risk premium:
 
@@ -90,8 +90,8 @@ The key fact that makes all of this work: **the change of measure shifts the dri
 
 **Within Stochastics**
 - [[01 - Introduction to Stochastic Processes]] — the defining properties of the Wiener process shared by $W_t^\mathbb{P}$ and $W_t^\mathbb{Q}$.
-- [[16 Equivalent Probability Measures and Girsanov's Theorem]] — the theorem that makes the shift $dW_t^\mathbb{Q} = dW_t^\mathbb{P} + \theta\,dt$ rigorous.
-- [[17 Example application of Girsanov's Theorem]] — the shift applied end-to-end to a stock SDE.
+- [[16 - Equivalent Probability Measures and Girsanov's Theorem]] — the theorem that makes the shift $dW_t^\mathbb{Q} = dW_t^\mathbb{P} + \theta\,dt$ rigorous.
+- [[17 - Example application of Girsanov's Theorem]] — the shift applied end-to-end to a stock SDE.
 - [[12 - GBM Parameter Estimation]] — why $\sigma$ (but not $\mu$) carries over from $\mathbb{P}$ to $\mathbb{Q}$.
 
 **Across the programme**

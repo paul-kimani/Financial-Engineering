@@ -16,7 +16,7 @@ Let's break this down.
 
 ## 1. Probability Measures: Real-world ($\mathbb{P}$) vs. Risk-Neutral ($\mathbb{Q}$)
 
-We begin by introducing the two probability measures (developed in [[13 Probability Measures]]):
+We begin by introducing the two probability measures (developed in [[13 - Probability Measures]]):
 
 - **$\mathbb{P}$ (Real-world Probability Measure):** Represents the actual physical probabilities of market moves, where risky assets have a subjective growth rate (drift) $\mu$ that includes a risk premium.
 
@@ -86,7 +86,7 @@ $$dS_t = r S_t dt + \sigma S_t dW_t^\mathbb{Q}$$
 
 - **$r S_t dt$ (Drift):** Because we are under the risk-neutral measure $\mathbb{Q}$, the stock's expected rate of return is exactly the risk-free rate $r$. There is no subjective risk premium ($\mu$) here.
 
-- **$\sigma S_t dW_t^\mathbb{Q}$ (Diffusion):** Represents the random, volatile fluctuations of the stock price, driven by the $\mathbb{Q}$-Brownian motion ($W_t^\mathbb{Q}$ — see [[15 Lets understand the brownian motion under Q]]).
+- **$\sigma S_t dW_t^\mathbb{Q}$ (Diffusion):** Represents the random, volatile fluctuations of the stock price, driven by the $\mathbb{Q}$-Brownian motion ($W_t^\mathbb{Q}$ — see [[15 - Lets understand the brownian motion under Q]]).
 
 ### B. The Bond / Cash Account ($B_t$)
 
@@ -111,9 +111,9 @@ says that *prices measured in units of the money-market account have no drift un
 
 **Within Stochastics**
 - [[09 - Martingales]] — the formal definition of the martingale property invoked here.
-- [[13 Probability Measures]] — where $\mathbb{P}$ and $\mathbb{Q}$ are introduced.
-- [[15 Lets understand the brownian motion under Q]] — the $\mathbb{Q}$-Brownian motion driving $dS_t$.
-- [[19 The self financing Portfolio]] · [[21 Martingale Pricing Of European Contingent Claims]] — these dynamics fed into a replicating portfolio.
+- [[13 - Probability Measures]] — where $\mathbb{P}$ and $\mathbb{Q}$ are introduced.
+- [[15 - Lets understand the brownian motion under Q]] — the $\mathbb{Q}$-Brownian motion driving $dS_t$.
+- [[19 - The self financing Portfolio]] · [[21 - Martingale Pricing Of European Contingent Claims]] — these dynamics fed into a replicating portfolio.
 
 **Across the programme**
 - [[../Fixed Income Securities/22 April 2026]] — the bond/cash-account $B_t = e^{rt}$ as the discounting engine for fixed-income cash flows.

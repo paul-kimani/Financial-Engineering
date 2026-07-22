@@ -9,7 +9,7 @@
 
 ---
 
-The Vasicek model is a mathematical framework used to model the evolution of the short-term interest rate $r_t$. It is a direct application of the Ornstein-Uhlenbeck process (see [[22.1 Properties of Ito Integral And the O-U Process.]]).
+The Vasicek model is a mathematical framework used to model the evolution of the short-term interest rate $r_t$. It is a direct application of the Ornstein-Uhlenbeck process (see [[22.1 - Properties of Ito Integral And the O-U Process]]).
 
 ---
 
@@ -51,7 +51,7 @@ While negative interest rates have occasionally occurred in real-world central b
 
 ## 3. Deriving the Solution of the Vasicek SDE
 
-To solve the Vasicek SDE, we follow the exact same "decoupling" trick we used for the general O-U process (see [[22.2 Helper Process]] and [[22.3 Decoupling]]).
+To solve the Vasicek SDE, we follow the exact same "decoupling" trick we used for the general O-U process (see [[22.2 - Helper Process]] and [[22.3 - Decoupling]]).
 
 ### Step 1: The Transition Function (Helper Process)
 
@@ -187,8 +187,8 @@ From $P(t,T)$ one reads off the entire **yield curve** $y(t,T) = -\frac{\ln P(t,
 
 **Within Stochastics**
 - [[05 - Diffusion Processes Catalogue]] — Vasicek listed with O-U, CIR and the Brownian bridge.
-- [[22.1 Properties of Ito Integral And the O-U Process.]] · [[22.2 Helper Process]] · [[22.3 Decoupling]] — the O-U solution method reused verbatim here.
-- [[26 Statistical Distribution of the Vasicek Model]] — the conditional and long-run law of $r_t$.
+- [[22.1 - Properties of Ito Integral And the O-U Process]] · [[22.2 - Helper Process]] · [[22.3 - Decoupling]] — the O-U solution method reused verbatim here.
+- [[26 - Statistical Distribution of the Vasicek Model]] — the conditional and long-run law of $r_t$.
 
 **Across the programme**
 - [[../Fixed Income Securities/22 April 2026]] — bond valuation the term structure feeds.

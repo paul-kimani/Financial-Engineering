@@ -91,7 +91,7 @@ where:
 
 ## 4. Two Models, One Limit
 
-The discrete BOPM and the continuous BSM are not rivals — they are the **same model at two resolutions**. As the number of binomial steps $n \to \infty$ (with up/down factors $u = e^{\sigma\sqrt{\Delta t}}$, $d = 1/u$ and risk-neutral probability $q = \frac{e^{r\Delta t}-d}{u-d}$), the binomial price converges to the Black–Scholes price. The $N(d_1), N(d_2)$ terms are the Gaussian limit of the binomial's cumulative distribution, by the Central Limit Theorem. This is why the [[19 The self financing Portfolio|self-financing rebalancing]] argument works identically in both settings, and why practitioners reach for the tractable BSM for European options but keep the lattice for early-exercise (American) features.
+The discrete BOPM and the continuous BSM are not rivals — they are the **same model at two resolutions**. As the number of binomial steps $n \to \infty$ (with up/down factors $u = e^{\sigma\sqrt{\Delta t}}$, $d = 1/u$ and risk-neutral probability $q = \frac{e^{r\Delta t}-d}{u-d}$), the binomial price converges to the Black–Scholes price. The $N(d_1), N(d_2)$ terms are the Gaussian limit of the binomial's cumulative distribution, by the Central Limit Theorem. This is why the [[19 - The self financing Portfolio|self-financing rebalancing]] argument works identically in both settings, and why practitioners reach for the tractable BSM for European options but keep the lattice for early-exercise (American) features.
 
 ---
 
@@ -100,8 +100,8 @@ The discrete BOPM and the continuous BSM are not rivals — they are the **same 
 **Within Stochastics**
 - [[10 - Geometric Brownian Motion]] — the GBM assumption underpinning both models.
 - [[05 - Diffusion Processes Catalogue]] — GBM's assumptions in the context of other diffusions.
-- [[28 Derivation of the Black Scholes PDE .]] · [[29 Derivation of The Black Scholes merton formula.]] — the two derivations of the BSM formulae stated here.
-- [[19 The self financing Portfolio]] — the replication argument shared by both models.
+- [[28 - Derivation of the Black Scholes PDE]] · [[29 - Derivation of The Black Scholes merton formula]] — the two derivations of the BSM formulae stated here.
+- [[19 - The self financing Portfolio]] — the replication argument shared by both models.
 
 **Across the programme**
 - [[../Derivatives/7 May 2026 - Personal Notes 1]] — the option contracts these models price.

@@ -14,7 +14,7 @@ This section cleanly wraps up the algebraic isolation of $r_t$ and starts calcul
 
 ### 1. The Closed-Form Solution
 
-By multiplying our integrated equation through by the discount factor $e^{-at}$, we successfully isolate the short-term interest rate $r_t$ (see [[25 Vasicek Model]]):
+By multiplying our integrated equation through by the discount factor $e^{-at}$, we successfully isolate the short-term interest rate $r_t$ (see [[25 - Vasicek Model]]):
 
 $$r_t = r_0 e^{-at} + b(1 - e^{-at}) + \int_0^t \sigma e^{-a(t-s)} dW_s$$
 
@@ -110,15 +110,15 @@ $$\boxed{r_\infty \sim N\left( b, \; \frac{\sigma^2}{2a} \right)}$$
 
 ## 3. Why the Gaussian Law Is Both the Strength and the Flaw
 
-The whole distribution collapses to two numbers — a mean pulling toward $b$ and a variance capping at $\tfrac{\sigma^2}{2a}$ — because $r_t$ is **normal**. That tractability is what gives Vasicek its closed-form bond prices ([[25 Vasicek Model]]) and makes it a teaching workhorse. But normality is exactly why it admits **negative rates**: the stationary law $N(b, \tfrac{\sigma^2}{2a})$ puts positive probability on $r_\infty < 0$. Whether that is a defect depends on the era — it looked fatal pre-2008 and prescient during the negative-rate policies that followed. The **Cox–Ingersoll–Ross (CIR)** model swaps the constant $\sigma$ for $\sigma\sqrt{r_t}$, shutting off the volatility at zero and confining rates to $[0,\infty)$; both sit side by side in [[05 - Diffusion Processes Catalogue]].
+The whole distribution collapses to two numbers — a mean pulling toward $b$ and a variance capping at $\tfrac{\sigma^2}{2a}$ — because $r_t$ is **normal**. That tractability is what gives Vasicek its closed-form bond prices ([[25 - Vasicek Model]]) and makes it a teaching workhorse. But normality is exactly why it admits **negative rates**: the stationary law $N(b, \tfrac{\sigma^2}{2a})$ puts positive probability on $r_\infty < 0$. Whether that is a defect depends on the era — it looked fatal pre-2008 and prescient during the negative-rate policies that followed. The **Cox–Ingersoll–Ross (CIR)** model swaps the constant $\sigma$ for $\sigma\sqrt{r_t}$, shutting off the volatility at zero and confining rates to $[0,\infty)$; both sit side by side in [[05 - Diffusion Processes Catalogue]].
 
 ---
 
 ## Connections
 
 **Within Stochastics**
-- [[25 Vasicek Model]] — the SDE and closed-form solution whose law this note derives.
-- [[23 Statistical Distribution of the O-U Process]] · [[24 Long-Term Statistical Distribution Of the O-U Process]] — the zero-mean O-U templates behind these steps.
+- [[25 - Vasicek Model]] — the SDE and closed-form solution whose law this note derives.
+- [[23 - Statistical Distribution of the O-U Process]] · [[24 - Long-Term Statistical Distribution Of the O-U Process]] — the zero-mean O-U templates behind these steps.
 - [[05 - Diffusion Processes Catalogue]] — Vasicek vs CIR and the trade-offs.
 
 **Across the programme**
