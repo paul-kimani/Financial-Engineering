@@ -185,3 +185,6 @@ Putting all the pieces together:
   model that assumes this SDE.
 - [[../QUANTFRAME/Concepts/BackGround to Kelly Criterion]] — log-wealth
   growth carries the same $\tfrac{1}{2}\sigma^2$ correction as the Itô drag here.
+- [[13 - Probability Measures]] — GBM's $\mathbb{P}$-drift re-weighted into the risk-neutral world.
+- [[27 - Stochastic Models of Derivative Prices]] · [[28 - Derivation of the Black Scholes PDE]] · [[29 - Derivation of The Black Scholes merton formula]] — GBM as the engine of Black–Scholes.
+

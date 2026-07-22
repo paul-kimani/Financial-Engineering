@@ -169,3 +169,5 @@ on consumer preferences** — the separation theorem breaks down.
 - [[09 - Expected Utility Theory]] — under uncertainty, the elegance
   of separation is partially preserved (e.g. two-fund separation in
   mean-variance) and partially lost.
+- [[08.1 - Numerical Example on Maximising Wealth]] — a fully worked numerical application of this theorem.
+

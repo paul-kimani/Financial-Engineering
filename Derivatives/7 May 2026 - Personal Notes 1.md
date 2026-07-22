@@ -16,6 +16,6 @@ look at [[Derivatives/Lehman Brothers 2007]]
 - [[../Stochastics/11 - GBM Probability Calculations]] — probability a call option is exercised.
 - [[../Financial Theory/21 April 2026 A]] — Black-Scholes presented there as a statistical option-pricing model.
 - [[Lehman Brothers 2007]] — case study in OTC derivatives risk.
-
-
+- [[../Stochastics/27 - Stochastic Models of Derivative Prices]] · [[../Stochastics/29 - Derivation of The Black Scholes merton formula]] — the option-pricing models for these instruments.
+- [[../Stochastics/30 - Put-Call Parity]] — the model-free parity linking calls, puts and forwards.
 

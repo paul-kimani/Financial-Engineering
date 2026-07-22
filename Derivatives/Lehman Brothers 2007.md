@@ -58,3 +58,5 @@ cases been used by Lehman for various purposes. It is easy to
 - [[../Financial Theory/01 Introduction]] — research cycle and how model failure feeds back into theory.
 - [[../Fixed Income Securities/15 April 2026]] — credit quality, structured-finance sector, securitization of subprime mortgages.
 - [[7 May 2026 - Personal Notes 1]] — derivatives overview.
+- [[../Stochastics/18 - Previsible Process and Martingale Representation Theorem]] — market completeness and its limits: the theory behind when hedging/replication fails.
+

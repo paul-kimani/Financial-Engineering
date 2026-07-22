@@ -138,7 +138,6 @@ Or in trader language:
 - Not “How much can I win?”
 - But “How do I stay alive long enough to win repeatedly?”
 
-
 Now we upgrade Kelly from a coin-flip toy into a proper trading beast with **asymmetric payoffs** 
 ## 1. The setup (now with odds $( b )$)
 Each round:
@@ -232,3 +231,5 @@ Think of it like a negotiation between:
 - [[../../Stochastics/12 - GBM Parameter Estimation]] — log-return machinery shared with these growth-rate calculations.
 - [[../../Financial Theory/22 April 2026]] — log utility is the canonical utility consistent with the axioms of choice.
 - [[../../Financial Theory/21 April 2026 B]] — optimal Kelly fraction is the discrete-bet analogue of the marginal real-investment decision on the concave frontier.
+- [[../../Stochastics/29 - Derivation of The Black Scholes merton formula]] — the shared $\tfrac12\sigma^2$ log-growth correction inside $d_2$ and Kelly.
+

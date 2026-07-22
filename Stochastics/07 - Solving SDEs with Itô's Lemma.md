@@ -212,3 +212,6 @@ rearrange.
   compute moments $\mathbb{E}[W_t^n]$.
 - [[10 - Geometric Brownian Motion]] — continues the GBM story with
   distributions and expectations.
+- [[22.1 - Properties of Ito Integral And the O-U Process]] · [[22.2 - Helper Process]] · [[22.3 - Decoupling]] — the integrating-factor method applied to the O-U SDE.
+- [[25 - Vasicek Model]] — the identical helper-process solution for the short rate.
+

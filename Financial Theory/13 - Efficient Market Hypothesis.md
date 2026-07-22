@@ -262,3 +262,6 @@ chapter [[15 - EMH Limitations and Anomalies]].
 - [[../Derivatives/Lehman Brothers 2007]] — efficient markets did not
   prevent the 2008 blow-up; informational efficiency and *equilibrium*
   efficiency are not the same thing.
+- [[../Stochastics/31.1 - Law of One Price]] — no-arbitrage as the foundation of market efficiency.
+- [[../Stochastics/21 - Martingale Pricing Of European Contingent Claims]] — efficient, arbitrage-free pricing in action.
+
