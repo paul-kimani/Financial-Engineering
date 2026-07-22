@@ -78,4 +78,19 @@ $$\boxed{X_\infty \sim N\left( 0, \frac{\sigma^2}{2\theta} \right)}$$
 
 ---
 
-**See also:** [[23 Statistical Distribution of the O-U Process]] · [[25 Vasicek Model]] · [[26 Statistical Distribution of the Vasicek Model]]
+## 5. Stationarity, Ergodicity, and the AR(1) Link
+
+Reaching a limiting law that is independent of the start $X_0$ is exactly the property of **stationarity**. Because the O-U process is also **ergodic**, long *time averages* of a single path converge to this *ensemble* average $N(0, \tfrac{\sigma^2}{2\theta})$ — which is what makes it possible to estimate the parameters from one historical trajectory. Contrast this sharply with [[10 - Geometric Brownian Motion|GBM]], whose variance grows without bound and which is therefore **non-stationary**: GBM wanders off, the O-U process settles down. The discrete mirror of this whole story is the stationarity condition $\lvert\phi\rvert < 1$ for an [[../Time Series/10 April 2026|AR(1)]] series, with $\phi = e^{-\theta\Delta}$ automatically in $(0,1)$ whenever $\theta > 0$.
+
+---
+
+## Connections
+
+**Within Stochastics**
+- [[23 Statistical Distribution of the O-U Process]] — the finite-time law whose limit is taken here.
+- [[10 - Geometric Brownian Motion]] — the non-stationary counterpoint.
+- [[25 Vasicek Model]] · [[26 Statistical Distribution of the Vasicek Model]] — the same limit, mean-reverting to $b$ instead of $0$.
+
+**Across the programme**
+- [[../Time Series/10 April 2026]] — stationarity and the $\lvert\phi\rvert<1$ condition for AR(1).
+- [[../Fixed Income Securities/29 April online excercise]] — mean-reverting rate models used in short-rate trees.

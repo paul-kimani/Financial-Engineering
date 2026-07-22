@@ -144,4 +144,22 @@ This two-way proof is the mathematical cornerstone of the Black-Scholes-Merton m
 
 ---
 
-**See also:** [[19 The self financing Portfolio]] · [[18 Previsible Process and Martingale Representation Theorem]] · [[21 Martingale Pricing Of European Contingent Claims]]
+## 5. Reading the Two Directions
+
+The two-way ($\iff$) structure is worth pausing on:
+
+- **Forward ($\Rightarrow$):** *self-financing $\Rightarrow$ discounted value is a $\mathbb{Q}$-martingale.* This is what lets us **price**: a martingale's value today equals the expectation of its value at maturity.
+- **Reverse ($\Leftarrow$):** *martingale form $\Rightarrow$ self-financing.* Combined with the [[18 Previsible Process and Martingale Representation Theorem|MRT]] — which *produces* a martingale representation $dE_t = \phi_t\,dD_t$ — this guarantees the strategy it hands us is one we can actually **trade** without injecting cash. So Girsanov + MRT + this equivalence together turn an abstract expectation into an implementable hedge.
+
+---
+
+## Connections
+
+**Within Stochastics**
+- [[03 - Itô's Lemma - Statement and Derivation]] — used to differentiate the discounted value $\tilde V_t = V_t e^{-rt}$.
+- [[09 - Martingales]] — the drift-free SDE $d\tilde V_t = \phi_t e^{-rt}\sigma S_t\,dW_t^\mathbb{Q}$ *is* the martingale conclusion.
+- [[18 Previsible Process and Martingale Representation Theorem]] — the reverse direction leans on the MRT.
+- [[19 The self financing Portfolio]] · [[21 Martingale Pricing Of European Contingent Claims]] — the setup and the payoff of this equivalence.
+
+**Across the programme**
+- [[../Financial Theory/13 - Efficient Market Hypothesis]] — no-arbitrage as the economic principle that forces price = cost of replication.

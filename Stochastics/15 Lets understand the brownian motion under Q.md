@@ -80,4 +80,19 @@ Think of changing from $\mathbb{P}$ to $\mathbb{Q}$ like **walking on a moving w
 
 ---
 
-**See also:** [[14 Asset Dynamics under the probability measures]] · [[16 Equivalent Probability Measures and Girsanov's Theorem]] · [[17 Example application of Girsanov's Theorem]]
+## 4. Why Only the Drift Changes
+
+The key fact that makes all of this work: **the change of measure shifts the drift but leaves the volatility $\sigma$ untouched.** Mathematically, $W_t^\mathbb{Q}$ and $W_t^\mathbb{P}$ have the *same* quadratic variation, $[W]_t = t$, and by Lévy's characterisation any continuous martingale with that quadratic variation is a standard Brownian motion. Girsanov's theorem only re-weights *which paths are likely*, so the "size" of the random shocks — the diffusion coefficient — is invariant. This is why volatility can be estimated from real-world ($\mathbb{P}$) data (see [[12 - GBM Parameter Estimation]]) and then used directly for $\mathbb{Q}$-pricing, whereas the drift cannot.
+
+---
+
+## Connections
+
+**Within Stochastics**
+- [[01 - Introduction to Stochastic Processes]] — the defining properties of the Wiener process shared by $W_t^\mathbb{P}$ and $W_t^\mathbb{Q}$.
+- [[16 Equivalent Probability Measures and Girsanov's Theorem]] — the theorem that makes the shift $dW_t^\mathbb{Q} = dW_t^\mathbb{P} + \theta\,dt$ rigorous.
+- [[17 Example application of Girsanov's Theorem]] — the shift applied end-to-end to a stock SDE.
+- [[12 - GBM Parameter Estimation]] — why $\sigma$ (but not $\mu$) carries over from $\mathbb{P}$ to $\mathbb{Q}$.
+
+**Across the programme**
+- [[../Financial Theory/11 - Risk Aversion - Certainty Equivalent and Risk Premium]] — the market price of risk $\theta$ as the compensation risk-averse investors demand.

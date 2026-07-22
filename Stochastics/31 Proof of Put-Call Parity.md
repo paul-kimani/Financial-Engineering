@@ -87,4 +87,19 @@ $$P_t + S_t = C_t + K e^{-r(T-t)} \quad \blacksquare$$
 
 ---
 
-**See also:** [[30 Put-Call Parity]] · [[31.1 Law of One Price]] · [[29 Derivation of The Black Scholes merton formula.]]
+## The Arbitrage If Parity Breaks
+
+The proof is worth completing with the *enforcement* argument. Suppose $C_t + Ke^{-r(T-t)} < P_t + S_t$ (Portfolio A is cheaper). A trader would **buy A** and **short B** today, pocketing the positive difference. At maturity both portfolios are worth $\max(S_T, K)$, so the short exactly funds the long and the closing cash flow is zero — a *riskless* profit banked upfront. Traders piling into this trade bid A up and push B down until the gap closes. The same argument runs symmetrically if B is cheaper. This is the [[31.1 Law of One Price|Law of One Price]] doing active work, and it is why parity holds as a near-equality in liquid markets (up to transaction costs and borrow fees).
+
+---
+
+## Connections
+
+**Within Stochastics**
+- [[30 Put-Call Parity]] — the statement and the synthetic-position reading.
+- [[31.1 Law of One Price]] — the no-arbitrage principle enforcing it.
+- [[22 General Formula]] — parity as a consequence of the linear pricing formula.
+
+**Across the programme**
+- [[../Fixed Income Securities/04 Repurchase Agreements (REPOs) Rates, Applications, and Risks]] — the repo/borrow mechanics that make the short leg of this arbitrage possible (and set its true cost).
+- [[../Derivatives/7 May 2026 - Personal Notes 1]] — the option and forward payoffs used in the two portfolios.

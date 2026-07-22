@@ -91,4 +91,27 @@ $$dS_t = r S_t dt + \sigma S_t d\tilde{Z}_t$$
 
 ---
 
-**See also:** [[15 Lets understand the brownian motion under Q]] · [[17 Example application of Girsanov's Theorem]] · [[18 Previsible Process and Martingale Representation Theorem]]
+## 4. The Radon–Nikodym Derivative (What Actually Does the Re-weighting)
+
+The abstract object that *is* the change of measure is the **Radon–Nikodym derivative** $\frac{d\mathbb{Q}}{d\mathbb{P}}$. For the Girsanov shift by a process $\gamma_s$, it takes the form of a **stochastic (Doléans–Dade) exponential**:
+
+$$\frac{d\mathbb{Q}}{d\mathbb{P}}\bigg|_{\mathcal{F}_t} = \exp\left( -\int_0^t \gamma_s\,dW_s - \frac{1}{2}\int_0^t \gamma_s^2\,ds \right) \equiv Z_t$$
+
+This $Z_t$ is itself a positive $\mathbb{P}$-martingale with $Z_0 = 1$ — the density that tilts each path's probability. For it to be a *true* martingale (so that $\mathbb{Q}$ is a genuine probability measure), it suffices that the **Novikov condition** $E^\mathbb{P}\!\left[\exp\left(\tfrac{1}{2}\int_0^T \gamma_s^2\,ds\right)\right] < \infty$ holds. With the constant market price of risk $\gamma_s = \theta = \tfrac{\mu-r}{\sigma}$, this is automatic.
+
+> **Intuition:** $Z_t$ is a re-weighting factor. Paths where the Brownian motion drifted "up" get down-weighted under $\mathbb{Q}$, and vice-versa, exactly enough to convert the drift from $\mu$ to $r$.
+
+---
+
+## Connections
+
+**Within Stochastics**
+- [[02 - The Itô Integral]] — the stochastic integral $\int_0^t \gamma_s\,dW_s$ inside the density $Z_t$.
+- [[09 - Martingales]] — $Z_t$ is the positive martingale that defines the new measure.
+- [[15 Lets understand the brownian motion under Q]] — the intuition this note makes rigorous.
+- [[17 Example application of Girsanov's Theorem]] — Girsanov applied to a concrete pricing problem.
+- [[18 Previsible Process and Martingale Representation Theorem]] — the companion theorem that turns "a measure exists" into "a hedge exists".
+
+**Across the programme**
+- [[../Financial Theory/11 - Risk Aversion - Certainty Equivalent and Risk Premium]] — the economic meaning of the market price of risk $\theta$.
+- [[../Derivatives/Swaps/04 Currency Swaps - Introduction]] — changing measure/numéraire is central to multi-currency pricing.

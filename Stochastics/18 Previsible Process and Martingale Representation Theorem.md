@@ -75,4 +75,22 @@ A portfolio is **self-financing** if no money is added to or withdrawn from it a
 
 ---
 
-**See also:** [[16 Equivalent Probability Measures and Girsanov's Theorem]] · [[19 The self financing Portfolio]] · [[20 Proof of Replicating Portfolio]]
+## 3. Market Completeness — the Deeper Payoff
+
+The MRT is really a statement about **market completeness**. In the single-stock Black–Scholes model there is exactly *one* source of randomness ($W_t^\mathbb{Q}$), and the MRT guarantees that a single traded asset is enough to represent — and therefore hedge — any $\mathcal{F}_T$-measurable payoff. This is what makes the risk-neutral measure **unique** and the price **unambiguous**.
+
+When randomness outnumbers traded assets (e.g. stochastic volatility, or more risk factors than instruments), the market is **incomplete**: perfect replication fails, the equivalent martingale measure is no longer unique, and prices are only bounded rather than pinned down. That gap is exactly where the clean theory of these chapters stops and model risk begins — the practical lesson of the [[../Derivatives/Lehman Brothers 2007]] case study.
+
+---
+
+## Connections
+
+**Within Stochastics**
+- [[09 - Martingales]] — both $D_t$ and $E_t$ must be $\mathbb{Q}$-martingales for the MRT to apply.
+- [[02 - The Itô Integral]] — the representation $dY_t = \phi_t\,dX_t$ is an Itô integral against $X_t$.
+- [[16 Equivalent Probability Measures and Girsanov's Theorem]] — supplies the measure $\mathbb{Q}$; MRT then supplies the strategy.
+- [[19 The self financing Portfolio]] · [[20 Proof of Replicating Portfolio]] — the strategy $\phi_t$ realised as a self-financing portfolio.
+
+**Across the programme**
+- [[../Derivatives/Lehman Brothers 2007]] — what happens when the neat replication story meets incomplete, illiquid markets.
+- [[../Financial Theory/13 - Efficient Market Hypothesis]] — no-arbitrage and information as the economic backdrop to completeness.

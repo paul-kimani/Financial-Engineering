@@ -65,4 +65,27 @@ $$P_t + S_t = C_t + K e^{-r(T-t)}$$
 
 ---
 
-**See also:** [[31 Proof of Put-Call Parity]] · [[31.1 Law of One Price]] · [[29 Derivation of The Black Scholes merton formula.]]
+## 4. Synthetic Positions — Parity as a Trading Tool
+
+Rearranged, parity says any one instrument is a **synthetic** combination of the others:
+
+$$\underbrace{C_t - P_t}_{\text{synthetic forward}} = S_t - Ke^{-r(T-t)}, \qquad S_t = C_t - P_t + Ke^{-r(T-t)}$$
+
+- **Long call + short put** (same $K, T$) = a long **forward** — the cost-of-carry relation from [[22 General Formula]].
+- Desks use this to manufacture exposures, arbitrage mispriced options, and infer the implied forward/dividend from listed option prices.
+
+Crucially, parity is **model-free**: it needs only no-arbitrage and a traded bond, *not* GBM, constant volatility, or normality. So it holds even where Black–Scholes fails, which makes it a favourite consistency check on any option-pricing model or market data set.
+
+---
+
+## Connections
+
+**Within Stochastics**
+- [[22 General Formula]] — parity falls straight out of the linear pricing formula and the forward price.
+- [[29 Derivation of The Black Scholes merton formula.]] — used to convert the call formula into the put.
+- [[31 Proof of Put-Call Parity]] — the full replication proof.
+- [[31.1 Law of One Price]] — the single principle the whole result rests on.
+
+**Across the programme**
+- [[../Derivatives/7 May 2026 - Personal Notes 1]] — calls, puts, and forwards as instruments.
+- [[../Derivatives/Swaps/02 Value of an Interest rate swap]] — a swap decomposed into synthetic long/short bond legs, the same "build one from others" logic.

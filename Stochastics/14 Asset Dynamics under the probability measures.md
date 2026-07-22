@@ -97,4 +97,24 @@ $$dB_t = r B_t dt$$
 
 ---
 
-**See also:** [[13 Probability Measures]] · [[15 Lets understand the brownian motion under Q]] · [[21 Martingale Pricing Of European Contingent Claims]]
+## 5. The Cash Account as Numéraire
+
+Dividing by $B_t = e^{rt}$ is more than a discounting convenience — $B_t$ is acting as the **numéraire**, the unit in which all other prices are quoted. The martingale statement
+
+$$\frac{S_t}{B_t} = E^\mathbb{Q}\!\left[ \frac{S_T}{B_T} \mid \mathcal{F}_t \right]$$
+
+says that *prices measured in units of the money-market account have no drift under $\mathbb{Q}$*. This is the "fair-game" property of a [[09 - Martingales|martingale]]: the best forecast of tomorrow's normalised price is today's. Different choices of numéraire (a bond, a foreign currency) give different equivalent martingale measures — the idea that underpins currency-swap and quanto pricing in [[../Derivatives/Swaps/04 Currency Swaps - Introduction]].
+
+---
+
+## Connections
+
+**Within Stochastics**
+- [[09 - Martingales]] — the formal definition of the martingale property invoked here.
+- [[13 Probability Measures]] — where $\mathbb{P}$ and $\mathbb{Q}$ are introduced.
+- [[15 Lets understand the brownian motion under Q]] — the $\mathbb{Q}$-Brownian motion driving $dS_t$.
+- [[19 The self financing Portfolio]] · [[21 Martingale Pricing Of European Contingent Claims]] — these dynamics fed into a replicating portfolio.
+
+**Across the programme**
+- [[../Fixed Income Securities/22 April 2026]] — the bond/cash-account $B_t = e^{rt}$ as the discounting engine for fixed-income cash flows.
+- [[../Derivatives/Swaps/02 Value of an Interest rate swap]] — valuing a stream of cash flows as discounted expectations.

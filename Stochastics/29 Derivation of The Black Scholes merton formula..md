@@ -155,4 +155,31 @@ $$P_0 = 11.46 + 55(0.99005) - 65 = 11.46 + 54.45 - 65 = \mathbf{\$0.91}$$
 
 ---
 
-**See also:** [[28 Derivation of the Black Scholes PDE .]] · [[27 Stochastic Models of Derivative Prices]] · [[30 Put-Call Parity]]
+## 8. Reading the Formula: Greeks and the Put
+
+The two pieces of $C_0 = S_0\Phi(d_1) - Ke^{-rT}\Phi(d_2)$ are not just algebra:
+
+- $\Phi(d_1)$ **is the call's delta** — the number of shares in the replicating hedge. So $S_0\Phi(d_1)$ is the value of the stock leg and $Ke^{-rT}\Phi(d_2)$ the value of the borrowing leg.
+- $\Phi(d_2)$ **is the risk-neutral probability** the option finishes in the money, $\mathbb{Q}(S_T > K)$.
+
+The **put** price follows immediately from [[30 Put-Call Parity|put–call parity]] rather than a second integral:
+
+$$P_0 = Ke^{-rT}\Phi(-d_2) - S_0\Phi(-d_1)$$
+
+Note the recurring $\left(r - \tfrac{1}{2}\sigma^2\right)$ drift inside $d_2$: the **$-\tfrac{1}{2}\sigma^2$ variance correction** is the same log-normal adjustment that appears in [[10 - Geometric Brownian Motion|GBM]] and in the log-wealth growth rate of the [[../QUANTFRAME/Concepts/BackGround to Kelly Criterion|Kelly criterion]] — a small term with an outsized conceptual footprint.
+
+---
+
+## Connections
+
+**Within Stochastics**
+- [[10 - Geometric Brownian Motion]] — the log-normal law of $S_T$ integrated here; source of the $-\tfrac12\sigma^2$ term.
+- [[11 - GBM Probability Calculations]] — the same $\Phi(\cdot)$ / log-normal probability manipulations.
+- [[21 Martingale Pricing Of European Contingent Claims]] — the expectation this note evaluates.
+- [[28 Derivation of the Black Scholes PDE .]] — the PDE route to the identical answer.
+- [[30 Put-Call Parity]] — how the put price is obtained above.
+
+**Across the programme**
+- [[../QUANTFRAME/Concepts/BackGround to Kelly Criterion]] — the shared $\tfrac12\sigma^2$ log-growth correction.
+- [[../Derivatives/7 May 2026 - Personal Notes 1]] — the options being priced.
+- [[../Financial Theory/09.1 Expected Utility theory Question]] — risk attitudes vs the risk-neutral pricing measure.

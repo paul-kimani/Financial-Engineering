@@ -114,4 +114,32 @@ $$d_2 = d_1 - \sigma \sqrt{T-t} = \frac{\ln\left(\frac{S_t}{K}\right) + \left(r 
 
 ---
 
-**See also:** [[27 Stochastic Models of Derivative Prices]] · [[29 Derivation of The Black Scholes merton formula.]] · [[19 The self financing Portfolio]]
+## 4. Boundary Conditions, Feynman–Kac, and the Greeks
+
+A PDE alone does not price anything — it needs **boundary/terminal conditions** that encode the contract:
+
+- **European call:** $V(S,T) = \max(S-K, 0)$, with $V(0,t)=0$ and $V(S,t)\to S - Ke^{-r(T-t)}$ as $S\to\infty$.
+- **European put:** $V(S,T) = \max(K-S, 0)$.
+
+Solving the PDE under these conditions returns the Black–Scholes formulae — but you never have to solve it by hand, because the **Feynman–Kac theorem** identifies that solution with the risk-neutral expectation $V_t = e^{-r(T-t)}E^\mathbb{Q}[V_T \mid \mathcal{F}_t]$ of [[21 Martingale Pricing Of European Contingent Claims|chapter 21]]. PDE and expectation are two windows onto one price.
+
+The partial derivatives appearing in the PDE are the **Greeks**, the hedge sensitivities:
+
+$$\Delta = \frac{\partial V}{\partial S}, \quad \Gamma = \frac{\partial^2 V}{\partial S^2}, \quad \Theta = \frac{\partial V}{\partial t}, \quad \mathcal{V} = \frac{\partial V}{\partial \sigma}, \quad \rho = \frac{\partial V}{\partial r}$$
+
+Read this way, the Black–Scholes PDE is just the statement that a delta-hedged book's time-decay ($\Theta$) and convexity ($\tfrac{1}{2}\sigma^2 S^2 \Gamma$) must net to the risk-free carry — the daily P&L identity every options desk lives by.
+
+---
+
+## Connections
+
+**Within Stochastics**
+- [[03 - Itô's Lemma - Statement and Derivation]] — the expansion of $dV$ that starts the derivation.
+- [[10 - Geometric Brownian Motion]] — the underlying's assumed dynamics.
+- [[19 The self financing Portfolio]] — the delta-hedged portfolio as a self-financing strategy.
+- [[21 Martingale Pricing Of European Contingent Claims]] — the Feynman–Kac twin of this PDE.
+- [[29 Derivation of The Black Scholes merton formula.]] — solving the PDE / expectation for the closed form.
+
+**Across the programme**
+- [[../Derivatives/Swaps/03 Interest Rate Swap Terminology & Risk Profiles]] — delta/greeks as the language of managing a derivatives book.
+- [[../Derivatives/Lehman Brothers 2007]] — hedging assumptions under stress.

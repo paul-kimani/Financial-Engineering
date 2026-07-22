@@ -167,4 +167,30 @@ $$\boxed{r_t = r_0 e^{-at} + b \left( 1 - e^{-at} \right) + \int_0^t \sigma e^{-
 
 ---
 
-**See also:** [[22.1 Properties of Ito Integral And the O-U Process.]] · [[26 Statistical Distribution of the Vasicek Model]] · [[24 Long-Term Statistical Distribution Of the O-U Process]]
+## 6. From the Short Rate to Bond Prices (Affine Term Structure)
+
+The reason the short-rate SDE matters is that it prices **zero-coupon bonds**. A $T$-maturity bond is the risk-neutral expectation of the discount over the whole path of the rate:
+
+$$P(t, T) = E^\mathbb{Q}\!\left[ \exp\left( -\int_t^T r_s\,ds \right) \mid \mathcal{F}_t \right]$$
+
+Because the Vasicek rate is Gaussian, this integral is log-normal and evaluates in closed form to an **affine** expression in the current rate $r_t$:
+
+$$P(t, T) = A(t,T)\, e^{-B(t,T)\, r_t}, \qquad B(t,T) = \frac{1 - e^{-a(T-t)}}{a}$$
+
+$$A(t,T) = \exp\left[ \left(b - \frac{\sigma^2}{2a^2}\right)\big(B(t,T) - (T-t)\big) - \frac{\sigma^2}{4a}B(t,T)^2 \right]$$
+
+From $P(t,T)$ one reads off the entire **yield curve** $y(t,T) = -\frac{\ln P(t,T)}{T-t}$, so a one-factor rate model produces a whole term structure. This is the continuous-time engine behind the discrete rate-tree valuation in [[../Fixed Income Securities/29 April online excercise]] and the bond-pricing mechanics of [[../Fixed Income Securities/22 April 2026]].
+
+---
+
+## Connections
+
+**Within Stochastics**
+- [[05 - Diffusion Processes Catalogue]] — Vasicek listed with O-U, CIR and the Brownian bridge.
+- [[22.1 Properties of Ito Integral And the O-U Process.]] · [[22.2 Helper Process]] · [[22.3 Decoupling]] — the O-U solution method reused verbatim here.
+- [[26 Statistical Distribution of the Vasicek Model]] — the conditional and long-run law of $r_t$.
+
+**Across the programme**
+- [[../Fixed Income Securities/22 April 2026]] — bond valuation the term structure feeds.
+- [[../Fixed Income Securities/29 April online excercise]] — the discrete one-period rate tree, a lattice analogue of this model.
+- [[../Fixed Income Securities/05 Government Issuers and Debt Management]] — where sovereign yield curves are set and traded.

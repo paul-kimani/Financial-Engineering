@@ -140,4 +140,28 @@ This successfully builds the theoretical foundation for mean-reverting financial
 
 ---
 
-**See also:** [[22.1 Properties of Ito Integral And the O-U Process.]] · [[24 Long-Term Statistical Distribution Of the O-U Process]] · [[25 Vasicek Model]]
+## 3. Two Extra Handles: Half-Life and Autocorrelation
+
+The conditional mean decays like $e^{-\theta t}$, so a natural summary of "how fast does it revert?" is the **half-life** — the time for a shock to decay by half:
+
+$$t_{1/2} = \frac{\ln 2}{\theta}$$
+
+The process also has a clean **autocovariance**. For the stationary O-U process, separated by a lag $\tau$,
+
+$$\operatorname{Cov}(X_t, X_{t+\tau}) = \frac{\sigma^2}{2\theta}\, e^{-\theta \lvert \tau \rvert}, \qquad \operatorname{Corr}(X_t, X_{t+\tau}) = e^{-\theta \lvert \tau \rvert}$$
+
+The exponentially-decaying autocorrelation is precisely the continuous-time signature of an **AR(1)** process: sampling an O-U process at equal intervals $\Delta$ yields the discrete recursion $X_{n+1} = \phi X_n + \varepsilon_{n+1}$ with $\phi = e^{-\theta \Delta}$. This is the concrete link to the [[../Time Series/10 April 2026|time-series]] treatment of stationarity and autocorrelation, and to estimating $\theta$ by regression as in [[12 - GBM Parameter Estimation]].
+
+---
+
+## Connections
+
+**Within Stochastics**
+- [[22.1 Properties of Ito Integral And the O-U Process.]] — the solution and Itô isometry used to get the variance.
+- [[24 Long-Term Statistical Distribution Of the O-U Process]] — the $t \to \infty$ limit of these formulas.
+- [[25 Vasicek Model]] · [[26 Statistical Distribution of the Vasicek Model]] — the same distribution with a non-zero mean level.
+- [[05 - Diffusion Processes Catalogue]] — the O-U entry in the catalogue.
+
+**Across the programme**
+- [[../Time Series/10 April 2026]] — O-U as continuous-time AR(1); exponential autocorrelation.
+- [[../Time Series/24 April Assignment]] — OLS estimation of the discretised recursion.

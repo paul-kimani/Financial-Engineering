@@ -92,4 +92,25 @@ Once we establish a martingale framework, we unlock the entire toolkit of probab
 
 ---
 
-**See also:** [[14 Asset Dynamics under the probability measures]] · [[15 Lets understand the brownian motion under Q]] · [[16 Equivalent Probability Measures and Girsanov's Theorem]]
+## 4. The Formal Bridge Between the Two Worlds
+
+The switch from $\mathbb{P}$ to $\mathbb{Q}$ is not hand-waving — it is a genuine **change of probability measure**, made rigorous by the Radon–Nikodym derivative $\frac{d\mathbb{Q}}{d\mathbb{P}}$ and, in continuous time, by [[16 Equivalent Probability Measures and Girsanov's Theorem|Girsanov's theorem]]. The quantity that governs the shift is the **market price of risk** (Sharpe ratio):
+
+$$\theta = \frac{\mu - r}{\sigma}$$
+
+This is exactly the excess return per unit of volatility that a **risk-averse** investor demands — the same risk premium studied from the preference side in [[../Financial Theory/11 - Risk Aversion - Certainty Equivalent and Risk Premium]] and quantified by the [[../Financial Theory/12 - Pratt-Arrow Risk Aversion|Pratt–Arrow]] coefficients. Moving to $\mathbb{Q}$ is precisely the act of *pricing that risk premium out*, so two investors with different risk appetites still agree on the derivative's price.
+
+---
+
+## Connections
+
+**Within Stochastics**
+- [[09 - Martingales]] — under $\mathbb{Q}$, discounted traded assets become martingales; this note explains *why* we go looking for such a measure.
+- [[10 - Geometric Brownian Motion]] — the $\mathbb{P}$-dynamics $dS_t = \mu S_t\,dt + \sigma S_t\,dW_t$ that $\mathbb{Q}$ re-weights.
+- [[14 Asset Dynamics under the probability measures]] — the same assets written out under $\mathbb{Q}$.
+- [[15 Lets understand the brownian motion under Q]] · [[16 Equivalent Probability Measures and Girsanov's Theorem]] — the mechanism that performs the change.
+
+**Across the programme**
+- [[../Financial Theory/11 - Risk Aversion - Certainty Equivalent and Risk Premium]] — the risk premium $\mu - r$ that $\mathbb{Q}$ removes, seen from the utility side.
+- [[../Financial Theory/13 - Efficient Market Hypothesis]] — the market-efficiency assumptions underpinning a single agreed price.
+- [[../Fixed Income Securities/22 April 2026]] — the same discounted-expectation machinery applied to bond cash flows.

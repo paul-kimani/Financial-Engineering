@@ -88,4 +88,23 @@ $$V_t = E^\mathbb{Q}\left[ \text{Payoff} \mid \mathcal{F}_t \right] e^{-r(T-t)}$
 
 ---
 
-**See also:** [[21 Martingale Pricing Of European Contingent Claims]] · [[29 Derivation of The Black Scholes merton formula.]] · [[30 Put-Call Parity]]
+## 3. The Forward Price Falls Straight Out
+
+The forward payoff $S_T - K$ is a useful sanity check on the machinery. Applying the recipe and using that the *discounted stock is a $\mathbb{Q}$-martingale* (so $E^\mathbb{Q}[S_T \mid \mathcal{F}_t] = S_t e^{r(T-t)}$):
+
+$$V_t = e^{-r(T-t)}\left( S_t e^{r(T-t)} - K \right) = S_t - K e^{-r(T-t)}$$
+
+Setting this to zero (a forward costs nothing to enter) gives the fair **forward price** $F = S_t e^{r(T-t)}$ — the cost-of-carry relation. Subtracting the put payoff from the call payoff, $\max(S_T-K,0) - \max(K-S_T,0) = S_T - K$, then reproduces **[[30 Put-Call Parity|put–call parity]]** directly from linearity of the expectation. So parity is not a separate axiom; it is baked into this one formula.
+
+---
+
+## Connections
+
+**Within Stochastics**
+- [[21 Martingale Pricing Of European Contingent Claims]] — the derivation of the formula this note applies.
+- [[29 Derivation of The Black Scholes merton formula.]] — evaluating the call expectation analytically under GBM.
+- [[30 Put-Call Parity]] · [[31 Proof of Put-Call Parity]] — the parity relation recovered above.
+
+**Across the programme**
+- [[../Derivatives/7 May 2026 - Personal Notes 1]] — calls, puts and forwards as traded instruments.
+- [[../Derivatives/Swaps/02 Value of an Interest rate swap]] — a swap valued as a portfolio of forward-rate agreements, each priced by this recipe.
