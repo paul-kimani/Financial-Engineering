@@ -129,5 +129,7 @@ happens when these warnings are ignored.
   of GBM.
 - [[../Time Series/24 April Assignment]] — OLS regression, the standard
   fit method for statistical models like CAPM.
+- [[../Derivatives/7 May 2026 - Personal Notes 1]] — options pricing is
+  the direct application of the Black–Scholes statistical model.
 - [[../Derivatives/Lehman Brothers 2007]] — practical-phase failure
   mode for over-trusted models.
