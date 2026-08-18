@@ -22,6 +22,7 @@ $C_1$ can exceed $W_0 - C_0$.
 
 The whole framework asks: given preferences and opportunities,
 what is the **optimal split** $(C_0, C_1)$?
+![[Images/Screenshot 2026-05-31 at 17.19.13.png]]
 
 ---
 

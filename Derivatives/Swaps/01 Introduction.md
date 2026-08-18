@@ -1,4 +1,5 @@
-From my understanding of #swaps, its essentially layering or a series of futures contracts
+From my understanding of #swaps, its essentially layering or a series of futures contracts.
+
 >In essence a swap is an over the counter agreement between 2 companies or parties to exchange cashflows in the future.
 
 ## Interest Rate Swaps

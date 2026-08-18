@@ -105,6 +105,7 @@ the *same* amount of $C_1$ but require an *increasingly large* amount
 of $C_0$ to remain on the curve. Each additional unit of $C_0$ adds
 less utility (diminishing marginal utility of $C_0$), so more of it is
 needed to compensate for the lost $C_1$.
+![[Images/Screenshot 2026-06-01 at 05.30.11.png]]
 
 ---
 

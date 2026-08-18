@@ -1,0 +1,1 @@
+![[Pasted image 20260817085311.png]]![[Screenshot 2026-08-17 at 08.53.28.png]]

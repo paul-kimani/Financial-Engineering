@@ -28,11 +28,12 @@ properties.
 
 ### Related notions
 
-| Concept              | Defining inequality                                          | Plain meaning                       |
-| :------------------- | :----------------------------------------------------------- | :---------------------------------- |
-| **Martingale**       | $\mathbb{E}[X_t \mid \mathcal{F}_s] = X_s$                   | a fair game                         |
-| **Submartingale**    | $\mathbb{E}[X_t \mid \mathcal{F}_s] \ge X_s$                 | tendency to drift *up*              |
-| **Supermartingale**  | $\mathbb{E}[X_t \mid \mathcal{F}_s] \le X_s$                 | tendency to drift *down*            |
+| Concept             | Defining inequality                          | Plain meaning            |
+| :------------------ | :------------------------------------------- | :----------------------- |
+| **Martingale**      | $\mathbb{E}[X_t \mid \mathcal{F}_s] = X_s$   | a fair game              |
+| **Submartingale**   | $\mathbb{E}[X_t \mid \mathcal{F}_s] \ge X_s$ | tendency to drift *up*   |
+| **Supermartingale** | $\mathbb{E}[X_t \mid \mathcal{F}_s] \le X_s$ | tendency to drift *down* |
+|                     |                                              |                          |
 
 ---
 
