@@ -111,11 +111,89 @@ $\hat\beta_0$ is unbiased too — via exactly the same two assumptions as $\hat\
 > [!tip] The one sentence version
 > Both OLS estimators are just fixed-weight linear combinations of $Y$; the weights are built entirely from $X$ so they carry no randomness of their own, and once you substitute in the true model, only the $\mathbb E(\epsilon_i)=0$ assumption (SL2) is needed to make the noise term vanish in expectation — leaving exactly the true parameter behind.
 
-## 4. From simple to multiple regression
+## 4. The variances of $\hat\beta_0$ and $\hat\beta_1$, and their covariance
+
+Unbiasedness (§3) only tells you the *center* of $\hat\beta_0,\hat\beta_1$'s distribution matches the truth — it says nothing about how spread out the estimator is around that center. That's what these three quantities capture, and they're what "**lowest-variance**" in the BLUE claim (§2) is actually referring to.
+
+### Setting up: a double sum, not a single one
+
+You already have $\hat\beta_1-\beta_1=\sum_i w_i\epsilon_i$ from §3. Variance is the expected square of that:
+
+$$\operatorname{Var}(\hat\beta_1) = \mathbb{E}\big[(\hat\beta_1-\beta_1)^2\big] = \mathbb{E}\left[\left(\sum_i w_i\epsilon_i\right)^{\!2}\right]$$
+
+A sum squared isn't a sum of squares — it expands into a **double sum** over two indices $i,j$ (every pair, including a term against itself):
+
+$$\left(\sum_i w_i\epsilon_i\right)^{\!2} = \sum_i\sum_j w_iw_j\,\epsilon_i\epsilon_j \quad\Longrightarrow\quad \operatorname{Var}(\hat\beta_1) = \sum_i\sum_j w_iw_j\,\mathbb{E}(\epsilon_i\epsilon_j)$$
+
+### Collapsing the double sum
+
+Split into diagonal ($i=j$) and off-diagonal ($i\neq j$) terms:
+
+- **Off-diagonal ($i\neq j$):** $\mathbb{E}(\epsilon_i\epsilon_j) = \operatorname{Cov}(\epsilon_i,\epsilon_j) + \mathbb{E}(\epsilon_i)\mathbb{E}(\epsilon_j)$. **SL1** gives $\operatorname{Cov}(\epsilon_i,\epsilon_j)=0$, and **SL2** gives $\mathbb{E}(\epsilon_i)=\mathbb{E}(\epsilon_j)=0$, so the whole thing is $0$. (SL2 is doing quiet work here too, not just SL1 — it's what lets you equate $\mathbb{E}(\epsilon_i\epsilon_j)$ with the covariance in the first place.)
+- **Diagonal ($i=j$):** $\mathbb{E}(\epsilon_i^2) = \operatorname{Var}(\epsilon_i)+[\mathbb{E}(\epsilon_i)]^2$. **SL3** gives $\operatorname{Var}(\epsilon_i)=\sigma^2$, and **SL2** kills the second term, leaving $\mathbb{E}(\epsilon_i^2)=\sigma^2$.
+
+So every off-diagonal term vanishes and only the diagonal survives:
+
+$$\operatorname{Var}(\hat\beta_1) = \sum_i w_i^2\cdot\sigma^2 = \sigma^2\sum_i w_i^2$$
+
+### Closing the form: $\sum_i w_i^2$
+
+Recall $w_i=\dfrac{X_i-\bar X}{S}$ where $S=\sum_j(X_j-\bar X)^2$. Squaring and summing:
+
+$$\sum_i w_i^2 = \frac{\sum_i(X_i-\bar X)^2}{S^2} = \frac{S}{S^2} = \frac1S$$
+
+(the numerator is exactly $S$ again, so one power of $S$ cancels). Therefore:
+
+$$\boxed{\operatorname{Var}(\hat\beta_1) = \frac{\sigma^2}{S} = \frac{\sigma^2}{\sum_j(X_j-\bar X)^2}}$$
+
+### $\operatorname{Var}(\hat\beta_0)$ — same collapse, one new piece of algebra
+
+By the identical double-sum argument applied to $\hat\beta_0-\beta_0=\sum_i v_i\epsilon_i$:
+
+$$\operatorname{Var}(\hat\beta_0) = \sigma^2\sum_i v_i^2$$
+
+Expand $v_i^2=\left(\frac1n-\bar Xw_i\right)^2 = \frac1{n^2}-\frac{2\bar X}{n}w_i+\bar X^2w_i^2$ and sum over $i$, using $\sum_i w_i=0$ and $\sum_i w_i^2=\frac1S$ (both already established):
+
+$$\sum_i v_i^2 = \frac1n - \frac{2\bar X}{n}\cdot 0 + \bar X^2\cdot\frac1S = \frac1n+\frac{\bar X^2}{S} = \frac{S+n\bar X^2}{nS}$$
+
+One more standard identity closes it: $S=\sum_i(X_i-\bar X)^2 = \sum_i X_i^2 - n\bar X^2$ (expand $(X_i-\bar X)^2$, sum, use $\sum_iX_i=n\bar X$), so $S+n\bar X^2=\sum_iX_i^2$. Substituting:
+
+$$\sum_i v_i^2 = \frac{\sum_iX_i^2}{nS} \qquad\Longrightarrow\qquad \boxed{\operatorname{Var}(\hat\beta_0) = \frac{\sigma^2\sum_iX_i^2}{n\,S} = \frac{\sigma^2\sum_iX_i^2}{n\sum_j(X_j-\bar X)^2}}$$
+
+> [!warning] A likely source-material typo
+> Some sources (including a proposition transcribed from this course's material) state $\operatorname{Var}(\hat\beta_0)=\dfrac{\sigma^2\sum X_i^2}{\sum(X_i-\bar X)^2}$ — **missing the $n$** in the denominator. The derivation above was independently checked twice (matches standard references such as Gujarati's *Basic Econometrics*), and there's a fast sanity check that confirms which version is right: if the data is centered so $\bar X=0$, then $\hat\beta_0=\bar Y$ exactly, so $\operatorname{Var}(\hat\beta_0)$ must reduce to $\operatorname{Var}(\bar Y)=\sigma^2/n$. Plug $\bar X=0$ into both candidate formulas and check which one actually gives $\sigma^2/n$ — only the version with the $n$ in the denominator survives that test. Worth flagging if this formula appears on an assessment matching the no-$n$ version.
+
+### $\operatorname{Cov}(\hat\beta_0,\hat\beta_1)$ — the cross term
+
+Same double-sum technique, but now squaring two *different* weighted sums against each other:
+
+$$\operatorname{Cov}(\hat\beta_0,\hat\beta_1) = \mathbb{E}\big[(\hat\beta_0-\beta_0)(\hat\beta_1-\beta_1)\big] = \mathbb{E}\left[\left(\sum_i v_i\epsilon_i\right)\left(\sum_j w_j\epsilon_j\right)\right] = \sum_i\sum_j v_iw_j\,\mathbb{E}(\epsilon_i\epsilon_j)$$
+
+The exact same collapse applies (off-diagonal vanishes, diagonal survives with $\sigma^2$):
+
+$$\operatorname{Cov}(\hat\beta_0,\hat\beta_1) = \sigma^2\sum_i v_iw_i$$
+
+Substitute $v_i=\frac1n-\bar Xw_i$ and use $\sum_i w_i=0$, $\sum_i w_i^2=\frac1S$ again:
+
+$$\sum_i v_iw_i = \frac1n\sum_i w_i - \bar X\sum_i w_i^2 = \frac1n\cdot 0 - \bar X\cdot\frac1S = -\frac{\bar X}{S}$$
+
+$$\boxed{\operatorname{Cov}(\hat\beta_0,\hat\beta_1) = -\frac{\sigma^2\bar X}{S} = -\frac{\sigma^2\bar X}{\sum_j(X_j-\bar X)^2}}$$
+
+This one matches the source proposition exactly — a useful cross-check that the technique itself is sound, since two of these three results (Var($\hat\beta_1$) and this covariance) match the source cleanly, isolating Var($\hat\beta_0$) as the one with the likely transcription error rather than a flaw in the method.
+
+### Cheat sheet
+
+| Quantity | Formula | Notes |
+|---|---|---|
+| $\operatorname{Var}(\hat\beta_1)$ | $\sigma^2/S$ | shrinks as $X$'s spread ($S$) grows — more spread-out predictor data pins down the slope more precisely |
+| $\operatorname{Var}(\hat\beta_0)$ | $\sigma^2\sum_iX_i^2/(nS)$ | source material's stated version omits the $n$ — see warning above |
+| $\operatorname{Cov}(\hat\beta_0,\hat\beta_1)$ | $-\sigma^2\bar X/S$ | sign flips with $\bar X$; zero exactly when $\bar X=0$ (centered data) |
+
+## 5. From simple to multiple regression
 
 Real financial models almost always need more than one predictor — see [[05 Multiple Linear Regression and the F-test]] for the full multi-predictor model, the ANOVA decomposition (SSR/SSReg/TSS), and the F-test for overall significance, and [[06 CAPM and Multifactor Models]] for the concrete application (CAPM is literally an SLR; Fama-French is a multiple regression).
 
-## 5. Where this sits in the unit
+## 6. Where this sits in the unit
 
 ```
 Data Life Cycle (01) → Datasets (02) → Asset Returns (03)
