@@ -26,6 +26,7 @@ writing — not split per chapter.
 | 09 | [[09 Logistic Regression and Classification]] — logistic/logit, MLE, Naive Bayes | Core |
 | 10 | [[10 Support Vector Machines]] — hyperplanes, maximal margin, soft margin, kernel trick | Core |
 | 11 | [[11 Neural Networks (stub)]] — placeholder, pending lecture | Not yet written |
+| 12 | [[12 Regression Diagnostics, Heteroskedasticity and GLS]] — residual diagnostics, Durbin-Watson, Breusch-Pagan/White, GLS/WLS/FGLS | Core |
 
 Standalone reference note: [[Kernel Density Function]] (linked from ch.3 and ch.9).
 

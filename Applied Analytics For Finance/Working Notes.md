@@ -17,3 +17,16 @@ Closed-book recall prompts — try these before checking the chapter notes:
 7. What's the one key assumption behind Naive Bayes, and why does it make the posterior tractable?
 8. Sketch the Support Vector Classifier's optimization problem from memory — what do $M$, $\epsilon_i$, and $C$ each control?
 9. What does the kernel trick actually replace, mechanically, in the SVM decision function?
+
+---
+
+## 2026-09-12 — Ch.5 variable selection, Ch.12 diagnostics/GLS, Ch.9 MLE derivation
+
+Closed-book recall prompts:
+
+1. Write the AIC and BIC formulas from memory. Which one penalizes model size more harshly as $n$ grows, and why?
+2. Explain the $Y=X^2$, $X\sim\mathcal N(0,1)$ toy example — why would a naive SLR fit miss this relationship entirely?
+3. What does the Durbin-Watson test actually check for? What does a Breusch-Pagan/White test check for instead?
+4. Write $\operatorname{Var}(\epsilon)=\sigma^2 I$ and explain, in your own words, exactly which two conditions this single matrix equation encodes.
+5. What's the practical difference between GLS, WLS, and FGLS — and why is FGLS the one actually used in practice?
+6. Derive the logistic-regression log-likelihood $\ell(\beta)$ from the likelihood $L(\beta)$ — don't just state it, write out the product-to-sum step.
