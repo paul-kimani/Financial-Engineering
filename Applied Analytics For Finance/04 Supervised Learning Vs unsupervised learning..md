@@ -81,11 +81,32 @@ $$\mathbb{E}(\hat\beta_1) = \beta_1$$
 
 ### The $\hat\beta_0$ case (same trick, mirrored)
 
-The OLS intercept formula $\hat\beta_0=\bar Y-\hat\beta_1\bar X$ can similarly be rewritten as a weighted sum $\hat\beta_0=\sum_i v_iY_i$, with $v_i = \dfrac1n-\bar Xw_i$ (fixed constants, same reasoning as $w_i$). The mirror-image properties hold: $\sum_i v_i=1$ and $\sum_i v_iX_i=0$ (flipped from $w_i$'s $0$ and $1$). Substituting the true model exactly as above:
+Start from the OLS intercept formula $\hat\beta_0=\bar Y-\hat\beta_1\bar X$, and substitute in $\hat\beta_1=\sum_i w_iY_i$ and $\bar Y=\frac1n\sum_i Y_i$:
+
+$$\hat\beta_0 = \frac1n\sum_i Y_i - \bar X\sum_i w_iY_i = \sum_i\left(\frac1n-\bar Xw_i\right)Y_i$$
+
+Both terms multiply $Y_i$, so factor it out and combine into one sum. Define $v_i=\dfrac1n-\bar Xw_i$ — built purely from $X$ (since $w_i$ is), so it's a fixed constant just like $w_i$ was, giving $\hat\beta_0=\sum_i v_iY_i$: again a weighted sum of the data.
+
+**Property 1: $\sum_i v_i=1$.** Substitute the definition of $v_i$ and split the sum:
+$$\sum_i v_i = \sum_i\left(\frac1n-\bar Xw_i\right) = \underbrace{\sum_i\frac1n}_{=\,n/n\,=\,1} - \;\bar X\underbrace{\sum_i w_i}_{=\,0} = 1-0=1$$
+(the first piece is $\frac1n$ added to itself $n$ times; the second vanishes using $\sum_i w_i=0$, already proved above.)
+
+**Property 2: $\sum_i v_iX_i=0$.** Same expansion:
+$$\sum_i v_iX_i = \sum_i\left(\frac1n-\bar Xw_i\right)X_i = \underbrace{\frac1n\sum_i X_i}_{=\,\bar X} - \;\bar X\underbrace{\sum_i w_iX_i}_{=\,1} = \bar X-\bar X=0$$
+(the first piece is just the definition of the sample mean $\bar X$; the second uses $\sum_i w_iX_i=1$, already proved above.)
+
+These are exactly the mirror image of $w_i$'s properties ($0$ and $1$, flipped). Now substitute the true model $Y_i=\beta_0+\beta_1X_i+\epsilon_i$ into $\hat\beta_0=\sum_i v_iY_i$ and distribute:
 
 $$\hat\beta_0 = \sum_i v_i(\beta_0+\beta_1X_i+\epsilon_i) = \beta_0\underbrace{\sum_i v_i}_{=\,1} + \;\beta_1\underbrace{\sum_i v_iX_i}_{=\,0} + \sum_i v_i\epsilon_i = \beta_0+\sum_i v_i\epsilon_i$$
 
-Taking expectations the same way (SL2 + SL4) gives $\mathbb{E}(\hat\beta_0)=\beta_0$ — $\hat\beta_0$ is unbiased too.
+Same shape as the $\hat\beta_1$ case: **estimate = true value + leftover noise**. Taking expectations:
+
+$$\mathbb{E}(\hat\beta_0) = \mathbb{E}\left(\beta_0+\sum_i v_i\epsilon_i\right) = \beta_0+\sum_i v_i\,\mathbb{E}(\epsilon_i) = \beta_0+\sum_i v_i\cdot 0 = \beta_0$$
+
+$\hat\beta_0$ is unbiased too — via exactly the same two assumptions as $\hat\beta_1$: **SL4** (independence of $X$ and $\epsilon$) is what lets $v_i$ pull outside the expectation as a fixed constant, and **SL2** ($\mathbb{E}(\epsilon_i)=0$) is what makes the remaining sum vanish.
+
+> [!warning] A precision trap worth naming explicitly
+> It's tempting to reach for "$\epsilon$ is Normally distributed" as the reason the noise term disappears in expectation — but **normality is never used anywhere in this proof**. The only property of $\epsilon$ that matters is its *mean* being zero (SL2); the *shape* of its distribution is irrelevant to unbiasedness. Normality only becomes necessary for a different question entirely — proving exact (rather than asymptotic) finite-sample distributions for hypothesis tests, or the MLE-equivalence question still open above. Keep "zero mean" (SL2) and "Normally distributed" mentally separate — conflating the two is one of the most common slips in this proof.
 
 > [!tip] The one sentence version
 > Both OLS estimators are just fixed-weight linear combinations of $Y$; the weights are built entirely from $X$ so they carry no randomness of their own, and once you substitute in the true model, only the $\mathbb E(\epsilon_i)=0$ assumption (SL2) is needed to make the noise term vanish in expectation — leaving exactly the true parameter behind.
