@@ -33,7 +33,7 @@ Closed-book recall prompts:
 
 ---
 
-## 2026-09-13 — Ch.4 full Gauss-Markov BLUE proof (unbiasedness + minimum variance)
+## 2026-09-13 — Ch.4 full Gauss-Markov BLUE proof + unbiased $\hat\sigma^2$
 
 Closed-book recall prompts:
 
@@ -47,4 +47,6 @@ Closed-book recall prompts:
 8. Prove $\sum_i v_id_i=0$ (the "(show this)" step) using $v_i=\frac1n-\bar Xw_i$ and the $d_i$ properties above.
 9. Conclude $\operatorname{Var}(\hat\beta_0^*)=\operatorname{Var}(\hat\beta_0)+\sigma^2\sum_i d_i^2$ and explain in one sentence why this proves OLS is "Best."
 10. Redo the entire "Best" argument for $\hat\beta_1^*$ from memory — what changes, and what stays identical?
-
+11. Derive the residual identity $\hat\epsilon_i=(\epsilon_i-\bar\epsilon)-(\hat\beta_1-\beta_1)(X_i-\bar X)$ from $\hat\epsilon_i=Y_i-\hat\beta_0-\hat\beta_1X_i$ — what two substitutions does it take?
+12. Show $\sum_i\hat\epsilon_i^2=\sum_i(\epsilon_i-\bar\epsilon)^2-S(\hat\beta_1-\beta_1)^2$, and derive $\mathbb E\left[\sum_i\hat\epsilon_i^2\right]=(n-2)\sigma^2$ from it.
+13. Why does $\hat\sigma^2$ divide by $n-2$ rather than $n$? Explain degrees of freedom using OLS's own first-order conditions ($\sum_i\hat\epsilon_i=0$, $\sum_iX_i\hat\epsilon_i=0$).

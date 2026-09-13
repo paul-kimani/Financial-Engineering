@@ -260,6 +260,65 @@ This one matches the source proposition exactly — a useful cross-check that th
 | $\operatorname{Var}(\hat\beta_0)$ | $\sigma^2\sum_iX_i^2/(nS)$ | source material's stated version omits the $n$ — see warning above |
 | $\operatorname{Cov}(\hat\beta_0,\hat\beta_1)$ | $-\sigma^2\bar X/S$ | sign flips with $\bar X$; zero exactly when $\bar X=0$ (centered data) |
 
+### Estimating $\sigma^2$ itself: $\hat\sigma^2$ is unbiased
+
+$\sigma^2$ shows up in every variance formula above — $\operatorname{Var}(\hat\beta_1)=\sigma^2/S$, and so on — but it's itself unknown, since it's a property of the unobservable true errors $\epsilon_i$. The natural estimator (used throughout [[05 Multiple Linear Regression and the F-test|ch.5]]'s selection criteria and [[12 Regression Diagnostics, Heteroskedasticity and GLS|ch.12]]'s diagnostics) is:
+
+$$\hat\sigma^2 = \frac{1}{n-2}\sum_i\hat\epsilon_i^2$$
+
+where $\hat\epsilon_i=Y_i-\hat\beta_0-\hat\beta_1X_i$ is the OLS residual (also called the **mean square error**, MSE; its square root $\hat\sigma=\sqrt{\text{MSE}}$ is the **standard error of the residuals**, SER). This proves $\mathbb E(\hat\sigma^2)=\sigma^2$.
+
+#### Relating the residual to the true error
+
+Substitute the true model into the residual definition and regroup. Two genuinely different pairs of objects are involved: $\hat\beta_0,\hat\beta_1$ (the OLS estimates, computed from data) and $\beta_0,\beta_1$ (the true, unknown parameters that actually generated the data, via $Y_i=\beta_0+\beta_1X_i+\epsilon_i$):
+
+$$\hat\epsilon_i = Y_i-\hat\beta_0-\hat\beta_1X_i = \epsilon_i - (\hat\beta_0-\beta_0) - (\hat\beta_1-\beta_1)X_i$$
+
+Eliminate $(\hat\beta_0-\beta_0)$ using the OLS intercept formula $\hat\beta_0=\bar Y-\hat\beta_1\bar X$ together with the true model averaged over $i$ ($\bar Y=\beta_0+\beta_1\bar X+\bar\epsilon$, where $\bar\epsilon=\frac1n\sum_i\epsilon_i$):
+
+$$\hat\beta_0-\beta_0 = \bar\epsilon-\bar X(\hat\beta_1-\beta_1)$$
+
+Substituting back in and collecting the two $(\hat\beta_1-\beta_1)$ terms into one:
+
+$$\boxed{\hat\epsilon_i = (\epsilon_i-\bar\epsilon) - (\hat\beta_1-\beta_1)(X_i-\bar X)}$$
+
+A clean result: if the slope estimate were exactly right ($\hat\beta_1=\beta_1$), the residual would collapse to just $\epsilon_i-\bar\epsilon$.
+
+#### Squaring and summing
+
+Square and sum over $i$, treating $(\hat\beta_1-\beta_1)$ as a constant (it doesn't depend on $i$):
+
+$$\sum_i\hat\epsilon_i^2 = \sum_i(\epsilon_i-\bar\epsilon)^2 - 2(\hat\beta_1-\beta_1)\sum_i(\epsilon_i-\bar\epsilon)(X_i-\bar X) + (\hat\beta_1-\beta_1)^2\sum_i(X_i-\bar X)^2$$
+
+The middle sum simplifies: $\sum_i(\epsilon_i-\bar\epsilon)(X_i-\bar X)=\sum_i(X_i-\bar X)\epsilon_i-\bar\epsilon\sum_i(X_i-\bar X)=\sum_i(X_i-\bar X)\epsilon_i$ (the second piece vanishes, deviations from the mean sum to zero). Substituting $X_i-\bar X=Sw_i$ and recalling $\hat\beta_1-\beta_1=\sum_iw_i\epsilon_i$ (from §3):
+
+$$\sum_i(X_i-\bar X)\epsilon_i = S\sum_iw_i\epsilon_i = S(\hat\beta_1-\beta_1)$$
+
+So the middle term is $-2S(\hat\beta_1-\beta_1)^2$, which combines with the last term to give $-S(\hat\beta_1-\beta_1)^2$, leaving:
+
+$$\sum_i\hat\epsilon_i^2 = \sum_i(\epsilon_i-\bar\epsilon)^2 - S(\hat\beta_1-\beta_1)^2$$
+
+#### Taking expectations
+
+Three separate pieces close this out:
+
+- $\mathbb E\big[S(\hat\beta_1-\beta_1)^2\big] = S\cdot\mathbb E\big[(\hat\beta_1-\beta_1)^2\big] = S\cdot\operatorname{Var}(\hat\beta_1) = S\cdot\dfrac{\sigma^2}{S}=\sigma^2$ — using $\mathbb E(\hat\beta_1)=\beta_1$ (unbiasedness, §3), so $\mathbb E[(\hat\beta_1-\beta_1)^2]$ is exactly the definition of $\operatorname{Var}(\hat\beta_1)=\sigma^2/S$ (§4 above).
+- $\mathbb E\left[\sum_i\epsilon_i^2\right] = \sum_i\mathbb E(\epsilon_i^2) = n\sigma^2$ — each $\mathbb E(\epsilon_i^2)=\sigma^2$ is the diagonal-term result from the double-sum collapse earlier in §4.
+- $\mathbb E\left[n\bar\epsilon^2\right] = n\operatorname{Var}(\bar\epsilon) = \sigma^2$ — since $\bar\epsilon=\sum_i\frac1n\epsilon_i$ is itself a weighted sum with constant weight $\frac1n$, the same double-sum technique gives $\operatorname{Var}(\bar\epsilon)=\sigma^2\sum_i(1/n)^2=\sigma^2/n$, and $\mathbb E(\bar\epsilon)=0$ (SL2) means $\mathbb E(\bar\epsilon^2)=\operatorname{Var}(\bar\epsilon)$.
+
+Using $\sum_i(\epsilon_i-\bar\epsilon)^2=\sum_i\epsilon_i^2-n\bar\epsilon^2$ (the same deviations-from-mean identity behind $S=\sum_iX_i^2-n\bar X^2$, applied to $\epsilon$ instead of $X$):
+
+$$\mathbb E\left[\sum_i(\epsilon_i-\bar\epsilon)^2\right] = n\sigma^2-\sigma^2 = (n-1)\sigma^2$$
+
+$$\mathbb E\left[\sum_i\hat\epsilon_i^2\right] = (n-1)\sigma^2 - \sigma^2 = (n-2)\sigma^2$$
+
+$$\mathbb E(\hat\sigma^2) = \frac{1}{n-2}\,\mathbb E\left[\sum_i\hat\epsilon_i^2\right] = \frac{(n-2)\sigma^2}{n-2} = \sigma^2$$
+
+$\hat\sigma^2$ is unbiased.
+
+> [!tip] Why $n-2$, not $n$ — degrees of freedom
+> Every parameter estimated from the data (rather than known in advance) removes one **degree of freedom** — one independent piece of information the residuals are free to vary over. OLS's own first-order conditions force $\sum_i\hat\epsilon_i=0$ and $\sum_iX_i\hat\epsilon_i=0$ — two exact constraints tying the $n$ residuals together, one from estimating $\beta_0$ and one from estimating $\beta_1$. So only $n-2$ of the $n$ residuals are actually free; dividing by the raw count $n$ instead would systematically *underestimate* $\sigma^2$, since OLS explicitly minimizes $\sum_i\hat\epsilon_i^2$ and so squeezes the residuals smaller than the true errors would be on average. This generalizes directly: with $p$ predictors plus an intercept ($p+1$ estimated parameters), the divisor becomes $n-p-1$ — see [[05 Multiple Linear Regression and the F-test]] for the multiple-regression version of this same $\hat\sigma^2$.
+
 ## 5. From simple to multiple regression
 
 Real financial models almost always need more than one predictor — see [[05 Multiple Linear Regression and the F-test]] for the full multi-predictor model, the ANOVA decomposition (SSR/SSReg/TSS), and the F-test for overall significance, and [[06 CAPM and Multifactor Models]] for the concrete application (CAPM is literally an SLR; Fama-French is a multiple regression).
