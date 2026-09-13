@@ -31,9 +31,9 @@ Under SL1–SL4, the Ordinary Least Squares (OLS) estimators $\hat\beta_0,\hat\b
 > [!question] Open item (from the unit's own to-do)
 > Show that the OLS regression formulas for $\hat\beta_0,\hat\beta_1$ are the same estimators you'd get from Maximum Likelihood Estimation (MLE) under a normal-errors assumption — this is a standard, worthwhile derivation to do by hand once, since it's exactly the same MLE machinery used later for [[09 Logistic Regression and Classification|logistic regression]]. (Note: this is a *different* derivation from the unbiasedness proof in §3 below — unbiasedness is a small-sample property that holds regardless of the error distribution; MLE-equivalence specifically requires assuming $\epsilon_i$ is Normally distributed.)
 
-## 3. Proof: OLS is unbiased (the "U" in BLUE)
+## 3. Proof: OLS is BLUE (unbiased *and* best)
 
-This proves the unbiasedness half of the Gauss-Markov "BLUE" claim above — worked through the way it's actually derived, not just asserted.
+This proves the full Gauss-Markov "BLUE" claim above — first the "U" (unbiasedness), then the "B" (minimum variance among *all* linear unbiased estimators) — worked through the way it's actually derived, not just asserted.
 
 ### Setting up: rewriting $\hat\beta_1$ as a weighted sum of $Y$
 
@@ -110,6 +110,77 @@ $\hat\beta_0$ is unbiased too — via exactly the same two assumptions as $\hat\
 
 > [!tip] The one sentence version
 > Both OLS estimators are just fixed-weight linear combinations of $Y$; the weights are built entirely from $X$ so they carry no randomness of their own, and once you substitute in the true model, only the $\mathbb E(\epsilon_i)=0$ assumption (SL2) is needed to make the noise term vanish in expectation — leaving exactly the true parameter behind.
+
+### Proof: OLS is also Best (minimum variance among all linear unbiased estimators)
+
+This closes out the "B" in BLUE. Unbiasedness above only proves $\hat\beta_0,\hat\beta_1$'s *own* variances are well-defined — it says nothing about how they compare to any other linear unbiased estimator you could dream up. This section proves no such competitor can ever beat OLS.
+
+#### The $\hat\beta_0$ case
+
+**Setup.** Define an arbitrary *other* linear estimator of $\beta_0$: $\hat\beta_0^*=\sum_i a_iY_i$, where $a_i$ are some fixed constants — not necessarily $v_i$. Substitute the true model and distribute, exactly as before:
+
+$$\hat\beta_0^* = \sum_i a_i(\beta_0+\beta_1X_i+\epsilon_i) = \beta_0\sum_i a_i + \beta_1\sum_i a_iX_i + \sum_i a_i\epsilon_i$$
+
+Taking expectations gives $\mathbb E(\hat\beta_0^*)=\beta_0\sum_i a_i+\beta_1\sum_i a_iX_i$. For this to equal $\beta_0$ — just $\beta_0$, with the $\beta_1$-term gone — the $\beta_0$-coefficient must survive as exactly 1, and the $\beta_1$-coefficient must vanish:
+
+$$\sum_i a_i = 1 \qquad \sum_i a_iX_i = 0$$
+
+These are the unbiasedness conditions on any candidate $a_i$ — and notice $v_i$ itself satisfies exactly these two conditions (proved above): $v_i$ is just the *particular* choice of weights that OLS happens to use.
+
+**The decomposition trick.** Write $a_i = v_i + d_i$, where $d_i$ captures however $\hat\beta_0^*$'s weights *deviate* from OLS's own $v_i$. Since both $a_i$ and $v_i$ satisfy the same two conditions:
+
+$$\sum_i d_i = \sum_i a_i - \sum_i v_i = 1-1=0 \qquad\qquad \sum_i d_iX_i = \sum_i a_iX_i-\sum_i v_iX_i = 0-0=0$$
+
+**Expanding the variance.** Since $\hat\beta_0^*-\beta_0=\sum_i a_i\epsilon_i = \sum_i v_i\epsilon_i+\sum_i d_i\epsilon_i$, and using $\operatorname{Var}(A+B)=\operatorname{Var}(A)+\operatorname{Var}(B)+2\operatorname{Cov}(A,B)$:
+
+$$\operatorname{Var}(\hat\beta_0^*) = \operatorname{Var}\left(\sum_i v_i\epsilon_i\right)+\operatorname{Var}\left(\sum_i d_i\epsilon_i\right)+2\operatorname{Cov}\left(\sum_i v_i\epsilon_i,\sum_i d_i\epsilon_i\right)$$
+
+The identical double-sum collapse from §4 below (SL1–SL3: off-diagonal vanishes, diagonal survives with $\sigma^2$) applies to every term here too:
+
+$$\operatorname{Var}(\hat\beta_0^*) = \sigma^2\sum_i v_i^2+\sigma^2\sum_i d_i^2+2\sigma^2\sum_i v_id_i$$
+
+**Showing the cross term vanishes.** Substitute $v_i=\frac1n-\bar Xw_i$ and use $\sum_i d_i=0$:
+
+$$\sum_i v_id_i = \sum_i\left(\frac1n-\bar Xw_i\right)d_i = \frac1n\underbrace{\sum_i d_i}_{=\,0}-\;\bar X\sum_i d_iw_i = -\bar X\sum_i d_iw_i$$
+
+Then substitute $w_i=\frac{X_i-\bar X}{S}$ into the remaining piece, using $\sum_i d_iX_i=0$ and $\sum_i d_i=0$ again:
+
+$$\sum_i d_iw_i = \frac1S\sum_i d_i(X_i-\bar X) = \frac1S\left(\sum_i d_iX_i-\bar X\sum_i d_i\right) = \frac1S(0-\bar X\cdot0)=0$$
+
+so $\sum_i v_id_i = -\bar X\cdot0=0$ — the cross term drops out entirely.
+
+**Conclusion.**
+
+$$\operatorname{Var}(\hat\beta_0^*) = \underbrace{\sigma^2\sum_i v_i^2}_{=\,\operatorname{Var}(\hat\beta_0)}+\;\sigma^2\sum_i d_i^2 \qquad\Longrightarrow\qquad \boxed{\operatorname{Var}(\hat\beta_0^*)\;\ge\;\operatorname{Var}(\hat\beta_0)}$$
+
+since $\sigma^2\sum_i d_i^2$ is a sum of squares times a positive constant, and can never be negative. Equality holds only when every $d_i=0$ — i.e. $a_i=v_i$ for all $i$ — meaning $\hat\beta_0^*$ was secretly OLS all along.
+
+#### The $\hat\beta_1$ case (same trick, mirrored)
+
+Define $\hat\beta_1^*=\sum_i a_iY_i$ for arbitrary fixed $a_i$. The unbiasedness conditions flip relative to the intercept case — mirroring $w_i$'s own properties (proved above: $\sum_i w_i=0,\ \sum_i w_iX_i=1$):
+
+$$\sum_i a_i=0 \qquad\qquad \sum_i a_iX_i=1$$
+
+Write $a_i=w_i+d_i$. Since both $a_i$ and $w_i$ satisfy these same two conditions:
+
+$$\sum_i d_i = \sum_i a_i-\sum_i w_i = 0-0=0 \qquad\qquad \sum_i d_iX_i = \sum_i a_iX_i-\sum_i w_iX_i = 1-1=0$$
+
+— the identical-looking $d_i$ properties as the intercept case, just arrived at from $w_i$'s conditions instead of $v_i$'s. Expanding the variance the same way:
+
+$$\operatorname{Var}(\hat\beta_1^*) = \sigma^2\sum_i w_i^2+\sigma^2\sum_i d_i^2+2\sigma^2\sum_i w_id_i$$
+
+and the cross term vanishes by the identical substitution $w_i=\frac{X_i-\bar X}{S}$:
+
+$$\sum_i w_id_i = \frac1S\left(\sum_i d_iX_i-\bar X\sum_i d_i\right) = \frac1S(0-0)=0$$
+
+So:
+
+$$\operatorname{Var}(\hat\beta_1^*) = \underbrace{\sigma^2\sum_i w_i^2}_{=\,\operatorname{Var}(\hat\beta_1)}+\;\sigma^2\sum_i d_i^2 \qquad\Longrightarrow\qquad \boxed{\operatorname{Var}(\hat\beta_1^*)\;\ge\;\operatorname{Var}(\hat\beta_1)}$$
+
+again with equality only when $\hat\beta_1^*$ was OLS all along ($d_i=0$ for every $i$).
+
+> [!tip] What "Best" actually buys you
+> This is a genuinely strong result — not "OLS performs well in practice" but a proof that *no* linear unbiased estimator, however cleverly constructed, can ever beat OLS's variance. Combined with the unbiasedness proof above, this completes BLUE: **B**est **L**inear **U**nbiased **E**stimator, all three letters now proven rather than asserted. And exactly as with unbiasedness, **normality of $\epsilon$ is never invoked anywhere in this proof** — only SL1–SL4 do all the work.
 
 ## 4. The variances of $\hat\beta_0$ and $\hat\beta_1$, and their covariance
 
