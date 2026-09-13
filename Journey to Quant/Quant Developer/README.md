@@ -13,6 +13,7 @@
 | [[03 - Projects\|03]] | Projects | Concrete builds to develop and demonstrate QD skills |
 | [[04 - Interview Prep\|04]] | Interview Prep | The interview format, what each round tests, and how to prepare |
 | [[05 - Timeline\|05]] | Timeline | Semester-by-semester milestones to graduation and beyond |
+| [[06 - Reading List\|06]] | Reading List | Full tiered book curriculum — math, CS, systems, finance, interview prep |
 
 [[Working Notes]] — live reflections, decisions, and dated progress entries
 

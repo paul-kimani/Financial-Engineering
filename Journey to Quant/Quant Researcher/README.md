@@ -13,6 +13,7 @@
 | [[03 - Projects\|03]] | Projects | Concrete research projects that develop and demonstrate QR skills |
 | [[04 - Interview Prep\|04]] | Interview Prep | The interview format, math rounds, paper discussions, and how to prepare |
 | [[05 - Timeline\|05]] | Timeline | Semester-by-semester milestones to graduation and beyond |
+| [[06 - Reading List\|06]] | Reading List | Full tiered book curriculum — from real analysis through stochastic calculus to ML |
 
 [[Working Notes]] — live reflections, research threads, and dated progress entries
 

@@ -13,6 +13,7 @@
 | [[03 - Projects\|03]] | Projects | Concrete strategy and infrastructure builds |
 | [[04 - Interview Prep\|04]] | Interview Prep | The interview format, strategy discussions, and how to prepare |
 | [[05 - Timeline\|05]] | Timeline | Semester-by-semester milestones to graduation and beyond |
+| [[06 - Reading List\|06]] | Reading List | Full tiered book curriculum — strategy, risk, markets, mental game |
 
 [[Working Notes]] — live strategy reflections, risk observations, and dated entries
 
