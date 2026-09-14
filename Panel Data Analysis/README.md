@@ -17,7 +17,7 @@ writing — not split per chapter.
 
 | #  | Chapter | Status |
 | -: | :--- | :--- |
-| 01 | [[01 Estimation Foundations]] — estimand/parameter/estimator/estimate, sample orthogonality vs. population exogeneity, identification vs. estimation, omitted-variable bias, heteroskedasticity/functional form/influence recap | Core |
+| 01 | [[01 Estimation Foundations]] — estimand/parameter/estimator/estimate, normal-equations derivation, OLS-as-projection geometry, sample orthogonality vs. population exogeneity, identification vs. estimation, omitted-variable bias, heteroskedasticity/functional form/influence recap | Core |
 | 02 | [[02 What Makes Data a Panel?]] — the same-unit-repeated test, the four data structures compared, panel notation, advantages, balanced/unbalanced panels and attrition bias | Core |
 | 03 | [[03 Sources of Variation - Between, Within and Overall]] — the $X_{it}-\bar X=(\bar X_i-\bar X)+(X_{it}-\bar X_i)$ decomposition, worked two-firm example, why between and within relationships can differ in sign | Core |
 | 04 | [[04 Pooled OLS and the Unobserved-Effects Model]] — pooled OLS's two failures, $v_{it}=\alpha_i+u_{it}$, $\operatorname{Cov}(X_{it},\alpha_i)\neq0$, exogeneity types, the Chow/F poolability test and what it does *not* establish | Core |

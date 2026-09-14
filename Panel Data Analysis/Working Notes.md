@@ -21,3 +21,16 @@ Closed-book recall prompts — try these before checking the chapter notes:
 11. Explain the difference between adding a year indicator and clustering by year, using the 2008 shock example. Which one changes the conditional mean, and which changes the covariance matrix?
 12. Why is "level of observation" not necessarily "the correct clustering level"? Work through the country-regulation/bank-year example.
 13. Name the five-model progression this unit is building toward (cross-section, time series, pooled OLS, fixed effects, first differences), and say in one sentence what's structurally new about each of the last two relative to pooled OLS.
+
+---
+
+## 2026-09-14 — Live Socratic session: ch.1 normal-equations derivation + OLS-as-projection
+
+Closed-book recall prompts:
+
+1. Write $\text{SSR}(\beta_0,\beta_1)=\sum_i(Y_i-\beta_0-\beta_1X_i)^2$ and derive both normal equations from scratch — $\sum_i\hat u_i=0$ and $\sum_iX_i\hat u_i=0$ — by taking $\partial\,\text{SSR}/\partial\beta_0$ and $\partial\,\text{SSR}/\partial\beta_1$ and setting each to zero.
+2. From the first normal equation, derive $\hat\beta_0=\bar Y-\hat\beta_1\bar X$ — what one step (divide by what, then rearrange) gets you there?
+3. Why are the normal equations "corollaries, not assumptions"? Give the ice-cream-sales-on-shark-attacks example in your own words and explain why it still satisfies $\sum_i\hat u_i=0$ exactly.
+4. Describe the OLS-as-projection picture from memory: what is the "tabletop," what is $Y$, what is $\hat Y$, and why must $\hat u$ end up perpendicular to the tabletop?
+5. Why does the true population error $u_i$ never appear anywhere in the projection diagram — what would you need to know to even attempt drawing it?
+6. What's the precise difference between "OLS is trying to satisfy $X'\hat u=0$" and "$X'\hat u=0$ is the definition of what OLS's answer has to be"?

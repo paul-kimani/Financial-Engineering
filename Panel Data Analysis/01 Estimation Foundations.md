@@ -51,15 +51,47 @@ This is the single most important distinction in the whole "estimation foundatio
 
 ### OLS's own guarantee: sample orthogonality
 
-OLS is defined as whatever $\hat\beta$ minimizes the sum of squared residuals:
+OLS is defined as whatever $\hat\beta_0,\hat\beta_1$ minimizes the sum of squared residuals:
 
-$$\hat\beta = \arg\min_\beta \sum_i \left(Y_i - X_i'\beta\right)^2$$
+$$\text{SSR}(\beta_0,\beta_1) = \sum_i \left(Y_i - \beta_0 - \beta_1X_i\right)^2$$
 
-Taking the derivative and setting it to zero (the **normal equations**) gives, in matrix form:
+**Deriving the normal equations.** Take the partial derivative with respect to $\beta_0$ (chain rule — derivative of the square, times derivative of the inside):
+
+$$\frac{\partial\,\text{SSR}}{\partial \beta_0} = \sum_i 2(Y_i-\beta_0-\beta_1X_i)(-1) = -2\sum_i(Y_i-\beta_0-\beta_1X_i)$$
+
+Setting this to zero and evaluating at the minimizing $\hat\beta_0,\hat\beta_1$ — the term inside the sum is exactly the residual $\hat u_i=Y_i-\hat\beta_0-\hat\beta_1X_i$ — gives the **first normal equation**:
+
+$$\sum_i \hat u_i = 0$$
+
+Now $\beta_1$'s partial derivative (an extra $X_i$ rides along from the chain rule, since the inside term is $-\beta_1X_i$):
+
+$$\frac{\partial\,\text{SSR}}{\partial\beta_1} = \sum_i 2(Y_i-\beta_0-\beta_1X_i)(-X_i) = -2\sum_i X_i(Y_i-\beta_0-\beta_1X_i)$$
+
+Setting to zero gives the **second normal equation**:
+
+$$\sum_i X_i\hat u_i = 0$$
+
+In matrix form (bundling both equations — one row of $X'$ is a row of 1's giving the first equation, the other row is the $X_i$'s giving the second), this is written:
 
 $$X'\hat u = 0$$
 
+> [!tip] These are corollaries, not assumptions
+> $\hat\beta_0=\bar Y-\hat\beta_1\bar X$ — the familiar closed-form intercept formula — is just algebra applied to the first normal equation ($\bar Y-\beta_0-\beta_1\bar X=0$, divide the first normal equation through by $n$). The normal equations themselves are the important result: they are **mathematical facts, true of every OLS fit that has ever existed**, because they fall straight out of "set the derivative of a minimization to zero." It doesn't matter whether the true relationship is real, causal, linear, or complete nonsense — regress ice-cream sales on shark attacks and you'll still get $\sum_i\hat u_i=0$ exactly — these equations always hold, mechanically, by construction.
+
 This says the residuals are *exactly, mechanically* uncorrelated with every regressor **in the sample you have** — always, by construction of the minimization, whether or not your model is any good. It is a fact about arithmetic, not about the world.
+
+### OLS as projection — the geometric picture
+
+There's a geometric way to see exactly why $X'\hat u=0$ has to hold, and it's worth carrying around because it makes the "always true, regardless of the model" point almost visual.
+
+Picture $Y$ (the vector of your actual data — one coordinate per observation, so $n$ firms means $Y$ lives in $n$-dimensional space) as a fixed point floating in that space, *not* built from $X$ at all. Now picture every possible fitted-value vector you could construct from some combination of $\beta_0\cdot\mathbf 1+\beta_1\cdot X$ as a flat plane — a "tabletop" — sitting inside that same space. Every point on the tabletop is some possible fitted line's predictions; $Y$ itself generally isn't one of them, because real data doesn't fall exactly on any straight line.
+
+![[OLS as Projection.svg]]
+
+OLS's job is to find the point on the tabletop **closest** to $Y$ — that closest point is $\hat Y$, the fitted values. The leftover gap between $Y$ and that closest point is $\hat u$, the residual. The key geometric fact: **the closest point on a flat surface to something floating above it is always found by dropping straight down, perpendicular to the surface** — not at an angle. So the residual, being exactly that perpendicular drop, is automatically orthogonal to the tabletop (i.e. to every direction spanned by $X$) — which is precisely what $X'\hat u=0$ says in algebra. OLS isn't *trying* to make the residual perpendicular to $X$; it falls out for free, because "closest point on a flat surface" and "perpendicular drop" are the same thing.
+
+> [!warning] Keep this picture sample-only
+> Everything in this diagram — $Y$, the tabletop, $\hat Y$, $\hat u$ — is built purely from your observed sample. The true, unobservable population error $u_i$ has no place in this picture at all: it would require knowing the *true* $\beta_0,\beta_1$, which you never see. Don't conflate the residual $\hat u$ (drawable, sample-only) with the theoretical $u$ (never drawable, population-only) — see the error-vs-residual table in §2.
 
 ### Identification's requirement: population exogeneity
 
@@ -138,6 +170,8 @@ These three diagnostic topics are prerequisite material from cross-sectional OLS
 
 ## 7. Open questions for revision
 
+- [ ] Re-derive both normal equations from scratch: take $\partial\,\text{SSR}/\partial\beta_0$ and $\partial\,\text{SSR}/\partial\beta_1$, set each to zero, and simplify only as far as $\sum_i\hat u_i=0$ and $\sum_iX_i\hat u_i=0$ — don't jump straight to the closed-form $\hat\beta_0,\hat\beta_1$.
+- [ ] Explain the OLS-as-projection picture in your own words: what is $Y$, what is the "tabletop," what is $\hat Y$, and why is $\hat u$ perpendicular to it? Why does the true error $u_i$ never appear in that picture?
 - [ ] Re-derive the OVB formula from scratch, starting from the auxiliary regression $Z_i=\delta_0+\delta_1X_i+\text{error}$.
 - [ ] Explain in your own words why $X'\hat u=0$ can never, by itself, be evidence that your model is correctly specified.
 - [ ] Given a bank-profitability model (bank size, lagged profitability, capital ratio, loan-loss provisions, national tax rate), classify each regressor as plausibly strictly exogenous, predetermined, or endogenous (this question resurfaces formally with the exogeneity table in [[04 Pooled OLS and the Unobserved-Effects Model]]).
