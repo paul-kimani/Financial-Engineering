@@ -123,11 +123,35 @@ $$Y_i = \beta_1 + \beta_2X_i + v_i$$
 
 ### The derivation
 
-Substitute the true model's $Y_i$ into the short regression's slope formula, or equivalently note that $Z_i$ is absorbed into the short regression's error $v_i=\beta_3Z_i+u_i$. Regressing $Z$ on $X$ in an auxiliary regression, $Z_i=\delta_0+\delta_1X_i+\text{error}$, with $\delta_1=\operatorname{Cov}(X,Z)/\operatorname{Var}(X)$, gives the probability limit of the short-regression slope:
+Both equations describe the same $Y_i$, so comparing them directly shows the short regression's "error" is secretly absorbing the entire omitted variable:
 
-$$\operatorname*{plim}\hat\beta_{2,\text{short}} = \beta_2 + \beta_3\cdot\frac{\operatorname{Cov}(X,Z)}{\operatorname{Var}(X)}$$
+$$v_i = \beta_3Z_i + u_i$$
 
-The short-regression coefficient equals the *true* effect $\beta_2$ plus a **bias term**: the omitted variable's own effect $\beta_3$, scaled by how strongly the omitted variable moves with the included regressor.
+> [!tip] What "short" means
+> The subscript in $\hat\beta_{2,\text{short}}$ is just a label distinguishing *which regression* produced this coefficient — the short (truncated) regression that omits $Z$, as opposed to the full/true model's $\beta_2$. Both get called "the coefficient on $X$," but they are not the same number — the whole point of this derivation is to work out exactly how they differ.
+
+As sample size grows, the OLS slope estimator converges to the population version of the familiar ratio (same shape as $\hat\beta_1=\sum_i(X_i-\bar X)(Y_i-\bar Y)/\sum_i(X_i-\bar X)^2$, just written with population covariance/variance):
+
+$$\operatorname*{plim}\hat\beta_{2,\text{short}} = \frac{\operatorname{Cov}(X,Y)}{\operatorname{Var}(X)}$$
+
+To see what this is *really* estimating, substitute the **true** model for $Y$ (since that's what actually generates the data) and expand using linearity of covariance, $\operatorname{Cov}(aW+bV,X)=a\operatorname{Cov}(W,X)+b\operatorname{Cov}(V,X)$:
+
+$$\operatorname{Cov}(X,Y) = \operatorname{Cov}\big(X,\ \beta_1+\beta_2X+\beta_3Z+u\big) = \underbrace{\operatorname{Cov}(X,\beta_1)}_{=\,0} + \beta_2\operatorname{Cov}(X,X) + \beta_3\operatorname{Cov}(X,Z) + \operatorname{Cov}(X,u)$$
+
+Two terms vanish here, but for entirely different reasons — worth never conflating:
+
+- $\operatorname{Cov}(X,\beta_1)=0$ is a **pure algebraic identity**: a constant has zero covariance with anything, no assumptions needed.
+- $\operatorname{Cov}(X,u)=0$ is **not free** — it holds only because the true model assumed $\mathbb E(u_i\mid X_i,Z_i)=0$ (population exogeneity, §3). If that assumption failed, this term wouldn't vanish either.
+
+With $\operatorname{Cov}(X,X)=\operatorname{Var}(X)$ by definition, this leaves:
+
+$$\operatorname{Cov}(X,Y) = \beta_2\operatorname{Var}(X)+\beta_3\operatorname{Cov}(X,Z)$$
+
+Substituting back and dividing through by $\operatorname{Var}(X)$:
+
+$$\operatorname*{plim}\hat\beta_{2,\text{short}} = \frac{\beta_2\operatorname{Var}(X)+\beta_3\operatorname{Cov}(X,Z)}{\operatorname{Var}(X)} = \beta_2 + \beta_3\cdot\frac{\operatorname{Cov}(X,Z)}{\operatorname{Var}(X)}$$
+
+The short-regression coefficient equals the *true* effect $\beta_2$ plus a **bias term**: the omitted variable's own effect $\beta_3$, scaled by how strongly the omitted variable moves with the included regressor. The bias vanishes only if $\beta_3=0$ (the omitted variable doesn't actually matter for $Y$) or $\operatorname{Cov}(X,Z)=0$ (it doesn't move with $X$) — if both are nonzero, the short regression is contaminated no matter how large the sample gets.
 
 ### Direction of bias
 

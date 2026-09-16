@@ -34,3 +34,16 @@ Closed-book recall prompts:
 4. Describe the OLS-as-projection picture from memory: what is the "tabletop," what is $Y$, what is $\hat Y$, and why must $\hat u$ end up perpendicular to the tabletop?
 5. Why does the true population error $u_i$ never appear anywhere in the projection diagram — what would you need to know to even attempt drawing it?
 6. What's the precise difference between "OLS is trying to satisfy $X'\hat u=0$" and "$X'\hat u=0$ is the definition of what OLS's answer has to be"?
+
+---
+
+## 2026-09-16 — Live Socratic session: ch.1 omitted-variable-bias full derivation
+
+Closed-book recall prompts:
+
+1. Given the true model $Y_i=\beta_1+\beta_2X_i+\beta_3Z_i+u_i$ and the short regression $Y_i=\beta_1+\beta_2X_i+v_i$, derive $v_i=\beta_3Z_i+u_i$ by comparing the two equations.
+2. What does the "short" in $\hat\beta_{2,\text{short}}$ actually mean? What's the other regression it's implicitly being contrasted with?
+3. Starting from $\operatorname{Cov}(X,Y)=\operatorname{Cov}(X,\beta_1+\beta_2X+\beta_3Z+u)$, expand every term using linearity of covariance.
+4. Two terms in that expansion vanish — $\operatorname{Cov}(X,\beta_1)$ and $\operatorname{Cov}(X,u)$. Explain precisely why each is zero, and why those are *different kinds* of reasons (identity vs. assumption).
+5. Finish the derivation: divide $\operatorname{Cov}(X,Y)=\beta_2\operatorname{Var}(X)+\beta_3\operatorname{Cov}(X,Z)$ through by $\operatorname{Var}(X)$ and state the final OVB formula.
+6. Under what two conditions does the omitted-variable bias term vanish completely, even though a variable was genuinely left out?
