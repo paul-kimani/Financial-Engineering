@@ -47,3 +47,16 @@ Closed-book recall prompts:
 4. Two terms in that expansion vanish — $\operatorname{Cov}(X,\beta_1)$ and $\operatorname{Cov}(X,u)$. Explain precisely why each is zero, and why those are *different kinds* of reasons (identity vs. assumption).
 5. Finish the derivation: divide $\operatorname{Cov}(X,Y)=\beta_2\operatorname{Var}(X)+\beta_3\operatorname{Cov}(X,Z)$ through by $\operatorname{Var}(X)$ and state the final OVB formula.
 6. Under what two conditions does the omitted-variable bias term vanish completely, even though a variable was genuinely left out?
+
+---
+
+## 2026-09-17 — Live Socratic session: ch.2 grounding, examples, and the differencing walkthrough
+
+Closed-book recall prompts:
+
+1. Using a City/Day/Temperature table, explain which column plays the role of "unit" and which plays "time," and what a single (unit, time) pair looks like.
+2. A government survey has 500 households every year. Describe, in one sentence each, what would make this a pooled cross-section versus a true panel — and explain why a *single* year's wave, looked at alone, can never tell you which one it is.
+3. Write the clean working definitions of pooled cross-section and true panel data, in your own words.
+4. For the Grunfeld dataset ($N=10$ firms, $T=20$ years, balanced), compute the total number of rows, and explain what a specific $(i,t)$ pair like $i=3,t=1940$ identifies.
+5. Starting from $Y_{i,t}=\beta_0+\beta_2X_{i,t}+\alpha_i+u_{i,t}$, write out Firm A's equation for 2020 and 2021, subtract them, and show exactly why $\alpha_A-\alpha_A=0$ is not an assumption. Which term from ch.1's omitted-variable-bias derivation does $\alpha_i$ play the role of, if you instead used a single cross-section of many firms?
+6. Name the two distinct problems selective attrition creates (not one), and explain which of the two would still exist even if exit were pure random noise.
