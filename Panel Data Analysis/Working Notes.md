@@ -60,3 +60,14 @@ Closed-book recall prompts:
 4. For the Grunfeld dataset ($N=10$ firms, $T=20$ years, balanced), compute the total number of rows, and explain what a specific $(i,t)$ pair like $i=3,t=1940$ identifies.
 5. Starting from $Y_{i,t}=\beta_0+\beta_2X_{i,t}+\alpha_i+u_{i,t}$, write out Firm A's equation for 2020 and 2021, subtract them, and show exactly why $\alpha_A-\alpha_A=0$ is not an assumption. Which term from ch.1's omitted-variable-bias derivation does $\alpha_i$ play the role of, if you instead used a single cross-section of many firms?
 6. Name the two distinct problems selective attrition creates (not one), and explain which of the two would still exist even if exit were pure random noise.
+
+---
+
+## 2026-09-17 — Live Socratic session: ch.3 between/within decomposition identity + worked example
+
+Closed-book recall prompts:
+
+1. Starting from $X_{it}-\bar X$, add and subtract $\bar X_i$ and regroup to derive the decomposition identity $X_{it}-\bar X=(X_{it}-\bar X_i)+(\bar X_i-\bar X)$. Explain in words why the first term is purely "within" and the second purely "between."
+2. Why is this decomposition an algebraic identity rather than something that depends on any assumption?
+3. For firms A and B with leverage $X$: A = (0.3, 0.5), B = (0.6, 0.7) over two years, compute the grand mean $\bar X$, both firm means $\bar X_A,\bar X_B$, and for Firm A Year 2 the between component, the within component, and verify they sum to $X_{A,2}-\bar X$ directly (not by assuming the parts are right).
+4. In that worked example, the between and within components for Firm A Year 2 were $-0.125$ and $0.1$ — individually much larger than the overall deviation of $-0.025$. What does that gap already hint about how between and within variation can relate to each other?
