@@ -71,3 +71,14 @@ Closed-book recall prompts:
 2. Why is this decomposition an algebraic identity rather than something that depends on any assumption?
 3. For firms A and B with leverage $X$: A = (0.3, 0.5), B = (0.6, 0.7) over two years, compute the grand mean $\bar X$, both firm means $\bar X_A,\bar X_B$, and for Firm A Year 2 the between component, the within component, and verify they sum to $X_{A,2}-\bar X$ directly (not by assuming the parts are right).
 4. In that worked example, the between and within components for Firm A Year 2 were $-0.125$ and $0.1$ — individually much larger than the overall deviation of $-0.025$. What does that gap already hint about how between and within variation can relate to each other?
+
+---
+
+## 2026-09-19 — Live Socratic session: ch.3 sign-flip mechanism (police/crime) + a documented near-miss
+
+Closed-book recall prompts:
+
+1. Explain, using $\alpha_i$ notation, why the between relationship between police spending and crime comes out positive across cities even though more police doesn't cause more crime.
+2. Why does differencing (the within comparison) remove exactly the same $\alpha_i$ that contaminated the between comparison — connect this to the Firm A $\alpha_A-\alpha_A=0$ result from ch.2.
+3. Explain why firm profitability and leverage do *not* produce a sign flip: state the between direction, the within direction, and the shared mechanism (pecking order) that makes them agree.
+4. In general terms (not this specific example), what structural condition does a variable pair need to satisfy for the between and within relationships to genuinely differ in sign?

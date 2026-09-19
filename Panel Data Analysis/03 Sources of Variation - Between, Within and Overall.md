@@ -58,7 +58,18 @@ Because between variation compares *different* units to each other, while within
 > [!example] A finance story where the signs flip
 > Suppose more conservative, cash-rich firms persistently hold *both* higher market value **and** lower investment (a firm-level trait — call it conservatism — drives both). Across firms, you'd see a *negative* between relationship between value and investment. But within a given firm over time, a genuine *positive* year-to-year story could hold — when that firm's market value rises (say, due to a temporarily favorable outlook), it may invest more that year. Pooling both sources of variation together, as plain pooled OLS does, blends a negative between-relationship with a positive within-relationship into one number that may not resemble either one — and can even come out with the "wrong" sign relative to the relationship you actually care about.
 
+**A verified example: police spending and crime.** Take police spending and crime rates observed across many cities over many years.
+
+- **Between:** across cities, more police spending tends to go with *higher* crime. Not because police cause crime — a city's underlying, largely fixed crime propensity $\alpha_i$ (poverty, density, social conditions) drives both: it produces more crime directly, and it causes city governments to respond by funding more police. That fixed trait pulls both variables the same way across cities, so the raw cross-city correlation comes out **positive**.
+- **Within:** now hold a single city fixed and watch it over time. In years where *that same city*, relative to its own usual baseline, spent more on policing, crime tends to move **down** — a genuine deterrent effect, isolated once $\alpha_i$ is differenced away.
+
+The mechanism is exactly the ch.2 Firm A story: $\alpha_i$ is a fixed unit-level trait, it's positively correlated with the regressor across units (contaminating the between comparison), and differencing cancels it exactly — $\alpha_i-\alpha_i=0$ — leaving the within relationship free of that particular confound.
+
+> [!warning] Not every correlated pair delivers a sign flip
+> A genuine sign flip needs a *specific* structural setup — a fixed unit trait correlated with $X$ across units, but not what's driving $Y$'s response to $X$ within a unit. It's easy to reach for a pair of variables that *sounds* like it should flip and find both relationships actually point the same way. For instance, firm profitability and leverage: across firms, more profitable firms tend to carry less debt (the "pecking order" pattern — profitable firms prefer internal cash over borrowing). Within a firm, a year of above-typical profitability generates more internal cash, which *also* reduces the need to borrow that year. Both relationships are negative — no flip. The lesson: don't assume divergence by default; trace the actual mechanism through both comparisons before claiming the signs differ.
+
 This is exactly why a pooled-OLS coefficient can be difficult to interpret when the two underlying relationships have very different magnitudes or opposite signs: it is a variance-weighted blend of both, not a clean estimate of either.
+
 
 ## 6. Cheat sheet
 
