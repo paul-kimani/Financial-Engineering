@@ -82,3 +82,14 @@ Closed-book recall prompts:
 2. Why does differencing (the within comparison) remove exactly the same $\alpha_i$ that contaminated the between comparison — connect this to the Firm A $\alpha_A-\alpha_A=0$ result from ch.2.
 3. Explain why firm profitability and leverage do *not* produce a sign flip: state the between direction, the within direction, and the shared mechanism (pecking order) that makes them agree.
 4. In general terms (not this specific example), what structural condition does a variable pair need to satisfy for the between and within relationships to genuinely differ in sign?
+
+---
+
+## 2026-09-19 — Live Socratic session: ch.3 SS-additivity (exact) derivation
+
+Closed-book recall prompts:
+
+1. Starting from $\text{SS}_{\text{overall}}=\sum_i\sum_t(a_i+b_{it})^2$ with $a_i=\bar X_i-\bar X$, $b_{it}=X_{it}-\bar X_i$, expand the square and identify the three resulting terms.
+2. Prove $\sum_t(X_{it}-\bar X_i)=0$ for any unit $i$ directly from the definition of $\bar X_i$ — no reference to minimization needed.
+3. Explain the deeper connection: why is that zero-sum fact "the same fact" as $\sum_i\hat u_i=0$ from ch.1's OLS normal equations, even though no regression was explicitly run here?
+4. State the exact SS-additivity identity for a balanced panel, and explain precisely (two separate reasons) why the corresponding *standard deviations* don't simply add, even though the sums of squares do.

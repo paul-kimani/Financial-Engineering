@@ -29,6 +29,21 @@ $$X_{it} - \bar X = \underbrace{(\bar X_i - \bar X)}_{\text{between-unit compone
 > [!warning] A common misreading of `xtsum`-style output
 > It is tempting to expect the between and within standard deviations to add up to the overall standard deviation. They generally **do not** — the decomposition above is additive in *sums of squared deviations* under specific conditions, not simply additive in standard deviations. Reason from the decomposition identity itself, not from an expectation that the reported numbers should sum neatly.
 
+**The exact result, derived.** Write $a_i=\bar X_i-\bar X$ and $b_{it}=X_{it}-\bar X_i$, so $X_{it}-\bar X=a_i+b_{it}$. Squaring and summing over every $(i,t)$:
+
+$$\text{SS}_{\text{overall}} = \sum_i\sum_t(a_i+b_{it})^2 = \sum_i\sum_t a_i^2 + 2\sum_i\sum_t a_ib_{it} + \sum_i\sum_t b_{it}^2$$
+
+Since $a_i$ doesn't depend on $t$, $\sum_i\sum_t a_i^2 = T\sum_i a_i^2 = T\cdot\text{SS}_{\text{between}}$, and $\sum_i\sum_t b_{it}^2=\text{SS}_{\text{within}}$ by definition. For the cross term, factor $a_i$ out of the inner sum:
+
+$$2\sum_i\sum_t a_ib_{it} = 2\sum_i a_i\left(\sum_t(X_{it}-\bar X_i)\right)$$
+
+and $\sum_t(X_{it}-\bar X_i)=0$ for every $i$ — pure algebra from the definition of an average: $\sum_t(X_{it}-\bar X_i)=\sum_t X_{it}-T\bar X_i=\sum_t X_{it}-\sum_t X_{it}=0$ (no optimization involved, though it's the same fact as $\sum_i\hat u_i=0$ from [[01 Estimation Foundations#Deriving the normal equations|ch.1]], since a plain average *is* the least-squares solution to an intercept-only regression, and this is that regression's own first normal equation). So the cross term vanishes exactly, giving:
+
+$$\text{SS}_{\text{overall}} = T\cdot\text{SS}_{\text{between}} + \text{SS}_{\text{within}}$$
+
+an **exact** identity for a balanced panel — sums of squares genuinely add (with the $T$ weight on the between piece). What breaks down is two further steps stacked on top: taking square roots of a sum doesn't distribute ($\sqrt{x+y}\neq\sqrt x+\sqrt y$), and software like `xtsum` normalizes the three reported standard deviations by different degrees of freedom (overall by $NT$, between by $N$, within by an adjusted $NT$) — so even before the square-root issue, the terms aren't on equal footing.
+
+
 ## 4. Worked toy example: two firms, two years
 
 Take two firms and a leverage ratio $X$ observed in two years:
