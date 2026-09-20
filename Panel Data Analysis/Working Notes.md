@@ -93,3 +93,14 @@ Closed-book recall prompts:
 2. Prove $\sum_t(X_{it}-\bar X_i)=0$ for any unit $i$ directly from the definition of $\bar X_i$ — no reference to minimization needed.
 3. Explain the deeper connection: why is that zero-sum fact "the same fact" as $\sum_i\hat u_i=0$ from ch.1's OLS normal equations, even though no regression was explicitly run here?
 4. State the exact SS-additivity identity for a balanced panel, and explain precisely (two separate reasons) why the corresponding *standard deviations* don't simply add, even though the sums of squares do.
+
+---
+
+## 2026-09-20 — Live Socratic session: ch.4 pooled-OLS-bias derivation + the stacking/alpha_i mental model
+
+Closed-book recall prompts:
+
+1. Explain concretely, with a small table (e.g. 3 firms x 2 years), what "pooled OLS" actually does to a panel dataset before running OLS — no special panel machinery involved.
+2. Why doesn't $\alpha_i$ get its own estimated coefficient the way $X_{it}$ does? What is its implicit coefficient in the true model, and why does that make it fall into the error term when omitted?
+3. Starting from $Y_{it}=\beta_0+\beta_1X_{it}+\alpha_i+u_{it}$, derive $\operatorname*{plim}\hat\beta_{1,\text{pooled}}=\beta_1+\operatorname{Cov}(X_{it},\alpha_i)/\operatorname{Var}(X_{it})$ by expanding $\operatorname{Cov}(X_{it},Y_{it})$ term by term and dividing through by $\operatorname{Var}(X_{it})$.
+4. Under what single condition is pooled OLS consistent for $\beta_1$? Why doesn't increasing $N$ or $T$ fix a violation of that condition?

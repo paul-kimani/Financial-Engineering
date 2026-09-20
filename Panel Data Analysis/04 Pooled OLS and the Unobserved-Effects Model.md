@@ -10,7 +10,21 @@ Using the running example: $\text{Investment}_{it}=\beta_0+\beta_1\,\text{Value}
 
 Mechanically, pooled OLS is identical to running OLS on a plain cross-section — the estimator does not know or care that some rows share a unit. That is precisely its weakness.
 
+**Concretely: what "stacking" means.** There's no special panel machinery here. If you have 3 firms observed over 2 years, pooled OLS turns this into one flat table of $3\times2=6$ rows and runs completely ordinary OLS on it — the same normal equations from [[01 Estimation Foundations#Deriving the normal equations|ch.1]], just summed over all $NT$ rows instead of $N$:
+
+| Row | Firm ($i$) | Year ($t$) | $Y_{it}$ | $X_{it}$ |
+|---|---|---|---|---|
+| 1 | 1 | 2020 | ... | ... |
+| 2 | 1 | 2021 | ... | ... |
+| 3 | 2 | 2020 | ... | ... |
+| 4 | 2 | 2021 | ... | ... |
+| 5 | 3 | 2020 | ... | ... |
+| 6 | 3 | 2021 | ... | ... |
+
+OLS minimizes $\sum(\text{row's }Y-\beta_0-\beta_1X)^2$ over all 6 rows, blind to the fact that rows 1–2 share a firm.
+
 ## 2. Two failures of naive pooling
+
 
 ### Failure 1: a single common intercept
 
@@ -39,7 +53,26 @@ This single decomposition is the pivot the entire unit turns on: because $\alpha
 
 ### The central pooling problem, stated precisely
 
+**What $\alpha_i$ is, precisely.** Unlike $X_{it}$, which competes for its own estimated coefficient $\beta$, $\alpha_i$ enters the *true* model with an implicit coefficient of exactly 1 — it's each unit's own permanent adjustment to the intercept, never observed and never included as a regressor in the pooled equation. Because pooled OLS doesn't include it, it doesn't disappear; it falls straight into the error term, which is exactly why $v_{it}=\alpha_i+u_{it}$.
+
+**The derivation.** Take the true model with a single regressor for simplicity, $Y_{it}=\beta_0+\beta_1X_{it}+\alpha_i+u_{it}$ — structurally identical to ch.1's $Y_i=\beta_1+\beta_2X_i+\beta_3Z_i+u_i$ with $\beta_3\to1$ and $Z_i\to\alpha_i$. The pooled ("short") regression omits $\alpha_i$ entirely: $Y_{it}=\beta_0+\beta_1X_{it}+v_{it}$.
+
+Pooled OLS's plim is a ratio, $\operatorname*{plim}\hat\beta_{1,\text{pooled}}=\operatorname{Cov}(X_{it},Y_{it})/\operatorname{Var}(X_{it})$. Substitute the true model into the numerator and expand by linearity of covariance:
+
+$$\operatorname{Cov}(X_{it},Y_{it}) = \operatorname{Cov}(X_{it},\beta_0) + \beta_1\operatorname{Cov}(X_{it},X_{it}) + \operatorname{Cov}(X_{it},\alpha_i) + \operatorname{Cov}(X_{it},u_{it})$$
+
+Four terms, exactly parallel to ch.1: $\operatorname{Cov}(X_{it},\beta_0)=0$ and $\operatorname{Cov}(X_{it},X_{it})=\operatorname{Var}(X_{it})$ are pure algebraic identities; $\operatorname{Cov}(X_{it},u_{it})=0$ is an assumption (contemporaneous exogeneity of the idiosyncratic shock); $\operatorname{Cov}(X_{it},\alpha_i)$ is left standing — it cannot be assumed away. So:
+
+$$\operatorname{Cov}(X_{it},Y_{it}) = \beta_1\operatorname{Var}(X_{it}) + \operatorname{Cov}(X_{it},\alpha_i)$$
+
+Dividing through by $\operatorname{Var}(X_{it})$ gives the full result:
+
+$$\operatorname*{plim}\hat\beta_{1,\text{pooled}} = \beta_1 + \frac{\operatorname{Cov}(X_{it},\alpha_i)}{\operatorname{Var}(X_{it})}$$
+
+— identical in shape to ch.1's $\beta_2+\beta_3\cdot\operatorname{Cov}(X,Z)/\operatorname{Var}(X)$, with $\alpha_i$ standing in for $Z_i$ and its implicit coefficient of 1 absorbed directly into the fraction.
+
 Pooled OLS is safe **only if** $\operatorname{Cov}(X_{it},\alpha_i)=0$. If instead
+
 
 $$\operatorname{Cov}(X_{it},\alpha_i)\neq0$$
 
