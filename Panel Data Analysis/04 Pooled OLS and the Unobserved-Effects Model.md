@@ -92,8 +92,14 @@ Whether $X_{it}$ is safely uncorrelated with the error depends on *which* error 
 | **Predetermined** | $\mathbb E(u_{it}\mid X_{i1},\dots,X_{it})=0$ but not necessarily for future $X$ | past and current $X$ are unrelated to today's shock, but *future* $X$ may respond to today's shock (e.g. a lagged dependent variable) |
 | **Endogenous** | $\mathbb E(u_{it}\mid X_{it})\neq0$ | correlated with the contemporaneous shock — the condition fails outright |
 
-> [!example] Classifying regressors in a bank-profitability model
-> Bank size and capital ratio are plausibly closer to strictly exogenous or predetermined (slow-moving, not obviously reactive to this period's shock). Contemporaneous loan-loss provisions are a classic *endogenous* regressor — provisioning decisions are made in direct response to the same period's profitability shock. A national tax rate, set at the country level and not by any individual bank, is plausibly strictly exogenous with respect to bank-specific shocks.
+> [!example] Classifying regressors in a bank-profitability model, resolved
+> The discriminating question for strict-vs-predetermined isn't "is $X$ related to *past* shocks" — it's "does *future* $X$ respond to *today's* shock?" And the general pattern-match for endogeneity: if the regressor is a decision made *in reaction to* the very shock in question, that's endogeneity, not exogeneity.
+>
+> - **Bank size — strictly exogenous.** Slow-moving and structural; no period's profitability shock (past, present, or future) has a real channel to move it.
+> - **Lagged profitability — predetermined.** Today's shock $u_{it}$ affects today's profitability $Y_{it}$, which *becomes* tomorrow's regressor $X_{i,t+1}$ — future $X$ responding to today's shock, which is exactly what breaks strict exogeneity. But today's regressor (last period's profitability, already realized before today's shock occurred) can't be related to today's shock, so predetermined holds.
+> - **Capital ratio — strictly exogenous.** Regulatory-driven and adjusted slowly; not set in reaction to a single period's earnings shock.
+> - **Contemporaneous loan-loss provisions — endogenous.** Provisioning is a decision banks make *in direct response to* the same period's profitability shock — the shock determines the regressor, not the other way around. (Note: "strictly" only ever modifies *exogenous* — once contemporaneous exogeneity fails, it's just endogenous, with no further grading.)
+> - **National tax rate — strictly exogenous**, and cleanly so: set at the country level, above any individual bank, so no bank-specific shock has any feedback channel into it in either direction.
 
 ## 5. Is pooling adequate? The Chow/F poolability test
 
@@ -107,7 +113,8 @@ $$Y_{it} = \beta_0 + X_{it}'\beta + \delta_2D_{2i}+\delta_3D_{3i}+\dots+\delta_N
 
 $$H_0:\ \delta_2=\delta_3=\dots=\delta_N=0 \qquad\text{(all unit-specific intercept shifts are zero)}$$
 
-Equivalently: $H_0$ says the common-intercept pooled model is adequate. In Stata, this is `reg invest mvalue kstock i.company` followed by `testparm i.company`; in R via **plm**, it's `pFtest()` comparing a within (fixed-effects) model against the pooled model.
+Equivalently: $H_0$ says the common-intercept pooled model is adequate. Note this is a **joint $F$-test** on the $\delta_i$ coefficients — the same logic as testing joint significance of any group of regression coefficients — not a test involving $\operatorname{Cov}(X,\alpha)$ in any direct sense; covariance never enters the test statistic. In Stata, this is `reg invest mvalue kstock i.company` followed by `testparm i.company`; in R via **plm**, it's `pFtest()` comparing a within (fixed-effects) model against the pooled model.
+
 
 ### Interpreting the result
 

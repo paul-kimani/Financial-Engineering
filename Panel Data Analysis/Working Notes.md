@@ -104,3 +104,15 @@ Closed-book recall prompts:
 2. Why doesn't $\alpha_i$ get its own estimated coefficient the way $X_{it}$ does? What is its implicit coefficient in the true model, and why does that make it fall into the error term when omitted?
 3. Starting from $Y_{it}=\beta_0+\beta_1X_{it}+\alpha_i+u_{it}$, derive $\operatorname*{plim}\hat\beta_{1,\text{pooled}}=\beta_1+\operatorname{Cov}(X_{it},\alpha_i)/\operatorname{Var}(X_{it})$ by expanding $\operatorname{Cov}(X_{it},Y_{it})$ term by term and dividing through by $\operatorname{Var}(X_{it})$.
 4. Under what single condition is pooled OLS consistent for $\beta_1$? Why doesn't increasing $N$ or $T$ fix a violation of that condition?
+
+---
+
+## 2026-09-21 — Live Socratic session: ch.4 exogeneity classification exercise + poolability test precision
+
+Closed-book recall prompts:
+
+1. Classify bank size, lagged profitability, capital ratio, contemporaneous loan-loss provisions, and national tax rate as strictly exogenous, predetermined, or endogenous, and justify each with the correct mechanism (not just the label).
+2. What is the precise discriminating question between "strictly exogenous" and "predetermined" — not "is X related to past shocks," but what?
+3. Why is "strictly endogenous" not a valid classification? What does "strictly" modify in this taxonomy, and why does endogenous have no further grading once it fails?
+4. State $H_0$ for the Chow/F poolability test precisely, and explain why it is a joint F-test rather than a test involving $\operatorname{Cov}(X,\alpha)$ directly.
+5. List, precisely, the three things rejecting the poolability test does NOT establish.
