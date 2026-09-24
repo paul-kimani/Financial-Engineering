@@ -67,7 +67,44 @@ $$R^2_{\text{adj}} = \frac{\text{SSReg}/p}{\text{TSS}/(n-1)} = 1 - \frac{\text{S
 
 Adding a genuinely useless predictor can actually *decrease* adjusted $R^2$ (because the d.f. penalty in the denominator outweighs the tiny SSReg gain), which is exactly the behavior you want from a model-comparison metric.
 
-## 5. Cheat sheet
+## 5. Variable and Model Selection
+
+Once $p$ is large, using *all* available predictors is rarely wise — some add only noise (recall the **nuisance variables** warning above). **Variable selection** is the task of choosing a good subset $S\subseteq\{0,1,\dots,p\}$ of predictors, before ever getting to [[08 Regularization - Ridge and Lasso|Ridge/Lasso]]'s continuous-shrinkage alternative to this discrete search.
+
+### Selection criteria
+
+You can't just pick the subset with the highest $R^2$ — like plain $R^2$ itself, it never penalizes adding predictors. Criteria that *do* penalize model size, so smaller values indicate a "better" model:
+
+$$\hat\sigma^2 = \frac{\sum_i(Y_i-\hat Y_i)^2}{n-2} \qquad(\text{residual variance estimate, SLR case})$$
+
+$$\text{AIC} = n\log(\hat\sigma^2) + 2(1+p)$$
+
+$$\text{BIC} = n\log(\hat\sigma^2) + \log(n)(1+p)$$
+
+- **AIC** (Akaike Information Criterion) and **BIC** (Bayesian Information Criterion) both trade off fit (the $n\log(\hat\sigma^2)$ term — larger residual variance is worse) against complexity (the $p$-dependent penalty term). BIC's penalty, $\log(n)(1+p)$, grows faster with $n$ than AIC's flat $2(1+p)$, so **BIC penalizes larger models more harshly** and tends to pick more parsimonious models than AIC, especially as $n$ grows.
+- **Adjusted $R^2$** — as above.
+- **Best-subset selection** — literally fit *every possible subset* of predictors $\{0,1,2,\dots,p\}$ and pick whichever minimizes AIC/BIC (or maximizes adjusted $R^2$). Guaranteed to find the actual best subset for a given criterion, but computationally explosive: $2^p$ models to fit. Fine for small $p$, infeasible once $p$ gets large (say, $p>20$–$30$).
+
+> [!example] Reading the notation
+> $S_1=\{0,2,6,8,10\}$, $S_2=\{0,1,3,6,7,9\}$, $S_3=\{0,7,8\}$ — each $S_i$ is just a *candidate subset* of predictor indices (0 = intercept, always included) that best-subset selection would compare against every other candidate subset via AIC/BIC.
+
+### Stepwise selection (the tractable alternative)
+
+When $p$ is too large for best-subset ($2^p$ is infeasible, or when $p>n$ and best-subset can't even be computed), use a greedy search instead:
+
+- **Forward stepwise selection** — start from the empty model (intercept only), and at each step add whichever remaining predictor most improves the criterion (e.g. largest drop in AIC/BIC, or the predictor whose F-statistic exceeds the critical value $F_{p,n-p-1}>CV_\alpha$ from [[05 Multiple Linear Regression and the F-test#3. Mean squares and the F-statistic|§3]]). Stop when no addition improves the model. Works even when $p>n$, unlike best-subset.
+- **Backward stepwise selection** — start from the *full* model (all $p$ predictors) and remove the least useful predictor at each step. Requires $n>p$ to even fit the starting full model, so it's **not** usable when $p>n$ — this is the key practical tradeoff against forward selection.
+
+Neither stepwise method is guaranteed to find the actual best subset (they're greedy, so an early bad choice can't be undone) — the tradeoff is tractability ($p$ or $p+1$ models fit total, not $2^p$) for a loss of the best-subset guarantee.
+
+> [!tip] Context still matters
+> A statistically "best" model by AIC/BIC isn't automatically the right model — check that the selected predictors are **contextually logical** and consistent with existing economic theory before trusting a purely algorithmic selection. A model that includes a predictor with no plausible causal or theoretical link to the response is a red flag, however good its AIC looks.
+
+### Toy example: why the model-fitting step matters as much as selection
+
+Take $X\sim\mathcal N(0,1)$ and the true relationship $Y=X^2$ (a deterministic, purely nonlinear relationship — no noise term at all). Note $\mathbb{E}(Y)=\mathbb{E}(X^2)=\operatorname{Var}(X)=1$ and $\operatorname{Cov}(X,Y)=\mathbb E(X^3)=0$ (odd moment of a symmetric distribution). If you naively regress $Y$ on $X$ with a **simple linear regression**, you'd find **zero correlation** and might wrongly conclude $X$ has no explanatory power over $Y$ — when in fact $X$ determines $Y$ *completely*, just through a nonlinear relationship a linear model is blind to. This is the sharpest possible illustration of why regression diagnostics (checking residual plots for structure, not just checking $R^2$/significance) matter — see [[12 Regression Diagnostics, Heteroskedasticity and GLS|ch.12]] for the full diagnostic toolkit this motivates.
+
+## 6. Cheat sheet
 
 | Quantity | Formula | Degrees of freedom | Meaning |
 |---|---|---|---|
@@ -79,12 +116,15 @@ Adding a genuinely useless predictor can actually *decrease* adjusted $R^2$ (bec
 | $F$ | MSReg/MSE | $F(p,n-p-1)$ | test of overall significance |
 | $R^2$ | SSReg/TSS | — | fraction of variance explained (always $\uparrow$ with more predictors) |
 | $R^2_{\text{adj}}$ | penalizes $R^2$ by $p$ | — | fair model-comparison metric |
+| AIC | $n\log(\hat\sigma^2)+2(1+p)$ | — | penalized fit, for model/variable selection |
+| BIC | $n\log(\hat\sigma^2)+\log(n)(1+p)$ | — | like AIC, penalizes model size more as $n$ grows |
 
-## 6. Open questions for revision
+## 7. Open questions for revision
 
 - [ ] Derive $\text{Cov}(\epsilon_i,\epsilon_j)=0$'s role explicitly — re-derive why violating SL1 (autocorrelated errors, common in financial time series) invalidates the standard F-test's distributional assumptions.
 - [ ] Practice reading an R `anova(lm(...))` table (see [[06 CAPM and Multifactor Models]]) and mapping each row/column back to the SSR/SSReg/F formulas above.
 - [ ] Work through why $2^2\sim\chi^2(1)$ — this single identity is the seed of the whole $\chi^2\to F$ chain in §3.
+- [ ] Given the $Y=X^2$ toy example, sketch what a residual-vs-fitted plot from the (wrongly) fit SLR would look like, and connect it to the diagnostic plots in [[12 Regression Diagnostics, Heteroskedasticity and GLS|ch.12]].
 
 ---
-*Source: BSF 3216 lecture, 7 Sept 2026 (handwritten notes on ANOVA/F-test for multiple regression).*
+*Source: BSF 3216 lectures, 7 Sept 2026 and 11 Sept 2026 (ANOVA/F-test, variable/model selection).*

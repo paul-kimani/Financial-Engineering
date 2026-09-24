@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="520" viewBox="0 0 680 520" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="680" height="520" fill="#fbfaf7"/>
+
+  <text x="340" y="38" text-anchor="middle" font-size="20" fill="#222" font-weight="bold">OLS as a projection</text>
+  <text x="340" y="60" text-anchor="middle" font-size="13" fill="#555">Y is a fixed point off the plane; Ŷ is the closest point on it; û is the leftover, perpendicular gap</text>
+
+  <!-- The plane: span of X (and the intercept column) -->
+  <polygon points="150,400 480,400 590,255 260,255" fill="#cfe0ee" fill-opacity="0.55" stroke="#7ea0c4" stroke-width="1.5"/>
+  <text x="300" y="440" font-size="13.5" fill="#3d6389" font-style="italic">the "tabletop" — every possible combination of β0·1 + β1·X</text>
+  <text x="300" y="457" font-size="13.5" fill="#3d6389" font-style="italic">(the plane spanned by the regressors, i.e. the column space of X)</text>
+
+  <!-- Origin -->
+  <circle cx="150" cy="400" r="3.5" fill="#222"/>
+  <text x="132" y="416" font-size="13" fill="#222">O</text>
+
+  <!-- direction hints within the plane -->
+  <line x1="150" y1="400" x2="470" y2="400" stroke="#7ea0c4" stroke-width="1.2" stroke-dasharray="2,3"/>
+  <text x="475" y="404" font-size="12" fill="#5a7fa3">direction of "1" (intercept)</text>
+  <line x1="150" y1="400" x2="258" y2="258" stroke="#7ea0c4" stroke-width="1.2" stroke-dasharray="2,3"/>
+  <text x="200" y="248" font-size="12" fill="#5a7fa3">direction of X</text>
+
+  <!-- Yhat point on the plane -->
+  <circle cx="380" cy="324" r="4.5" fill="#1f5c8b"/>
+  <text x="393" y="320" font-size="15" fill="#1f5c8b" font-weight="bold">Ŷ</text>
+  <text x="393" y="338" font-size="12.5" fill="#1f5c8b">fitted values — closest point on the plane</text>
+
+  <!-- vector O to Yhat -->
+  <line x1="150" y1="400" x2="376" y2="328" stroke="#1f5c8b" stroke-width="2"/>
+
+  <!-- Y point, off the plane -->
+  <circle cx="380" cy="150" r="4.5" fill="#111"/>
+  <text x="393" y="150" font-size="16" fill="#111" font-weight="bold">Y</text>
+  <text x="393" y="168" font-size="12.5" fill="#333">actual data — a point in n-dimensional space</text>
+
+  <!-- vector O to Y -->
+  <line x1="150" y1="400" x2="376" y2="154" stroke="#111" stroke-width="2"/>
+
+  <!-- residual: Yhat to Y -->
+  <line x1="380" y1="320" x2="380" y2="154" stroke="#c0562c" stroke-width="2.5" stroke-dasharray="6,4"/>
+  <text x="398" y="235" font-size="15" fill="#c0562c" font-weight="bold">û</text>
+  <text x="398" y="253" font-size="12.5" fill="#c0562c">residual = Y − Ŷ, perpendicular to the plane</text>
+
+  <!-- right angle marker at Yhat -->
+  <path d="M 380 320 L 368 320 L 368 308" fill="none" stroke="#333" stroke-width="1.4"/>
+
+  <!-- caption box -->
+  <rect x="60" y="475" width="560" height="34" rx="6" fill="#f1efe9" stroke="#ddd8cc"/>
+  <text x="340" y="497" text-anchor="middle" font-size="12.5" fill="#444">OLS picks Ŷ to make Y − Ŷ as short as possible — and the shortest path to a flat plane is always perpendicular to it.</text>
+</svg>

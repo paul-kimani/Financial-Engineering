@@ -18,7 +18,7 @@ writing — not split per chapter.
 | 01 | [[01 The Data Life Cycle.]] — raw → cleaned → prepared data, EDA, wrangling vs. preprocessing | Core |
 | 02 | [[02 Data-sets]] — dataset anatomy, structured/semi/unstructured data, relational databases | Core |
 | 03 | [[03 Asset Returns.]] — simple vs. log returns, why log returns, KDE link | Core |
-| 04 | [[04 Supervised Learning Vs unsupervised learning.]] — supervised/unsupervised, SLR model & assumptions | Core |
+| 04 | [[04 Supervised Learning Vs unsupervised learning.]] — supervised/unsupervised, SLR model & assumptions, full Gauss-Markov BLUE proof, unbiased error-variance estimator $\hat\sigma^2$ | Core |
 | 05 | [[05 Multiple Linear Regression and the F-test]] — SSR/TSS/SSReg, F-statistic, R² & adjusted R² | Core |
 | 06 | [[06 CAPM and Multifactor Models]] — CAPM, beta, Fama-French 3-factor, R implementation | Core |
 | 07 | [[07 Model Assessment, Bias-Variance and Resampling]] — bias-variance tradeoff, classification metrics, CV, bootstrap | Core |
@@ -26,6 +26,7 @@ writing — not split per chapter.
 | 09 | [[09 Logistic Regression and Classification]] — logistic/logit, MLE, Naive Bayes | Core |
 | 10 | [[10 Support Vector Machines]] — hyperplanes, maximal margin, soft margin, kernel trick | Core |
 | 11 | [[11 Neural Networks (stub)]] — placeholder, pending lecture | Not yet written |
+| 12 | [[12 Regression Diagnostics, Heteroskedasticity and GLS]] — residual diagnostics, Durbin-Watson, Breusch-Pagan/White, GLS/WLS/FGLS | Core |
 
 Standalone reference note: [[Kernel Density Function]] (linked from ch.3 and ch.9).
 

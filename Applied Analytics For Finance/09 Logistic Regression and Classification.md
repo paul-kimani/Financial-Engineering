@@ -26,18 +26,30 @@ $$\ln\left(\frac{p(X)}{1-p(X)}\right) = \beta_0+\beta_1X$$
 
 Unlike OLS (which has a closed-form solution), logistic regression coefficients are fit by **maximum likelihood**: choose $\hat\beta_0,\hat\beta_1$ to maximize the likelihood of observing the actual labels in the training data, given the model. This has no closed form, so it's solved iteratively — typically via **Newton-Raphson** (iteratively re-weighted least squares under the hood).
 
+#### Building the likelihood function explicitly
+
+Let $\beta=(\beta_0,\beta_1)$ so $p(X)=\dfrac{1}{1+e^{-\beta X}}$ (writing $\beta X$ for $\beta_0+\beta_1X$ for brevity). Since each observation's label $Y_i\in\{0,1\}$ is an independent Bernoulli draw with success probability $p(X_i)$, the **likelihood function** — the joint probability of observing the actual data, as a function of the unknown $\beta$ — is a product over all $n$ observations:
+
+$$L(\beta) = \prod_{i:\,y_i=1} p(x_i) \;\times\!\! \prod_{i':\,y_{i'}=0}\! \big(1-p(x_{i'})\big)$$
+
+That is: for every observation actually labeled $1$, multiply in $p(x_i)$ (the model's probability of that outcome); for every observation labeled $0$, multiply in $1-p(x_{i'})$. This is exactly the same Bernoulli-likelihood-product construction behind MLE for the Simple Linear Regression assumptions in [[04 Supervised Learning Vs unsupervised learning.#2. The Simple Linear Regression model SLR|ch.4's open MLE-vs-OLS question]] — the same tool, applied to a Bernoulli response instead of a Normal one.
+
+Since products of many small probabilities underflow numerically and are painful to differentiate, take logs to get the **log-likelihood** $\ell(\beta)=\log L(\beta)$ — turning the product into a sum:
+
+$$\ell(\beta) = \sum_{i:\,y_i=1} \log p(x_i) \;+\! \sum_{i':\,y_{i'}=0} \log\big(1-p(x_{i'})\big)$$
+
+Substituting the logistic form $p(x)=1/(1+e^{-\beta x})$ (so $1-p(x) = 1/(1+e^{\beta x})$):
+
+$$\ell(\beta) = \sum_{i:\,y_i=1} \log\!\left(\frac{1}{1+e^{-\beta x_i}}\right) \;+\! \sum_{i':\,y_{i'}=0} \log\!\left(\frac{1}{1+e^{\beta x_{i'}}}\right)$$
+
+**MLE fitting is then**: find $\hat\beta = \arg\max_\beta \ell(\beta)$. Because $\ell(\beta)$ has no closed-form maximizer (unlike OLS's normal equations), this maximization is solved numerically via Newton-Raphson, iterating toward the $\hat\beta$ where $\ell$'s gradient is zero.
+
+> [!tip] Sanity-check the direction
+> A **larger** (less negative, or more positive) log-likelihood value means the model assigns higher probability to the labels actually observed — i.e. a *better* fit. Since probabilities are $\le1$, $\log p(x_i)\le0$ always, so $\ell(\beta)$ is typically negative — "larger" here means closer to zero, not necessarily positive.
+
 ### The decision boundary
 
 To classify, pick a threshold (commonly $0.5$) and predict $\hat Y=1$ if $p(X)>0.5$. Since the logit is linear in $X$, the resulting **decision boundary** — the set of points where $p(X)=0.5$, i.e. $\beta_0+\beta_1X=0$ — is a straight line (or hyperplane, with multiple predictors). This is the same "linear boundary" idea that Support Vector Machines start from in [[10 Support Vector Machines|ch.10]], just arrived at via a probabilistic model instead of a margin-maximization problem.
-
-### Multiple logistic regression example (credit card approval)
-
-```r
-glm(formula = card ~ log(reports+1) + income + log(share) + age + owner + dependents + months,
-    family = "binomial", data = CreditCard_clean)
-```
-
-Reading the coefficients table the same way as an `lm()` table (see [[05 Multiple Linear Regression and the F-test|ch.5]]) but interpreting each $\hat\beta_j$ as a **log-odds** effect: e.g. `log(reports+1)` coefficient $\approx-2.91$ means more derogatory reports sharply *decrease* the log-odds (and hence the probability) of card approval, holding other variables fixed. `income` and `log(share)` both have positive, highly significant coefficients — higher income and higher spending-to-income share both increase approval odds. Model fit for GLMs is judged via **deviance** (residual deviance vs. null deviance — analogous to SSR vs. TSS in OLS) and **AIC**, rather than $R^2$.
 
 ## 3. Naive Bayes Classifier
 
