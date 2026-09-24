@@ -108,12 +108,12 @@ $C_0$ increases (chapter [[04 - Indifference Curves, MRS and Utility]]).
 
 ## 6. Summary — what the axioms buy you
 
-| Axiom              | Plain meaning                                                  | Graphical consequence                                          |
-| :----------------- | :------------------------------------------------------------- | :------------------------------------------------------------- |
-| **Completeness**   | Every pair of alternatives admits a verdict.                   | Every point in the plane sits on some indifference curve.      |
-| **Non-Satiation**  | More is better.                                                | Curves further up-and-right give higher utility.               |
-| **Transitivity**   | Preferences are consistent across chains of comparisons.       | Indifference curves never intersect.                           |
-| **Convexity**      | A mixture is at least as good as either ingredient.            | Curves are convex toward the origin (diminishing MRS).         |
+| Axiom             | Plain meaning                                            | Graphical consequence                                     |
+| :---------------- | :------------------------------------------------------- | :-------------------------------------------------------- |
+| **Completeness**  | Every pair of alternatives admits a verdict.             | Every point in the plane sits on some indifference curve. |
+| **Non-Satiation** | More is better.                                          | Curves further up-and-right give higher utility.          |
+| **Transitivity**  | Preferences are consistent across chains of comparisons. | Indifference curves never intersect.                      |
+| **Convexity**     | A mixture is at least as good as either ingredient.      | Curves are convex toward the origin (diminishing MRS).    |
 
 With these four in place, the indifference curves drawn in
 [[04 - Indifference Curves, MRS and Utility]] are well-defined,

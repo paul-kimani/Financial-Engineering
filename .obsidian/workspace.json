@@ -4,243 +4,165 @@
     "type": "split",
     "children": [
       {
-        "id": "c4557ec2a4367ad4",
+        "id": "2c88b5c0016e1aef",
         "type": "tabs",
         "children": [
           {
-            "id": "db50ccac912a96cc",
+            "id": "8048c5bedd1925b1",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Stochastics/19 April 2026.md",
+                "file": "Machine Learning For Trading/01 Information Ratio.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "19 April 2026"
+              "title": "01 Information Ratio"
             }
           },
           {
-            "id": "27f318d24ee402fa",
+            "id": "278bd21a4c81231d",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Fixed Income Securities/15 April online Excercise.md",
+                "file": "Machine Learning For Trading/02 Factor Investing And Beta Funds.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "15 April online Excercise"
+              "title": "02 Factor Investing And Beta Funds"
             }
           },
           {
-            "id": "57fc52f023642bb2",
+            "id": "c4174b31848f822d",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Fixed Income Securities/22 April online excercise.md",
+                "file": "Machine Learning For Trading/03 Algorithmic pioneers outperform humans.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "22 April online excercise"
+              "title": "03 Algorithmic pioneers outperform humans"
             }
           },
           {
-            "id": "e63874bbd3ac7eea",
+            "id": "8beca90a6b3d72de",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Financial Theory/Introduction.md",
+                "file": "Machine Learning For Trading/04 ML and Alternative Data.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Introduction"
+              "title": "04 ML and Alternative Data"
             }
           },
           {
-            "id": "1126c93700d10fb4",
+            "id": "ccd6f7df5a3cb452",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Financial Theory/22 April 2026.md",
+                "file": "Machine Learning For Trading/05 Crowdsourcing trading algorithms.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "22 April 2026"
+              "title": "05 Crowdsourcing trading algorithms"
             }
           },
           {
-            "id": "aaa61f38277f1378",
+            "id": "3bd8fc58aefa5c68",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Financial Theory/21 April 2026 A.md",
+                "file": "Machine Learning For Trading/06 Designing and executing anML-driven strategy.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "21 April 2026 A"
+              "title": "06 Designing and executing anML-driven strategy"
             }
           },
           {
-            "id": "e42734667fad5206",
+            "id": "83aab745e8bfe569",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Time Series/10 April 2026.md",
+                "file": "Machine Learning For Trading/07 ML for trading – strategies anduse cases.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "10 April 2026"
+              "title": "07 ML for trading – strategies anduse cases"
             }
           },
           {
-            "id": "0b37d2eef0515c81",
+            "id": "6191e9389df7316a",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Time Series/24 April Assignment.md",
+                "file": "Research Methods/References and assesments..md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "24 April Assignment"
+              "title": "References and assesments."
             }
           },
           {
-            "id": "6716a0b40a201a95",
+            "id": "df64498cdfea332f",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Fixed Income Securities/22 April online excercise.md",
+                "file": "Research Methods/01 How to Read Research Notes.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "22 April online excercise"
+              "title": "01 How to Read Research Notes"
             }
           },
           {
-            "id": "8b432e9fd2e50259",
+            "id": "ceb03ce136078698",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Fixed Income Securities/29 April online excercise.md",
+                "file": "Applied Analytics For Finance/Core texts.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "29 April online excercise"
+              "title": "Core texts"
             }
           },
           {
-            "id": "3f565c02fcfcc04a",
-            "type": "leaf",
-            "state": {
-              "type": "image",
-              "state": {
-                "file": "Images/WhatsApp Image 2026-05-05 at 17.50.56.jpeg"
-              },
-              "icon": "lucide-image",
-              "title": "WhatsApp Image 2026-05-05 at 17.50.56"
-            }
-          },
-          {
-            "id": "46f9829746361859",
+            "id": "187988d158e3511f",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Stochastics/13 April 2026.md",
+                "file": "Financial Calculus/01 BOPM.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "13 April 2026"
-            }
-          },
-          {
-            "id": "92782f300f2bcddc",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Derivatives/7 May 2026 - Personal Notes 1.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "7 May 2026 - Personal Notes 1"
-            }
-          },
-          {
-            "id": "b10444ae697b7269",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Fixed Income Securities/22 April 2026.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "22 April 2026"
-            }
-          },
-          {
-            "id": "351b50fd1017a096",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Derivatives/Lehman Brothers 2007.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Lehman Brothers 2007"
-            }
-          },
-          {
-            "id": "94551e7119f7e3da",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Untitled 1.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Untitled 1"
-            }
-          },
-          {
-            "id": "617be234096dc1dc",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "New tab"
+              "title": "01 BOPM"
             }
           }
         ],
-        "currentTab": 15
+        "currentTab": 10
       }
     ],
     "direction": "vertical"
@@ -260,7 +182,9 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
               "title": "Files"
@@ -297,7 +221,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 262.5026054382324,
+    "collapsed": true
   },
   "right": {
     "id": "70f8c0e746a7fc7d",
@@ -313,7 +238,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Introduction.md",
+                "file": "Stochastics/01 - Introduction to Stochastic Processes.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -323,7 +248,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Introduction"
+              "title": "Backlinks for 01 - Introduction to Stochastic Processes"
             }
           },
           {
@@ -332,12 +257,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Introduction.md",
+                "file": "Stochastics/01 - Introduction to Stochastic Processes.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Introduction"
+              "title": "Outgoing links from 01 - Introduction to Stochastic Processes"
             }
           },
           {
@@ -370,26 +295,49 @@
             }
           },
           {
+            "id": "03eaefd8a93d4e45",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Stochastics/06 - Itô's Lemma Worked Examples.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "06 - Itô's Lemma Worked Examples"
+            }
+          },
+          {
             "id": "1a9a83289f125b19",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "Introduction.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Introduction"
+              "title": "Outline"
+            }
+          },
+          {
+            "id": "dd53192e2f3b5fbb",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
             }
           }
-        ]
+        ],
+        "currentTab": 6
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 532.1901245117188
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -402,53 +350,52 @@
       "bases:Create new base": false
     }
   },
-  "active": "94551e7119f7e3da",
+  "active": "187988d158e3511f",
   "lastOpenFiles": [
-    "Derivatives/Lehman Brothers 2007.md",
-    "Untitled 1.md",
-    "Derivatives/7 May 2026 - Personal Notes 1.md",
-    "Untitled.md",
-    "Fixed Income Securities/22 April 2026.md",
-    "Introduction to stochastic calculus with applications/Preliminaries of calculus Rough Notes.md",
-    "Introduction to stochastic calculus with applications",
-    "Stochastics/13 April 2026.md",
-    "Stochastics/10 April 2026.md",
-    "Fixed Income Securities/22 April online excercise.md",
-    "Images/WhatsApp Image 2026-05-05 at 17.50.56.jpeg",
-    "Images/WhatsApp Image 2026-05-05 at 17.50.56 (2).jpeg",
-    "Images/WhatsApp Image 2026-05-05 at 17.50.57.jpeg",
-    "Images/WhatsApp Image 2026-05-05 at 17.50.57 (3).jpeg",
+    "Financial Calculus/01 BOPM.md",
+    "Screenshot 2026-08-17 at 08.53.28.png",
+    "IMG_2772.HEIC",
+    "IMG_2771.HEIC",
+    "IMG_2770.HEIC",
+    "IMG_2769.HEIC",
+    "IMG_2768.HEIC",
+    "IMG_2772 3.heic",
+    "IMG_2771 3.heic",
+    "IMG_2770 3.heic",
+    "IMG_2769 5.heic",
+    "IMG_2768 2.heic",
+    "Pasted image 20260818100547.png",
+    "Screenshot 2026-08-15 at 09.41.26.png",
+    "Screenshot 2026-08-15 at 09.29.07.png",
+    "Applied Analytics For Finance/Core texts.md",
+    "Pasted image 20260817152356.png",
+    "Research Methods/01 How to Read Research Notes.md",
+    "Research Methods/References and assesments..md",
+    "Pasted image 20260817085311.png",
+    "Machine Learning For Trading/07 ML for trading – strategies anduse cases.md",
+    "Machine Learning For Trading/06 Designing and executing anML-driven strategy.md",
+    "Machine Learning For Trading/05 Crowdsourcing trading algorithms.md",
+    "Machine Learning For Trading/04 ML and Alternative Data.md",
+    "Machine Learning For Trading/03 Algorithmic pioneers outperform humans.md",
+    "Machine Learning For Trading/02 Factor Investing And Beta Funds.md",
+    "Machine Learning For Trading/01 Information Ratio.md",
+    "Derivatives/Swaps/02 Value of an Interest rate swap.md",
+    "Derivatives/Swaps/01 Introduction.md",
+    "Financial Theory/02 - Consumption and Savings Decision.md",
+    "Stochastics/08 - Itô Integral Exercises and Moments.md",
+    "Derivatives/Swaps/07 Application of Currency Swaps.md",
+    "Derivatives/Swaps/06 Currency Swaps Assignment Solutions.md",
+    "日本語/感じ/感じ.md",
+    "CLAUDE.md",
+    "Stochastics/00 - Foundations Review.md",
+    "Fixed Income Securities/05 Government Issuers and Debt Management.md",
+    "Fixed Income Securities/04 Repurchase Agreements (REPOs) Rates, Applications, and Risks.md",
+    "Fixed Income Securities/03 Short term Funding Alternatives.md",
+    "Fixed Income Securities/02 Structured Financial Instruments.md",
+    "Fixed Income Securities/01 Introduction To Fixed Income Markets.md",
     "Images/WhatsApp Image 2026-05-05 at 17.50.57 (2).jpeg",
-    "Images/WhatsApp Image 2026-05-05 at 17.50.57 (1).jpeg",
+    "Images/WhatsApp Image 2026-05-05 at 17.50.57.jpeg",
     "Images/WhatsApp Image 2026-05-05 at 17.50.56 (3).jpeg",
-    "Fixed Income Securities/29 April online excercise.md",
-    "Images/Pasted image 20260506062741.png",
-    "Fixed Income Securities/15 April online Excercise.md",
-    "Fixed Income Securities/15 April 2026.md",
-    "Fixed Income Securities/10 April 2026.md",
-    "Financial Theory/22 April 2026.md",
-    "Financial Theory/21 April 2026 B.md",
-    "Financial Theory/21 April 2026 A.md",
-    "Financial Theory/01 Introduction.md",
-    "Volatility Tradaing",
-    "QUANTFRAME/Linear Algebra/projections.md",
-    "Research",
-    "QUANTFRAME/Concepts/BackGround to Kelly Criterion.md",
-    "Time Series/24 April Assignment.md",
-    "QUANTFRAME/Concepts",
-    "Images/WhatsApp Image 2026-04-24 at 09.17.47.jpeg",
-    "Images/Screenshot 2026-04-15 at 16.30.17.png",
-    "Time Series/10 April 2026.md",
-    "Images/IMG_0667 1.heic",
-    "Images/IMG_0666 1.heic",
-    "Images/IMG_0667.heic",
-    "Images/IMG_0666.heic",
-    "Derivatives",
-    "Stochastics/20 April 2026.md",
-    "LICENSE",
-    "Stochastics/19 April 2026.md",
-    "Stochastics/Weekend Review 12 April 2026.md",
-    "Stochastics/Proof of Ito's Lemma.md",
-    "Stochastics/Itô Integral of Simple Processes.md"
+    "Images/WhatsApp Image 2026-04-24 at 09.16.22.jpeg"
   ]
 }
