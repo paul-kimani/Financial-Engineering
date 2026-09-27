@@ -11,14 +11,69 @@
 
 ---
 
-## 1. Core market assumptions
+## 1. Assumptions of the BOPM
 
-- **Unlimited short-selling** — the stock can be shorted without
-  restriction or borrowing limits.
-- **Unlimited borrowing** — infinite access to capital.
-- **Frictionless trading** — no transaction costs.
-- **Price-taker status** — the agent is small; individual trades never
-  move the market price.
+Each assumption is listed with **where it does work** in the proofs of
+Chapters 1–3, and **what breaks** if it fails.
+
+### A. Market assumptions — what replication needs
+
+| Assumption | Where it does the work | If it fails |
+|---|---|---|
+| **Frictionless trading** — no transaction costs, taxes, bid-ask | Rebalancing $\Delta_n$ at every node is free, so $X_{n+1} = \Delta_n S_{n+1} + (1+r)(X_n - \Delta_n S_n)$ holds exactly | Each rebalance costs; as steps $\to\infty$ hedging cost can explode (Leland). Price becomes a band |
+| **Borrow and lend at the same $r$** | The bond position $C_0 - \Delta_0 S_0$ is usually *negative* for a call — you borrow at the same $r$ you'd lend at | Two rates give two $\tilde p$'s, hence a price interval |
+| **Unlimited short-selling** | $\Delta_n<0$ for puts; the no-arbitrage argument for $u<1+r$ shorts the stock | Puts can't be hedged; one side of $d<1+r<u$ can't be enforced |
+| **Perfect divisibility** | $\Delta_0 = \frac{C_1(H)-C_1(T)}{S_0(u-d)}$ is almost never an integer | Replication is only approximate |
+| **Price-taker / perfect liquidity** | Hedge trades don't move $S$ | Large hedgers move the price they hedge against (feedback) |
+| **No dividends** (or known ones) | The stock's return is only its price move, giving $\tilde p u + \tilde q d = 1+r$ | With yield $\delta$: $\tilde p = \frac{(1+r)/(1+\delta) - d}{u-d}$; early exercise of American calls can become optimal |
+| **Deterministic, constant $r$** | $(1+r)^{-n}$ pulls out of every conditional expectation | Stochastic rates; discounting becomes random |
+
+### B. Model assumptions — what the tree itself assumes
+
+1. **Exactly two outcomes per step.** This is completeness: 2 states, 2
+   assets $\Rightarrow$ 2 equations, 2 unknowns $\Rightarrow$ unique
+   $\Delta_0$ and unique $\mathbb Q$. With three branches (trinomial),
+   Theorem 3 fails and $\mathbb Q$ is not unique.
+2. **$u, d$ constant across time and nodes.** Gives (i) a recombining tree
+   ($n+1$ terminal nodes, not $2^n$); (ii) the *same* $\tilde p$ at every
+   node — used in [[02 - The Two-Period and n-Period BOPM]]; (iii) the
+   binomial coefficients in the $n$-period formula. Economically:
+   **constant volatility** — the limit is BSM's constant $\sigma$, and the
+   implied-volatility smile is the evidence it is false.
+3. **No-arbitrage, $d < 1+r < u$.** Used exactly once: to guarantee
+   $\tilde p,\tilde q \in (0,1)$, i.e. that $\mathbb Q$ is a valid
+   probability measure.
+4. **Discrete trading dates.** Rebalancing happens only at nodes. Chapter 4
+   replaces this with continuous trading.
+5. **Every path has positive real-world probability**, $0<p<1$. This is
+   the *only* requirement on $\mathbb P$. It makes $\mathbb P$ and
+   $\mathbb Q$ **equivalent**: they agree on what is possible, disagreeing
+   only on how likely. (If $p=1$ the stock is riskless, must earn $r$, and
+   $d<1+r<u$ is impossible.)
+
+### C. Investor assumptions
+
+- **Non-satiation** (more is preferred to less) — the only preference
+  assumption. It is why an arbitrage would be exploited, and hence why
+  prices must exclude it.
+- **Agreement on the states, not the probabilities** — everyone agrees on
+  $u, d, r$; nobody needs to agree on $p$.
+
+### What is *not* assumed
+
+The price does **not** depend on the real-world probability $p$, the
+stock's expected return, or investors' risk aversion. The model does not
+assume investors are risk-neutral — it shows their preferences **cancel**,
+because the option is priced *relative to* the stock, whose price $S_0$
+already embeds whatever risk premium the market demands. "Risk-neutral
+pricing" is a computational device, not a behavioural claim.
+
+### Link forward
+
+The BSM assumptions in [[04 - The Black-Scholes PDE (Hedging, Replication, CAPM)]]
+are this list taken to the limit: binomial steps $\to$ geometric Brownian
+motion; discrete $\to$ continuous rebalancing; constant $u,d \to$ constant
+$\sigma$; constant $r$ stays constant $r$.
 
 ## 2. The Fundamental Theorem of Asset Pricing
 
