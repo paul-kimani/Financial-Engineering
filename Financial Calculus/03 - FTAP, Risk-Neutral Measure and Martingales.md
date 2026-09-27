@@ -99,6 +99,31 @@ By Theorem 1 the expectation equals $(1+r)^{-n}S_n$:
 
 $$= \Delta_n(1+r)^{-n}S_n + (1+r)^{-n}(X_n - \Delta_n S_n) = (1+r)^{-n}\big[\Delta_n S_n + X_n - \Delta_n S_n\big] = (1+r)^{-n}X_n. \qquad\blacksquare$$
 
+**What the cancellation means.** The two $\Delta_n S_n$ terms cancel, so
+the result holds for *any* strategy $\Delta_n$. However you trade, you
+cannot change the discounted portfolio's expected growth under
+$\mathbb Q$: it is zero. If some self-financing strategy started at
+$X_0=0$ and ended with $X_N \ge 0$ and $X_N>0$ in some state, its
+discounted expectation would be strictly positive — contradicting the
+martingale property. That is the "no-arbitrage" half of the FTAP, seen
+from the inside.
+
+## 5a. From martingale to pricing formula
+
+A martingale has constant expectation over time. Applying Theorem 2
+repeatedly (the tower property — conditioning back one step at a time):
+
+$$\frac{X_0}{(1+r)^0} = \tilde{\mathbb E}\!\left[\frac{X_1}{1+r}\right] = \tilde{\mathbb E}\!\left[\frac{X_2}{(1+r)^2}\right] = \dots = \tilde{\mathbb E}\!\left[\frac{X_N}{(1+r)^N}\right].$$
+
+If $X$ replicates a derivative with payoff $V_N$ (so $X_N = V_N$ in every
+state), no-arbitrage forces its price to be $X_0$:
+
+$$\boxed{V_0 = \tilde{\mathbb E}\!\left[\frac{V_N}{(1+r)^N}\right]}$$
+
+This is the $n$-period formula of [[02 - The Two-Period and n-Period BOPM]]
+in one line, and it also covers path-dependent payoffs. The gap: it
+assumes a replicating portfolio *exists*. Theorem 3 closes that gap.
+
 ## 6. Theorem 3 — the BOPM is a complete market
 
 A market is complete if every derivative can be hedged. Define, **backward
@@ -131,6 +156,26 @@ $$X_{n+1}(H) = (1+r)X_n + \tilde q\big[C_{n+1}(H) - C_{n+1}(T)\big].$$
 Using $X_n = C_n$ and the pricing recursion $C_n(1+r) = \tilde p\,C_{n+1}(H) + \tilde q\,C_{n+1}(T)$:
 
 $$X_{n+1}(H) = \tilde p\,C_{n+1}(H) + \tilde q\,C_{n+1}(T) + \tilde q\,C_{n+1}(H) - \tilde q\,C_{n+1}(T) = (\tilde p+\tilde q)\,C_{n+1}(H) = C_{n+1}(H). \qquad\blacksquare$$
+
+**Which assumption does which job.**
+
+- **$X_n = C_n$** (induction hypothesis) + the pricing recursion turn the
+  bond term $(1+r)X_n$ into the risk-neutral *average*
+  $\tilde p\,C_{n+1}(H) + \tilde q\,C_{n+1}(T)$. Here the $(1+r)$ from
+  the bond growing one period cancels the $\tfrac{1}{1+r}$ that defined
+  $C_n$.
+- **The choice of $\Delta_n$** (the Chapter 1 hedge ratio at every node)
+  turns the stock term into the *correction*
+  $\tilde q\,[C_{n+1}(H) - C_{n+1}(T)]$, which moves you from the average
+  to the up-state value. Stopping at the bond term alone gives the
+  average, not $C_{n+1}(H)$.
+- **$\tilde q = \frac{u-(1+r)}{u-d}$** is what lets the correction match the
+  average's coefficients so a pair of terms cancels.
+- **$\tilde p + \tilde q = 1$** closes it.
+
+Since $X_0 = C_0$ by construction, induction carries $X_n = C_n$ node by
+node to $X_N = C_N$: every payoff is replicable, the market is complete,
+and the risk-neutral measure $(\tilde p,\tilde q)$ is unique.
 
 **Exercise — the down-state.** Show, by the mirror argument, that
 $X_{n+1}(T) = C_{n+1}(T)$. Work this through in

@@ -55,6 +55,19 @@ applies directly at each node:
 $$X_1(H) = C_1(H) = \frac{1}{1+r}\Big[\tilde p\,C_2(HH) + \tilde q\,C_2(HT)\Big],$$
 $$X_1(T) = C_1(T) = \frac{1}{1+r}\Big[\tilde p\,C_2(TH) + \tilde q\,C_2(TT)\Big].$$
 
+**The key idea.** Each node at $t=1$ is a *fresh one-period BOPM*: from
+$S_1(H)$ the stock goes to $uS_1(H)$ or $dS_1(H)$, and the option to
+$C_2(HH)$ or $C_2(HT)$. So the Chapter 1 formula applies verbatim, just
+re-indexed one step forward. $\tilde p,\tilde q$ are the same at every
+node because they depend only on $u,d,r$, which are constant across
+periods.
+
+> **Watch the discount factor.** Every step back through the tree is one
+> period of discounting. Writing $C_1(H) = \tilde p\,C_2(HH) + \tilde q\,C_2(HT)$
+> (without the $\tfrac{1}{1+r}$) compares a time-2 amount to a time-1
+> amount — it mixes money at different dates. Likewise the $n$-period sum
+> in §6 needs $(1+r)^{-n}$, one factor per period.
+
 ## 5. The full two-period formula
 
 Substitute both into the single-period formula $C_0 = \frac{1}{1+r}[\tilde p\,C_1(H) + \tilde q\,C_1(T)]$:
