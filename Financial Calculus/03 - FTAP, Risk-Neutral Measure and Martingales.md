@@ -232,11 +232,25 @@ Since $X_0 = C_0$ by construction, induction carries $X_n = C_n$ node by
 node to $X_N = C_N$: every payoff is replicable, the market is complete,
 and the risk-neutral measure $(\tilde p,\tilde q)$ is unique.
 
-**Exercise — the down-state.** Show, by the mirror argument, that
-$X_{n+1}(T) = C_{n+1}(T)$. Work this through in
-[[Working Notes]] rather than reading a finished proof — it is a direct
-substitution copy of the up-state case with $u \leftrightarrow d$ and
-$\tilde p \leftrightarrow \tilde q$ swapped at the right places.
+**Proof — down-state case** (worked live, 2026-09-28). $S_{n+1}(T) = dS_n$, so
+
+$$X_{n+1}(T) = \Delta_n\,dS_n + (1+r)(X_n - \Delta_n S_n) = (1+r)X_n + \Delta_n S_n\big[d-(1+r)\big].$$
+
+Substitute $\Delta_n = \dfrac{C_{n+1}(H)-C_{n+1}(T)}{(u-d)S_n}$. The sign of
+$d-(1+r)$ is **negative** (no-arbitrage), so flip it:
+
+$$\frac{d-(1+r)}{u-d} = -\frac{(1+r)-d}{u-d} = -\tilde p.$$
+
+Hence, using $(1+r)X_n = \tilde p\,C_{n+1}(H) + \tilde q\,C_{n+1}(T)$:
+
+$$X_{n+1}(T) = \tilde p\,C_{n+1}(H) + \tilde q\,C_{n+1}(T) - \tilde p\big[C_{n+1}(H) - C_{n+1}(T)\big] = (\tilde p+\tilde q)\,C_{n+1}(T) = C_{n+1}(T). \qquad\blacksquare$$
+
+**The two cases side by side.** Up: the correction is
+$+\tilde q\,[C_{n+1}(H)-C_{n+1}(T)]$ and pushes the risk-neutral average
+*up* to $C_{n+1}(H)$. Down: it is $-\tilde p\,[C_{n+1}(H)-C_{n+1}(T)]$ and
+pushes it *down* to $C_{n+1}(T)$. Note which numerator goes with which
+state: $u-(1+r)$ (that is, $\tilde q$) in the up case, $(1+r)-d$ (that is,
+$\tilde p$) in the down case.
 
 ---
 

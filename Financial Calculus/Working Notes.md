@@ -21,6 +21,11 @@ Show $X_{n+1}(T) = C_{n+1}(T)$, mirroring the up-state proof of
 Theorem 3. Left open in the original notebook (attempted in pencil, not
 completed).
 
+**Done 2026-09-28** — worked live; now in Chapter 3 §6. Slip: wrote the
+coefficient as $-\tilde q$; it is $-\tilde p$, since
+$d-(1+r) = -[(1+r)-d]$ and $(1+r)-d$ is $\tilde p$'s numerator. Check: it
+must cancel the $+\tilde p\,V_{n+1}(H)$ from the bond term.
+
 
 
 ## 2026-09-24 — The $F(T,x)=x^4$ exercise (ref: [[06 - Feynman-Kac and the BSM Formula]])
@@ -48,6 +53,5 @@ pricing by the martingale property; Theorem 3 up-state.
 - Notation: wrote $S_{n+1}(H)$ for $V_{n+1}(H)$ — keep stock price and
   derivative value apart.
 
-**Still open:** the down-state (entry above). Watch the sign of
-$d-(1+r)$ — that's where no-arbitrage enters.
+**Down-state:** closed 2026-09-28 (see entry above).
 
