@@ -106,6 +106,82 @@ This is precisely $C_0 = (1+r)^{-n}\,\tilde{\mathbb E}_{\mathbb Q}[C_n]$, the
 risk-neutral pricing formula proved in general in
 [[03 - FTAP, Risk-Neutral Measure and Martingales]].
 
+## 7. The continuous-time limit (worked live, 2026-09-28)
+
+**Setup (Cox-Ross-Rubinstein).** Split $[0,T]$ into $N$ steps of length
+$\Delta t = T/N$ and set
+
+$$u = e^{\sigma\sqrt{\Delta t}}, \qquad d = e^{-\sigma\sqrt{\Delta t}}, \qquad 1+r \to e^{r\Delta t}.$$
+
+**Why $\sqrt{\Delta t}$.** Each log-step is $\pm\sigma\sqrt{\Delta t}$, with
+variance $\sigma^2\Delta t$; over $N$ independent steps total variance is
+$N\sigma^2\Delta t = \sigma^2 T$, fixed as $N\to\infty$. Steps of
+$\pm\sigma\Delta t$ would give total variance $\sigma^2T\Delta t \to 0$ —
+the randomness would vanish. This is the discrete root of Brownian motion
+scaling like $\sqrt t$.
+
+**Step 1 — $\tilde p$ to first order.** Using $e^x \approx 1+x+\tfrac12x^2$
+and keeping terms to order $\Delta t$:
+
+$$\text{num} = e^{r\Delta t} - e^{-\sigma\sqrt{\Delta t}} \approx \sigma\sqrt{\Delta t} + \left(r-\tfrac12\sigma^2\right)\Delta t,$$
+
+$$\text{den} = e^{\sigma\sqrt{\Delta t}} - e^{-\sigma\sqrt{\Delta t}} \approx 2\sigma\sqrt{\Delta t}\quad(\text{the } \tfrac12\sigma^2\Delta t \text{ terms cancel}),$$
+
+$$\tilde p \approx \frac12 + \frac{\left(r-\tfrac12\sigma^2\right)\sqrt{\Delta t}}{2\sigma}.$$
+
+The coin becomes fair as $\Delta t\to0$; all the drift lives in a tilt of
+order $\sqrt{\Delta t}$.
+
+**Step 2 — mean and variance of one log-step.** $\xi_k = \ln(S_{k+1}/S_k) = \pm\sigma\sqrt{\Delta t}$:
+
+$$\tilde{\mathbb E}[\xi_k] = \sigma\sqrt{\Delta t}\,(2\tilde p-1) = \left(r-\tfrac12\sigma^2\right)\Delta t,$$
+
+$$\widetilde{\mathrm{Var}}[\xi_k] = \underbrace{\sigma^2\Delta t}_{\xi_k^2 \text{ in both states}} - \underbrace{\left(r-\tfrac12\sigma^2\right)^2\Delta t^2}_{\text{negligible}} \approx \sigma^2\Delta t.$$
+
+> **Slip to watch:** the per-step mean carries a $\Delta t$ —
+> $\sqrt{\Delta t}\cdot\sqrt{\Delta t}$. Only after multiplying by
+> $N = T/\Delta t$ does it become $\left(r-\tfrac12\sigma^2\right)T$.
+
+**Step 3 — central limit theorem.** Summing $N$ i.i.d. steps:
+
+$$\boxed{\ln\frac{S_T}{S_0} \xrightarrow{\;d\;} \mathcal N\!\left(\left(r-\tfrac12\sigma^2\right)T,\ \sigma^2T\right)\quad\text{under }\mathbb Q}$$
+
+$S_T$ is **lognormal** — the Black-Scholes stock model is not an
+assumption bolted on; it is what the binomial tree becomes. The hedge ratio
+$\Delta_n$ becomes $\partial V/\partial S$, and the $n$-period sum becomes
+$S_0\Phi(d_1) - Ke^{-rT}\Phi(d_2)$ (see
+[[06 - Feynman-Kac and the BSM Formula]]).
+
+**Step 4 — why $-\tfrac12\sigma^2$.** With $\mathbb E[e^X] = e^{\mu+\frac12 v}$
+for $X\sim\mathcal N(\mu,v)$:
+
+$$\tilde{\mathbb E}[S_T] = S_0\exp\!\left(\left(r-\tfrac12\sigma^2\right)T + \tfrac12\sigma^2T\right) = S_0e^{rT},$$
+
+exactly as Theorem 1 of [[03 - FTAP, Risk-Neutral Measure and Martingales]]
+demands. Had the log-drift been $rT$, then
+$\tilde{\mathbb E}[e^{-rT}S_T] = S_0e^{\frac12\sigma^2T} > S_0$: the
+discounted stock would drift up, fail to be a martingale, and by the FTAP
+the prices would admit arbitrage.
+
+**Intuition — Jensen's inequality.** $e^x$ is convex, so
+$\mathbb E[e^X] > e^{\mathbb E[X]}$. Volatility lifts the average *price*
+above $e^{\text{average log-return}}$; for the price to grow at exactly $r$,
+the log-return must drift $\tfrac12\sigma^2$ *below* $r$.
+
+**Where it reappears.**
+
+- *Volatility drag:* $+50\%$ then $-50\%$ has arithmetic mean $0\%$ but
+  ends at $0.75$. Geometric return $\approx$ arithmetic $-\tfrac12\sigma^2$.
+  Same reason leveraged ETFs decay in choppy markets, and why cutting
+  variance raises compound growth for a trading strategy at the same
+  average return.
+- *Mean vs median:* under $\mathbb Q$ the median of $S_T$ is
+  $S_0e^{(r-\frac12\sigma^2)T}$, below the mean $S_0e^{rT}$ — most paths
+  finish below average; a few large winners pull the mean up.
+- *Itô's lemma:* $d\ln S_t = \left(r-\tfrac12\sigma^2\right)dt + \sigma\,dW_t$ —
+  the $-\tfrac12\sigma^2$ is Itô's second-order term, the continuous
+  version of this calculation. See [[05 - The PDE in Log-Price]].
+
 ---
 
 **Next:** [[03 - FTAP, Risk-Neutral Measure and Martingales]] — why this

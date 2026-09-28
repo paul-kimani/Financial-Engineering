@@ -55,3 +55,16 @@ pricing by the martingale property; Theorem 3 up-state.
 
 **Down-state:** closed 2026-09-28 (see entry above).
 
+## 2026-09-28 — Binomial to lognormal (ref: [[02 - The Two-Period and n-Period BOPM]] §7)
+
+Worked live: CRR $u,d$; $\tilde p \approx \tfrac12 + \frac{(r-\frac12\sigma^2)\sqrt{\Delta t}}{2\sigma}$;
+per-step mean/variance; CLT to lognormal; why $-\tfrac12\sigma^2$.
+
+**Slips to watch:**
+
+- Gave the per-step mean as $r-\tfrac12\sigma^2$ — missing $\Delta t$. Units
+  check: the variance had a $\Delta t$, so the mean must too.
+- Knew the "drift $= rT$" case leaves an $e^{\frac12\sigma^2T}$ but not what it
+  implies: discounted stock drifts up $\Rightarrow$ not a $\mathbb Q$-martingale
+  $\Rightarrow$ Theorem 1 fails $\Rightarrow$ arbitrage (FTAP).
+
