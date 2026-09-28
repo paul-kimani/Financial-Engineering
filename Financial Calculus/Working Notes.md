@@ -68,3 +68,20 @@ per-step mean/variance; CLT to lognormal; why $-\tfrac12\sigma^2$.
   implies: discounted stock drifts up $\Rightarrow$ not a $\mathbb Q$-martingale
   $\Rightarrow$ Theorem 1 fails $\Rightarrow$ arbitrage (FTAP).
 
+## 2026-09-28 — Binomial to Black-Scholes, Piece 2 (ref: [[02 - The Two-Period and n-Period BOPM]] §8)
+
+Worked live: the threshold $a$; splitting $C_0$ into two sums; Piece 2 as
+$\mathbb Q(S_T>K)$; standardising; symmetry; defining $d_2$.
+
+**Slips / sticking points:**
+
+- Isolating $j$: wrote $j < \dots$. $\ln(u/d)>0$ so the inequality does not
+  flip — and a call pays for *many* ups, so it must be $j > \dots$.
+- Tried to substitute $a$'s formula into the split sum and got stuck with
+  logs. $a$ is only the lower summation limit; leave it as $a$.
+- Standardising: thought the constant right-hand side "has no mean or sd".
+  The mean and sd are $X$'s; they are applied to both sides only to keep
+  the inequality balanced.
+- $\mathbb P(Z>c) = \Phi(-c)$: follows from $\varphi(-z)=\varphi(z)$ — reflect the
+  bell curve; right tail beyond $c$ = left tail beyond $-c$.
+

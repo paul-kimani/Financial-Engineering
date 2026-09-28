@@ -182,6 +182,109 @@ the log-return must drift $\tfrac12\sigma^2$ *below* $r$.
   the $-\tfrac12\sigma^2$ is Itô's second-order term, the continuous
   version of this calculation. See [[05 - The PDE in Log-Price]].
 
+## 8. From the n-period formula to Black-Scholes (Cox-Ross-Rubinstein, 1979)
+
+§7 showed the *distribution* converges ($S_T$ becomes lognormal). This
+section shows the *price* converges: the $n$-period sum becomes the
+Black-Scholes formula. It uses only Chapters 1–3 and the CLT. For a
+completely different route to the same formula — PDE $\to$ Feynman-Kac
+$\to$ integral — see [[06 - Feynman-Kac and the BSM Formula]].
+
+### 8.1 Dropping the $(\cdot)^+$
+
+The call pays off only when $u^jd^{n-j}S_0 > K$. Taking logs and
+collecting the $j$ terms:
+
+$$j\ln u + (n-j)\ln d + \ln S_0 > \ln K \iff j\,(\ln u - \ln d) > \ln(K/S_0) - n\ln d.$$
+
+Since $u>d$, $\ln u - \ln d = \ln(u/d) > 0$, so dividing **does not flip**
+the inequality:
+
+$$j > \frac{\ln(K/S_0) - n\ln d}{\ln(u/d)}, \qquad a := \left\lfloor \frac{\ln(K/S_0) - n\ln d}{\ln(u/d)} \right\rfloor + 1.$$
+
+> **Sanity check on direction.** More up-moves means a higher terminal
+> price, and a call pays when the price is *high* — so the condition must
+> be "$j$ at least something". A "$j$ below something" answer is
+> backwards.
+
+Terms with $j \ge a$ finish in the money; those with $j<a$ pay zero.
+
+### 8.2 Splitting into two pieces
+
+$a$ is just the lower limit of the sum — it is **not** substituted in.
+
+$$C_0 = \underbrace{S_0\sum_{j=a}^{n}\binom{n}{j}\left(\frac{\tilde p\,u}{1+r}\right)^{j}\left(\frac{\tilde q\,d}{1+r}\right)^{n-j}}_{\text{Piece 1}} \;-\; \underbrace{K(1+r)^{-n}\sum_{j=a}^{n}\binom{n}{j}\tilde p^{\,j}\tilde q^{\,n-j}}_{\text{Piece 2}}$$
+
+(Piece 1 uses $(1+r)^n = (1+r)^j(1+r)^{n-j}$ to group powers.)
+
+### 8.3 Piece 2 and the meaning of $d_2$
+
+**Step A — what the sum measures.** With $J \sim \mathrm{Bin}(n,\tilde p)$
+the number of up-moves under $\mathbb Q$,
+$\sum_{j=a}^{n}\binom{n}{j}\tilde p^{\,j}\tilde q^{\,n-j} = \mathbb Q(J\ge a)$.
+By the definition of $a$, "$J \ge a$" is the same event as "$S_T > K$". So
+Piece 2's sum is **the risk-neutral probability the call finishes in the
+money** — exactly, for every $n$.
+
+**Step B — the limit.** From §7, $X := \ln(S_T/S_0) \sim \mathcal N\!\left((r-\tfrac12\sigma^2)T,\ \sigma^2T\right)$
+under $\mathbb Q$, and $(1+r)^{-n} = (e^{r\Delta t})^{-n} = e^{-rT}$.
+
+**Step C — rewrite the event in terms of $X$.** We know $X$'s distribution,
+not $S_T$'s, so express "$S_T>K$" through $X$. Divide by $S_0>0$ and take
+$\ln$ (increasing) — neither step flips the inequality:
+
+$$S_T > K \iff \frac{S_T}{S_0} > \frac{K}{S_0} \iff X > \ln\frac{K}{S_0}.$$
+
+**Step D — standardise.** Apply the *same* two operations to *both* sides:
+subtract $X$'s mean and divide by its standard deviation. The right side
+is a constant, and stays a constant.
+
+$$Z := \frac{X - (r-\tfrac12\sigma^2)T}{\sigma\sqrt T} > \frac{\ln(K/S_0) - (r-\tfrac12\sigma^2)T}{\sigma\sqrt T} =: c.$$
+
+*Numeric analogue:* if $X$ has mean 3, sd 2, then
+$X>5 \iff \frac{X-3}{2} > \frac{5-3}{2} \iff Z>1$. The 3 and 2 belong to
+$X$; they are applied to the 5 only because whatever is done to one side
+of an inequality must be done to the other.
+
+**Step E — symmetry.** $\Phi(x) = \mathbb P(Z<x)$ is a *left* tail, but we
+have a right tail. The standard normal density
+$\varphi(z) = \tfrac{1}{\sqrt{2\pi}}e^{-z^2/2}$ satisfies
+$\varphi(-z)=\varphi(z)$, so the area to the right of $c$ equals the area
+to the left of $-c$:
+
+$$\mathbb P(Z>c) = \mathbb P(Z<-c) = \Phi(-c).$$
+
+Three ways to see it:
+
+- *Picture:* reflect the bell curve in the vertical axis; the right tail
+  beyond $c$ maps onto the left tail beyond $-c$, and reflection preserves
+  area. E.g. $\mathbb P(Z>1) \approx 0.1587 = \Phi(-1)$.
+- *Integral:* with $w=-z$, $dz=-dw$,
+  $\int_c^\infty \varphi(z)\,dz = \int_{-c}^{-\infty}\varphi(-w)(-dw) = \int_{-\infty}^{-c}\varphi(w)\,dw = \Phi(-c)$.
+- *Complement:* $\mathbb P(Z>c) = 1-\Phi(c)$, and symmetry gives
+  $1-\Phi(c) = \Phi(-c)$.
+
+Writing it as $\Phi(\cdot)$ with no "$1-$" in front is why the formula
+reads $\Phi(d_2)$.
+
+**Step F — define $d_2$.** Distribute the minus sign and use
+$-\ln(K/S_0) = \ln(S_0/K)$:
+
+$$\boxed{d_2 := -c = \frac{\ln(S_0/K) + \left(r - \tfrac12\sigma^2\right)T}{\sigma\sqrt T}}$$
+
+so
+
+$$\text{Piece 2} \;\longrightarrow\; Ke^{-rT}\,\Phi(d_2), \qquad \Phi(d_2) = \mathbb Q(S_T > K).$$
+
+$d_2$ is not a mysterious constant: it is the number of standard deviations
+by which the (risk-neutral) expected log-price exceeds the log-strike.
+$Ke^{-rT}\Phi(d_2)$ is the present value of paying $K$, weighted by the
+risk-neutral probability that you actually pay it.
+
+### 8.4 Piece 1 and $d_1$
+
+*To be worked live next.*
+
 ---
 
 **Next:** [[03 - FTAP, Risk-Neutral Measure and Martingales]] — why this
