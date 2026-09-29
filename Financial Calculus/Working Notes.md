@@ -136,3 +136,15 @@ integral has zero expectation.
   hypothesis). Feynman-Kac is the conclusion.
 - Dropped $e^{-r(s-t)}$ from the $dW$ term.
 
+## 2026-09-29 — Feynman-Kac redone, notebook version (ref: [[06 - Feynman-Kac and the BSM Formula]] §5)
+
+Redid the undiscounted proof in four moves after the discounted version
+didn't land. Did moves 1, 3 unaided.
+
+**Slips:**
+
+- Itô: dropped the $\tfrac12$ on $\sigma^2 F_{xx}$. It's Taylor's $\tfrac1{2!}$.
+- Called the surviving $dW$ term "the drift". The $dt$ term is the drift
+  (it vanishes); the $dW$ term is the diffusion.
+- Final answer written $\mathbb E[\Phi(x)]$; must be $\mathbb E[\Phi(X_T)\mid X_t=x]$.
+

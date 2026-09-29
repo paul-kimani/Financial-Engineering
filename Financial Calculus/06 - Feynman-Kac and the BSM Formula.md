@@ -130,7 +130,48 @@ for cross-checking notation and seeing a second derivation of $d_1,d_2$.
 
 ---
 
-## 5. The proof, worked live (2026-09-29)
+## 5. The proof, redone live — notebook version (2026-09-29)
+
+**What the theorem says.** Two problems, one answer.
+*A (PDE):* find $F$ with $F_t + \mu F_x + \tfrac12\sigma^2F_{xx} = 0$,
+$F(T,x)=\Phi(x)$. *B (expectation):* start $X$ at $x$ at time $t$, run
+$dX=\mu\,dt+\sigma\,dW$ to $T$, average $\Phi(X_T)$. Feynman-Kac: A's
+solution = B's answer.
+
+**Toy check** ($\mu=0$, $dX=\sigma\,dW$, $\Phi(x)=x^2$). B:
+$X_T = x+\sigma(W_T-W_t)$, so $\mathbb E[X_T^2] = x^2 + \sigma^2(T-t)$.
+A: $F = x^2+\sigma^2(T-t)$ gives $F_t + \tfrac12\sigma^2F_{xx} = -\sigma^2 + \sigma^2 = 0$
+and $F(T,x)=x^2$. Same function.
+
+**Four moves.**
+
+1. *Itô on $F(t,X_t)$* — a second-order Taylor expansion with
+   $(dX)^2 = \sigma^2dt$:
+   $$dF = \left(\frac{\partial F}{\partial t} + \mu\frac{\partial F}{\partial x} + \frac12\sigma^2\frac{\partial^2F}{\partial x^2}\right)dt + \sigma\frac{\partial F}{\partial x}\,dW_t.$$
+   The $\tfrac12$ is Taylor's $\tfrac1{2!}$; the $\sigma^2$ is $(dW)^2 = dt$.
+   Write derivatives as $\partial x$ (a plain variable), not $\partial X_t$.
+2. *The PDE kills the drift.* The $dt$ bracket **is** the PDE, $=0$. The
+   $dt$ part is the **drift** (predictable direction) — that is what
+   vanishes. What remains is the **diffusion** (random wiggle):
+   $dF = \sigma F_x\,dW_t$. No drift = martingale.
+3. *Integrate $t\to T$* (running variable $u$):
+   $F(T,X_T) - F(t,X_t) = \int_t^T \sigma F_x\,dW_u$.
+4. *Expectation given $X_t=x$.* Right side: Itô integral, mean 0.
+   $F(t,X_t)=F(t,x)$: known number. $F(T,X_T)=\Phi(X_T)$: terminal
+   condition. Hence
+   $$\boxed{F(t,x) = \mathbb E\big[\Phi(X_T)\,\big|\,X_t = x\big]}$$
+
+> **Watch the argument of $\Phi$.** It is $\Phi(X_T)$ — the payoff at the
+> *random future* value. $\Phi(x)$ is a known number, so
+> $\mathbb E[\Phi(x)]=\Phi(x)$ and the theorem would collapse to
+> $F=\Phi$ (in the toy example, losing the $\sigma^2(T-t)$). Lowercase $x$
+> belongs only in the conditioning.
+
+## 6. The discounted version (for option pricing)
+
+
+When the PDE carries $-rF$, run the same four moves on the *discounted*
+value; the answer gains $e^{-r(T-t)}$.
 
 **Two times.** $t$ is **fixed** — "today", the moment we want the price.
 $s$ is the **running clock**, moving from $t$ to $T$. All derivatives are
