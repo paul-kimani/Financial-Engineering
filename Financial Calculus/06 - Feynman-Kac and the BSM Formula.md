@@ -80,7 +80,7 @@ $$\boxed{F(t,x) = 2x + 2(T-t) + (1-x^2)(T-t) - (1+x)(T-t)^2 - \tfrac13(T-t)^3}$$
 
 (Checked directly: this satisfies the PDE and $F(T,x)=2x$.)
 
-**Open exercise.** Solve $\dfrac{\partial F}{\partial t} + \tfrac14 x\dfrac{\partial F}{\partial x} + \tfrac12 x^2\dfrac{\partial^2F}{\partial x^2} + F = 0$, $F(T,x)=x^4$ — note the $+F$ (i.e. $r(x,t)=-1$) and state-dependent $\sigma^2(x,t)=x^2$. Work this in [[Working Notes]].
+**Open exercise.** Solve $\dfrac{\partial F}{\partial t} + \tfrac14 x\dfrac{\partial F}{\partial x} + \tfrac12 x^2\dfrac{\partial^2F}{\partial x^2} + F = 0$, $F(T,x)=x^4$ — note the $+F$ (i.e. $r(x,t)=-1$) and state-dependent $\sigma^2(x,t)=x^2$. **Solved live — see §7.**
 
 ## 4. Deriving the Black-Scholes formula
 
@@ -127,3 +127,151 @@ the Black-Scholes-Merton formula for a European call.
 [[../Stochastics/29 - Derivation of The Black Scholes merton formula]] cover
 the same PDE and formula from the Stochastics course's own route — useful
 for cross-checking notation and seeing a second derivation of $d_1,d_2$.
+
+---
+
+## 5. The proof, redone live — notebook version (2026-09-29)
+
+**What the theorem says.** Two problems, one answer.
+*A (PDE):* find $F$ with $F_t + \mu F_x + \tfrac12\sigma^2F_{xx} = 0$,
+$F(T,x)=\Phi(x)$. *B (expectation):* start $X$ at $x$ at time $t$, run
+$dX=\mu\,dt+\sigma\,dW$ to $T$, average $\Phi(X_T)$. Feynman-Kac: A's
+solution = B's answer.
+
+**Toy check** ($\mu=0$, $dX=\sigma\,dW$, $\Phi(x)=x^2$). B:
+$X_T = x+\sigma(W_T-W_t)$, so $\mathbb E[X_T^2] = x^2 + \sigma^2(T-t)$.
+A: $F = x^2+\sigma^2(T-t)$ gives $F_t + \tfrac12\sigma^2F_{xx} = -\sigma^2 + \sigma^2 = 0$
+and $F(T,x)=x^2$. Same function.
+
+**Four moves.**
+
+1. *Itô on $F(t,X_t)$* — a second-order Taylor expansion with
+   $(dX)^2 = \sigma^2dt$:
+   $$dF = \left(\frac{\partial F}{\partial t} + \mu\frac{\partial F}{\partial x} + \frac12\sigma^2\frac{\partial^2F}{\partial x^2}\right)dt + \sigma\frac{\partial F}{\partial x}\,dW_t.$$
+   The $\tfrac12$ is Taylor's $\tfrac1{2!}$; the $\sigma^2$ is $(dW)^2 = dt$.
+   Write derivatives as $\partial x$ (a plain variable), not $\partial X_t$.
+2. *The PDE kills the drift.* The $dt$ bracket **is** the PDE, $=0$. The
+   $dt$ part is the **drift** (predictable direction) — that is what
+   vanishes. What remains is the **diffusion** (random wiggle):
+   $dF = \sigma F_x\,dW_t$. No drift = martingale.
+3. *Integrate $t\to T$* (running variable $u$):
+   $F(T,X_T) - F(t,X_t) = \int_t^T \sigma F_x\,dW_u$.
+4. *Expectation given $X_t=x$.* Right side: Itô integral, mean 0.
+   $F(t,X_t)=F(t,x)$: known number. $F(T,X_T)=\Phi(X_T)$: terminal
+   condition. Hence
+   $$\boxed{F(t,x) = \mathbb E\big[\Phi(X_T)\,\big|\,X_t = x\big]}$$
+
+> **Watch the argument of $\Phi$.** It is $\Phi(X_T)$ — the payoff at the
+> *random future* value. $\Phi(x)$ is a known number, so
+> $\mathbb E[\Phi(x)]=\Phi(x)$ and the theorem would collapse to
+> $F=\Phi$ (in the toy example, losing the $\sigma^2(T-t)$). Lowercase $x$
+> belongs only in the conditioning.
+
+## 6. The discounted version (for option pricing)
+
+
+When the PDE carries $-rF$, run the same four moves on the *discounted*
+value; the answer gains $e^{-r(T-t)}$.
+
+**Two times.** $t$ is **fixed** — "today", the moment we want the price.
+$s$ is the **running clock**, moving from $t$ to $T$. All derivatives are
+with respect to $s$; $t$ is a constant in the exponent. The discount factor
+$e^{-r(s-t)}$ equals $1$ at $s=t$ and $e^{-r(T-t)}$ at $s=T$.
+
+**Strategy — the continuous Theorem 2.** Define the discounted value along
+the path, $Y_s := e^{-r(s-t)}F(s,X_s)$. Its endpoints are
+
+$$Y_t = F(t,x)\ \ (\text{today's price — wanted}), \qquad Y_T = e^{-r(T-t)}\Phi(X_T)\ \ (\text{discounted payoff — known}).$$
+
+If $Y$ has no drift, $Y_t = \mathbb E[Y_T]$ — and that *is* the theorem.
+
+**Step 1 — the deterministic factor.**
+$d\big(e^{-r(s-t)}\big) = -r\,e^{-r(s-t)}\,ds$ (ordinary calculus in $s$).
+
+**Step 2 — Itô on $F$.** Exactly Chapter 4's $dV$ with letters renamed:
+
+$$dF = \left(\frac{\partial F}{\partial s} + \mu\frac{\partial F}{\partial x} + \frac12\sigma^2\frac{\partial^2F}{\partial x^2}\right)ds + \sigma\frac{\partial F}{\partial x}\,dW_s.$$
+
+**Step 3 — product rule** (no cross term: the exponential has no $dW$):
+
+$$dY_s = e^{-r(s-t)}\underbrace{\left(\frac{\partial F}{\partial s} + \mu\frac{\partial F}{\partial x} + \frac12\sigma^2\frac{\partial^2F}{\partial x^2} - rF\right)}_{=\,0\ \text{— the PDE}}ds + e^{-r(s-t)}\,\sigma\frac{\partial F}{\partial x}\,dW_s.$$
+
+The $-rF$ comes from differentiating the discount factor — which is why
+the discount rate in the formula must match the $-rF$ in the PDE. The
+bracket is the **PDE** $F$ satisfies by hypothesis (Feynman-Kac is the
+*conclusion*). So $Y$ has no drift.
+
+> **Slip to watch:** keep the $e^{-r(s-t)}$ on the $dW$ term.
+
+**Step 4 — integrate and take expectations.**
+
+$$Y_T - Y_t = \int_t^T \underbrace{e^{-r(s-t)}\sigma\frac{\partial F}{\partial x}(s,X_s)}_{H_s}\,dW_s.$$
+
+*Why the Itô integral has zero expectation.* Discretise:
+$\sum_k H_{s_k}\Delta W_k$. $H_{s_k}$ is known at $s_k$; $\Delta W_k$ is
+independent of the past with mean zero. By the tower property,
+
+$$\mathbb E\big[H_{s_k}\Delta W_k\big] = \mathbb E\Big[H_{s_k}\,\underbrace{\mathbb E[\Delta W_k\mid\mathcal F_{s_k}]}_{=0}\Big] = 0.$$
+
+Same logic as Theorem 2 in [[03 - FTAP, Risk-Neutral Measure and Martingales]]:
+no position size ($H$ here, $\Delta_n$ there) extracts expected profit from
+a fair game. Rigorously this needs $\mathbb E\int_t^T H_s^2\,ds<\infty$, so
+the integral is a true martingale.
+
+Hence $\mathbb E[Y_T\mid X_t=x] = Y_t$, i.e.
+
+$$\boxed{F(t,x) = e^{-r(T-t)}\,\mathbb E\big[\Phi(X_T)\,\big|\,X_t = x\big]}$$
+
+**Where it lands.** Applied to the log-price PDE of
+[[05 - The PDE in Log-Price]] (drift $r-\tfrac12\sigma^2$, payoff
+$(e^x-K)^+$), the process Feynman-Kac produces drifts at $r$, not $\mu$ —
+**Feynman-Kac derives risk-neutral pricing**; the Chapter 4 PDE already
+contained $\mathbb Q$. The resulting expectation splits into exactly the
+$\mathbb Q(S_T>K)$ and $\mathbb Q'(S_T>K)$ of
+[[02 - The Two-Period and n-Period BOPM]] §8. Tree route and PDE route meet
+here.
+
+## 7. Worked exercise: $F(T,x) = x^4$ (solved live, 2026-09-29)
+
+$$\frac{\partial F}{\partial t} + \frac14x\frac{\partial F}{\partial x} + \frac12x^2\frac{\partial^2F}{\partial x^2} + F = 0, \qquad F(T,x) = x^4.$$
+
+**Step 1 — read off the ingredients** against
+$F_t + \mu F_x + \tfrac12\sigma^2F_{xx} - rF = 0$:
+
+| | template | exercise | reading |
+|---|---|---|---|
+| $\mu$ | $\mu F_x$ | $\tfrac14xF_x$ | $\mu = \tfrac14x$ |
+| $\sigma$ | $\tfrac12\sigma^2F_{xx}$ | $\tfrac12x^2F_{xx}$ | $\sigma^2 = x^2 \Rightarrow \sigma = x$ |
+| $r$ | $-rF$ | $+F$ | $r = -1$ |
+| $\Phi$ | $F(T,x)$ | $x^4$ | $\Phi(x) = x^4$ |
+
+The process is a **GBM**: $dX_s = \tfrac14X_s\,ds + X_s\,dW_s$. ($r=-1$ is
+just the algebra: the "discount" factor $e^{-r\tau} = e^{\tau}$ grows.)
+Feynman-Kac:
+
+$$F(t,x) = e^{\tau}\,\mathbb E\big[X_T^4\mid X_t = x\big], \qquad \tau = T-t.$$
+
+**Step 2 — solve the GBM.** For $dX = aX\,ds + bX\,dW$,
+$X_T = x\exp\!\big((a-\tfrac12b^2)\tau + b\sqrt\tau Z\big)$. With
+$a=\tfrac14$, $b=1$:
+
+$$X_T = x\exp\!\left(-\tfrac14\tau + \sqrt\tau Z\right), \qquad X_T^4 = x^4\exp\!\left(-\tau + 4\sqrt\tau Z\right).$$
+
+> **Slip to watch:** the drift is a *rate* — it carries $\tau$. Writing
+> $-1$ instead of $-\tau$ fails the check $\tau=0 \Rightarrow X_T^4 = x^4$.
+
+**Step 3 — expectation.** With $\mathbb E[e^{cZ}] = e^{c^2/2}$, $c = 4\sqrt\tau$:
+
+$$\mathbb E[X_T^4] = x^4e^{-\tau}e^{8\tau} = x^4e^{7\tau}.$$
+
+**Step 4 — discount.** $F = e^{\tau}\cdot x^4e^{7\tau}$:
+
+$$\boxed{F(t,x) = x^4e^{8(T-t)}}$$
+
+> **Slip to watch:** $x^4e^{7\tau}$ is the expectation, not $F$ — the
+> discount factor must still be applied (same slip as the missing
+> $\tfrac1{1+r}$ in the binomial tree).
+
+**Verify.** $F_t = -8F$; $\tfrac14xF_x = F$; $\tfrac12x^2F_{xx} = 6F$;
+$+F$. Sum $= -8F+F+6F+F = 0$ ✓, and $F(T,x) = x^4$ ✓.
+

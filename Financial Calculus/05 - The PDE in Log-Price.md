@@ -55,6 +55,50 @@ $r-\tfrac12\sigma^2$ and volatility $\sigma$ — matching the log-price GBM
 $\ln S_T \sim N\!\left(\ln S_0 + (r-\tfrac12\sigma^2)\tau,\ \sigma^2\tau\right)$
 used in [[06 - Feynman-Kac and the BSM Formula]].
 
+## 5. Notes from the live session (2026-09-29)
+
+**Why change variables.** The $S$-form PDE has *variable* coefficients
+($rS$, $\tfrac12\sigma^2S^2$). $\ln S$ is already known to be well-behaved
+(normal with constant drift, [[02 - The Two-Period and n-Period BOPM]] §7),
+so $x=\ln S$ is the natural coordinate.
+
+**The chain rule, stated once.** Differentiating *anything* with respect to
+$S$ means: differentiate with respect to $x$, then multiply by
+$\frac{dx}{dS} = \frac1S$.
+
+- On $u$: $\dfrac{\partial V}{\partial S} = \dfrac1S\dfrac{\partial u}{\partial x}$.
+  The delta term becomes $rS\cdot\frac1S u_x = r\,u_x$ — the $S$ cancels.
+- On $w := \dfrac{\partial u}{\partial x}$ (give it a name so it looks like
+  any other function of $x$): $\dfrac{\partial w}{\partial S} = \dfrac1S\dfrac{\partial w}{\partial x} = \dfrac1S\dfrac{\partial^2u}{\partial x^2}$.
+
+**Second derivative via the product rule**, $f = \frac1S$, $g = u_x$:
+
+$$\frac{\partial^2V}{\partial S^2} = \underbrace{-\frac1{S^2}\frac{\partial u}{\partial x}}_{f'g} + \underbrace{\frac1S\cdot\frac1S\frac{\partial^2u}{\partial x^2}}_{fg'} = \frac1{S^2}\left(\frac{\partial^2u}{\partial x^2} - \frac{\partial u}{\partial x}\right),$$
+
+so the gamma term becomes
+$\tfrac12\sigma^2\left(u_{xx} - u_x\right)$ — the $S$ cancels again.
+
+**Result.** Collecting the two $u_x$ terms:
+
+$$\frac{\partial u}{\partial t} + \left(r-\tfrac12\sigma^2\right)\frac{\partial u}{\partial x} + \frac12\sigma^2\frac{\partial^2u}{\partial x^2} - ru = 0,$$
+
+constant coefficients throughout.
+
+**Reading the coefficients.** $r-\tfrac12\sigma^2$ is the $\mathbb Q$-drift of
+$\ln S$ per unit time; $\tfrac12\sigma^2$ is half its variance per unit time.
+The PDE encodes the dynamics
+
+$$dX_t = \left(r-\tfrac12\sigma^2\right)dt + \sigma\,dW_t \quad\text{under }\mathbb Q.$$
+
+General pattern: **drift in front of the first derivative, half the
+variance in front of the second.** That correspondence is exactly what
+Feynman-Kac makes precise ([[06 - Feynman-Kac and the BSM Formula]]).
+
+**Third sighting of $-\tfrac12\sigma^2$.** Here it comes from the
+$-u_x$ produced by the product rule inside the gamma term. The same
+convexity correction as Jensen (Chapter 2 §7) and Itô's lemma — reached by
+plain calculus.
+
 ---
 
 **Next:** [[06 - Feynman-Kac and the BSM Formula]] — solving this PDE as a

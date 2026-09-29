@@ -128,6 +128,95 @@ $\mathbb E[dV] = \left(\partial V/\partial t + \mu S\,\partial V/\partial S + \t
 Equating the two expressions for $\mathbb E[dV]$, the $\mu S\,\partial
 V/\partial S$ terms cancel, leaving — once more — the same PDE.
 
+## 5. What the three routes share (worked live, 2026-09-29)
+
+### 5.1 Where $\mu$ goes
+
+**Hedging.** Substituting into $d\Pi = dV - \Delta\,dS$:
+
+$$d\Pi = \left(\frac{\partial V}{\partial t} + \mu S\frac{\partial V}{\partial S} + \frac12\sigma^2S^2\frac{\partial^2V}{\partial S^2} - \Delta\mu S\right)dt + \sigma S\left(\frac{\partial V}{\partial S} - \Delta\right)dW_t.$$
+
+Killing $dW_t$ forces $\Delta = \partial V/\partial S$ — the limit of the
+Chapter 1 ratio $\frac{C_1(H)-C_1(T)}{S_1(H)-S_1(T)}$, and the $\Phi(d_1)$ of
+[[02 - The Two-Period and n-Period BOPM]] §8.5. With that $\Delta$, the
+$\mu S\,\partial V/\partial S$ terms **cancel**: the hedged portfolio's
+growth does not depend on the stock's real expected return. This is the
+continuous version of "the real probability $p$ never entered"
+(Chapter 1). Hedge away the randomness and the drift goes with it.
+
+**Replication.** Long $a_t = \partial V/\partial S$ shares to *build* the
+option, versus short $\Delta$ shares to *hedge* it — same number, opposite
+side. Matching $dt$ terms, $\mu$ cancels again, and the bond holding
+$b_tB_t = V - S\,\partial V/\partial S$ supplies the $r$.
+
+**CAPM.** Both $\mu$ **and** $\mu_M$ cancel (§5.3).
+
+### 5.2 Reading each term
+
+| Term | Greek | Origin |
+|---|---|---|
+| $\partial V/\partial t$ | Theta | $dt$ part of Itô |
+| $\tfrac12\sigma^2S^2\,\partial^2V/\partial S^2$ | Gamma | Itô's second-order term — same convexity as the $-\tfrac12\sigma^2$ of Chapter 2 §7 |
+| $rS\,\partial V/\partial S$ | Delta | risk-free return on the stock position — $r$, **not** $\mu$ |
+| $-rV$ | — | risk-free return on the option |
+
+The PDE behaves as if the stock grows at $r$: the continuous-time face of
+pricing under $\mathbb Q$.
+
+**Trading consequence.** For a delta-hedged position,
+$\Theta + \tfrac12\sigma^2S^2\Gamma = r(V - S\Delta)$; with small $r$,
+$\Theta \approx -\tfrac12\sigma^2S^2\Gamma$. Long gamma bleeds theta daily
+and profits only if realised volatility beats the implied $\sigma$ paid —
+the logic of gamma scalping and volatility trading.
+
+### 5.3 Option beta and elasticity $\Omega$
+
+The random parts of the two returns:
+
+$$\frac{dS}{S}:\ \sigma\,dW_t, \qquad \frac{dV}{V}:\ \frac{\sigma S}{V}\frac{\partial V}{\partial S}\,dW_t = \underbrace{\left(\frac{S}{V}\frac{\partial V}{\partial S}\right)}_{\Omega}\sigma\,dW_t.$$
+
+Covariance is linear, so
+
+$$\boxed{\beta_V = \Omega\,\beta_S, \qquad \Omega = \frac{S}{V}\frac{\partial V}{\partial S} = \frac{\partial V/V}{\partial S/S}}$$
+
+$\Omega$ is the option's **elasticity** (omega, leverage): the *percentage*
+move of the option per 1% move in the stock. Delta gives the dollar move;
+$S/V$ rescales to percentages.
+
+| | $S$ | $V$ | $\Delta$ | stock +1% | call moves | call % | $\Omega$ |
+|---|---|---|---|---|---|---|---|
+| ATM | 100 | 5.00 | 0.50 | +\$1 | +\$0.50 | +10% | 10 |
+| Deep OTM | 100 | 0.20 | 0.05 | +\$1 | +\$0.05 | +25% | 25 |
+
+Deep OTM: delta is tiny but the price is tinier, so percentage moves are
+larger — an option is a leveraged stock position.
+
+- **Calls:** $\Omega > 1$ always, since
+  $V = S\Phi(d_1) - Ke^{-rT}\Phi(d_2) < S\Phi(d_1) = S\Delta$.
+- **Puts:** $\Delta<0 \Rightarrow \Omega<0 \Rightarrow \beta_V<0$ — they move
+  against the market (portfolio insurance).
+- Effective exposure of an option position is $\Omega\times$ premium, not
+  the premium.
+
+**Finishing Route 3.** With $\beta_S(\mu_M - r) = \mu - r$:
+
+$$\frac{1}{V}\left(\frac{\partial V}{\partial t} + \mu S\frac{\partial V}{\partial S} + \frac12\sigma^2S^2\frac{\partial^2V}{\partial S^2}\right) = r + \frac{S}{V}\frac{\partial V}{\partial S}(\mu - r).$$
+
+Multiplying by $V$, the $\mu S\,\partial V/\partial S$ terms cancel and the
+PDE follows. The market premium $(\mu_M - r)$ is already in the stock's
+price; the option inherits it scaled by $\Omega$.
+
+### 5.4 Three routes, one equation
+
+| | Hedging | Replication | CAPM |
+|---|---|---|---|
+| Portfolio | $\Pi = V - \Delta S$ | $X = aS + bB$ | none |
+| Key step | kill $dW$: $\Delta = \partial V/\partial S$ | match $dW$: $a = \partial V/\partial S$ | compare random parts: $\beta_V = \Omega\beta_S$ |
+| Principle | riskless earns $r$ | same payoff, same price | return $= r + \beta\times$ premium |
+| Cancels | $\mu$ | $\mu$ | $\mu$ and $\mu_M$ |
+
+Risk-elimination, replication and equilibrium all land on the same PDE.
+
 ---
 
 **Next:** [[05 - The PDE in Log-Price]] — the same equation, transformed

@@ -11,14 +11,69 @@
 
 ---
 
-## 1. Core market assumptions
+## 1. Assumptions of the BOPM
 
-- **Unlimited short-selling** — the stock can be shorted without
-  restriction or borrowing limits.
-- **Unlimited borrowing** — infinite access to capital.
-- **Frictionless trading** — no transaction costs.
-- **Price-taker status** — the agent is small; individual trades never
-  move the market price.
+Each assumption is listed with **where it does work** in the proofs of
+Chapters 1–3, and **what breaks** if it fails.
+
+### A. Market assumptions — what replication needs
+
+| Assumption | Where it does the work | If it fails |
+|---|---|---|
+| **Frictionless trading** — no transaction costs, taxes, bid-ask | Rebalancing $\Delta_n$ at every node is free, so $X_{n+1} = \Delta_n S_{n+1} + (1+r)(X_n - \Delta_n S_n)$ holds exactly | Each rebalance costs; as steps $\to\infty$ hedging cost can explode (Leland). Price becomes a band |
+| **Borrow and lend at the same $r$** | The bond position $C_0 - \Delta_0 S_0$ is usually *negative* for a call — you borrow at the same $r$ you'd lend at | Two rates give two $\tilde p$'s, hence a price interval |
+| **Unlimited short-selling** | $\Delta_n<0$ for puts; the no-arbitrage argument for $u<1+r$ shorts the stock | Puts can't be hedged; one side of $d<1+r<u$ can't be enforced |
+| **Perfect divisibility** | $\Delta_0 = \frac{C_1(H)-C_1(T)}{S_0(u-d)}$ is almost never an integer | Replication is only approximate |
+| **Price-taker / perfect liquidity** | Hedge trades don't move $S$ | Large hedgers move the price they hedge against (feedback) |
+| **No dividends** (or known ones) | The stock's return is only its price move, giving $\tilde p u + \tilde q d = 1+r$ | With yield $\delta$: $\tilde p = \frac{(1+r)/(1+\delta) - d}{u-d}$; early exercise of American calls can become optimal |
+| **Deterministic, constant $r$** | $(1+r)^{-n}$ pulls out of every conditional expectation | Stochastic rates; discounting becomes random |
+
+### B. Model assumptions — what the tree itself assumes
+
+1. **Exactly two outcomes per step.** This is completeness: 2 states, 2
+   assets $\Rightarrow$ 2 equations, 2 unknowns $\Rightarrow$ unique
+   $\Delta_0$ and unique $\mathbb Q$. With three branches (trinomial),
+   Theorem 3 fails and $\mathbb Q$ is not unique.
+2. **$u, d$ constant across time and nodes.** Gives (i) a recombining tree
+   ($n+1$ terminal nodes, not $2^n$); (ii) the *same* $\tilde p$ at every
+   node — used in [[02 - The Two-Period and n-Period BOPM]]; (iii) the
+   binomial coefficients in the $n$-period formula. Economically:
+   **constant volatility** — the limit is BSM's constant $\sigma$, and the
+   implied-volatility smile is the evidence it is false.
+3. **No-arbitrage, $d < 1+r < u$.** Used exactly once: to guarantee
+   $\tilde p,\tilde q \in (0,1)$, i.e. that $\mathbb Q$ is a valid
+   probability measure.
+4. **Discrete trading dates.** Rebalancing happens only at nodes. Chapter 4
+   replaces this with continuous trading.
+5. **Every path has positive real-world probability**, $0<p<1$. This is
+   the *only* requirement on $\mathbb P$. It makes $\mathbb P$ and
+   $\mathbb Q$ **equivalent**: they agree on what is possible, disagreeing
+   only on how likely. (If $p=1$ the stock is riskless, must earn $r$, and
+   $d<1+r<u$ is impossible.)
+
+### C. Investor assumptions
+
+- **Non-satiation** (more is preferred to less) — the only preference
+  assumption. It is why an arbitrage would be exploited, and hence why
+  prices must exclude it.
+- **Agreement on the states, not the probabilities** — everyone agrees on
+  $u, d, r$; nobody needs to agree on $p$.
+
+### What is *not* assumed
+
+The price does **not** depend on the real-world probability $p$, the
+stock's expected return, or investors' risk aversion. The model does not
+assume investors are risk-neutral — it shows their preferences **cancel**,
+because the option is priced *relative to* the stock, whose price $S_0$
+already embeds whatever risk premium the market demands. "Risk-neutral
+pricing" is a computational device, not a behavioural claim.
+
+### Link forward
+
+The BSM assumptions in [[04 - The Black-Scholes PDE (Hedging, Replication, CAPM)]]
+are this list taken to the limit: binomial steps $\to$ geometric Brownian
+motion; discrete $\to$ continuous rebalancing; constant $u,d \to$ constant
+$\sigma$; constant $r$ stays constant $r$.
 
 ## 2. The Fundamental Theorem of Asset Pricing
 
@@ -99,6 +154,31 @@ By Theorem 1 the expectation equals $(1+r)^{-n}S_n$:
 
 $$= \Delta_n(1+r)^{-n}S_n + (1+r)^{-n}(X_n - \Delta_n S_n) = (1+r)^{-n}\big[\Delta_n S_n + X_n - \Delta_n S_n\big] = (1+r)^{-n}X_n. \qquad\blacksquare$$
 
+**What the cancellation means.** The two $\Delta_n S_n$ terms cancel, so
+the result holds for *any* strategy $\Delta_n$. However you trade, you
+cannot change the discounted portfolio's expected growth under
+$\mathbb Q$: it is zero. If some self-financing strategy started at
+$X_0=0$ and ended with $X_N \ge 0$ and $X_N>0$ in some state, its
+discounted expectation would be strictly positive — contradicting the
+martingale property. That is the "no-arbitrage" half of the FTAP, seen
+from the inside.
+
+## 5a. From martingale to pricing formula
+
+A martingale has constant expectation over time. Applying Theorem 2
+repeatedly (the tower property — conditioning back one step at a time):
+
+$$\frac{X_0}{(1+r)^0} = \tilde{\mathbb E}\!\left[\frac{X_1}{1+r}\right] = \tilde{\mathbb E}\!\left[\frac{X_2}{(1+r)^2}\right] = \dots = \tilde{\mathbb E}\!\left[\frac{X_N}{(1+r)^N}\right].$$
+
+If $X$ replicates a derivative with payoff $V_N$ (so $X_N = V_N$ in every
+state), no-arbitrage forces its price to be $X_0$:
+
+$$\boxed{V_0 = \tilde{\mathbb E}\!\left[\frac{V_N}{(1+r)^N}\right]}$$
+
+This is the $n$-period formula of [[02 - The Two-Period and n-Period BOPM]]
+in one line, and it also covers path-dependent payoffs. The gap: it
+assumes a replicating portfolio *exists*. Theorem 3 closes that gap.
+
 ## 6. Theorem 3 — the BOPM is a complete market
 
 A market is complete if every derivative can be hedged. Define, **backward
@@ -132,11 +212,45 @@ Using $X_n = C_n$ and the pricing recursion $C_n(1+r) = \tilde p\,C_{n+1}(H) + \
 
 $$X_{n+1}(H) = \tilde p\,C_{n+1}(H) + \tilde q\,C_{n+1}(T) + \tilde q\,C_{n+1}(H) - \tilde q\,C_{n+1}(T) = (\tilde p+\tilde q)\,C_{n+1}(H) = C_{n+1}(H). \qquad\blacksquare$$
 
-**Exercise — the down-state.** Show, by the mirror argument, that
-$X_{n+1}(T) = C_{n+1}(T)$. Work this through in
-[[Working Notes]] rather than reading a finished proof — it is a direct
-substitution copy of the up-state case with $u \leftrightarrow d$ and
-$\tilde p \leftrightarrow \tilde q$ swapped at the right places.
+**Which assumption does which job.**
+
+- **$X_n = C_n$** (induction hypothesis) + the pricing recursion turn the
+  bond term $(1+r)X_n$ into the risk-neutral *average*
+  $\tilde p\,C_{n+1}(H) + \tilde q\,C_{n+1}(T)$. Here the $(1+r)$ from
+  the bond growing one period cancels the $\tfrac{1}{1+r}$ that defined
+  $C_n$.
+- **The choice of $\Delta_n$** (the Chapter 1 hedge ratio at every node)
+  turns the stock term into the *correction*
+  $\tilde q\,[C_{n+1}(H) - C_{n+1}(T)]$, which moves you from the average
+  to the up-state value. Stopping at the bond term alone gives the
+  average, not $C_{n+1}(H)$.
+- **$\tilde q = \frac{u-(1+r)}{u-d}$** is what lets the correction match the
+  average's coefficients so a pair of terms cancels.
+- **$\tilde p + \tilde q = 1$** closes it.
+
+Since $X_0 = C_0$ by construction, induction carries $X_n = C_n$ node by
+node to $X_N = C_N$: every payoff is replicable, the market is complete,
+and the risk-neutral measure $(\tilde p,\tilde q)$ is unique.
+
+**Proof — down-state case** (worked live, 2026-09-28). $S_{n+1}(T) = dS_n$, so
+
+$$X_{n+1}(T) = \Delta_n\,dS_n + (1+r)(X_n - \Delta_n S_n) = (1+r)X_n + \Delta_n S_n\big[d-(1+r)\big].$$
+
+Substitute $\Delta_n = \dfrac{C_{n+1}(H)-C_{n+1}(T)}{(u-d)S_n}$. The sign of
+$d-(1+r)$ is **negative** (no-arbitrage), so flip it:
+
+$$\frac{d-(1+r)}{u-d} = -\frac{(1+r)-d}{u-d} = -\tilde p.$$
+
+Hence, using $(1+r)X_n = \tilde p\,C_{n+1}(H) + \tilde q\,C_{n+1}(T)$:
+
+$$X_{n+1}(T) = \tilde p\,C_{n+1}(H) + \tilde q\,C_{n+1}(T) - \tilde p\big[C_{n+1}(H) - C_{n+1}(T)\big] = (\tilde p+\tilde q)\,C_{n+1}(T) = C_{n+1}(T). \qquad\blacksquare$$
+
+**The two cases side by side.** Up: the correction is
+$+\tilde q\,[C_{n+1}(H)-C_{n+1}(T)]$ and pushes the risk-neutral average
+*up* to $C_{n+1}(H)$. Down: it is $-\tilde p\,[C_{n+1}(H)-C_{n+1}(T)]$ and
+pushes it *down* to $C_{n+1}(T)$. Note which numerator goes with which
+state: $u-(1+r)$ (that is, $\tilde q$) in the up case, $(1+r)-d$ (that is,
+$\tilde p$) in the down case.
 
 ---
 

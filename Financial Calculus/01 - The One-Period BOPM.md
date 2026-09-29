@@ -120,6 +120,45 @@ going up or down never enter — only the up/down factors $u,d$ and the
 interest rate $r$ are needed. This is the seed of risk-neutral pricing,
 developed fully in [[03 - FTAP, Risk-Neutral Measure and Martingales]].
 
+## 6. Why the weights deserve the name "risk-neutral"
+
+Three checks turn $\tilde p,\tilde q$ from "two fractions that fell out of
+the algebra" into a genuine probability measure with an economic meaning.
+
+**(a) They sum to 1.**
+
+$$\tilde p + \tilde q = \frac{\big((1+r)-d\big) + \big(u-(1+r)\big)}{u-d} = \frac{u-d}{u-d} = 1.$$
+
+**(b) They are both strictly positive — and this is exactly the
+no-arbitrage condition.** $\tilde p > 0 \iff 1+r > d$ and
+$\tilde q > 0 \iff u > 1+r$. So $d < 1+r < u$ from §2 is *the same
+statement* as "$\tilde p,\tilde q$ form a valid probability distribution on
+$\{H,T\}$". If either arbitrage in §2 existed, one of the weights would be
+zero or negative. This is the one-period seed of the FTAP (no-arbitrage
+$\iff$ a risk-neutral measure exists).
+
+**(c) Under them, the stock earns exactly the risk-free rate.**
+
+$$\tilde p\,u + \tilde q\,d = \frac{u(1+r) - ud + ud - d(1+r)}{u-d} = \frac{(1+r)(u-d)}{u-d} = 1+r,$$
+
+so
+
+$$\tilde{\mathbb E}[S_1] = \tilde p\,uS_0 + \tilde q\,dS_0 = (1+r)S_0.$$
+
+**Interpretation.** No probability appeared anywhere in §3–4: the price
+came from replication alone. $\tilde p,\tilde q$ are *synthetic* weights,
+manufactured from $u,d,r$, chosen so that every asset — stock, bond, and
+therefore the option that is built from them — grows at $r$ in
+expectation. They are the beliefs a risk-*neutral* investor would need to
+hold for today's prices to look fair. The real-world probability $p$
+carries the stock's risk premium; $\tilde p$ strips it out. That is why
+pricing by "discounted expectation under $\tilde p,\tilde q$" reproduces
+the replication price exactly, and why the real $p$ is irrelevant to the
+price (though not to the option's real-world *expected return*).
+
+Identity (c) is the engine of Theorem 1 in
+[[03 - FTAP, Risk-Neutral Measure and Martingales]].
+
 ---
 
 **Next:** [[02 - The Two-Period and n-Period BOPM]] — extending the hedge to
