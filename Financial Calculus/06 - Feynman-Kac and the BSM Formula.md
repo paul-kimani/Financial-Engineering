@@ -80,7 +80,7 @@ $$\boxed{F(t,x) = 2x + 2(T-t) + (1-x^2)(T-t) - (1+x)(T-t)^2 - \tfrac13(T-t)^3}$$
 
 (Checked directly: this satisfies the PDE and $F(T,x)=2x$.)
 
-**Open exercise.** Solve $\dfrac{\partial F}{\partial t} + \tfrac14 x\dfrac{\partial F}{\partial x} + \tfrac12 x^2\dfrac{\partial^2F}{\partial x^2} + F = 0$, $F(T,x)=x^4$ — note the $+F$ (i.e. $r(x,t)=-1$) and state-dependent $\sigma^2(x,t)=x^2$. Work this in [[Working Notes]].
+**Open exercise.** Solve $\dfrac{\partial F}{\partial t} + \tfrac14 x\dfrac{\partial F}{\partial x} + \tfrac12 x^2\dfrac{\partial^2F}{\partial x^2} + F = 0$, $F(T,x)=x^4$ — note the $+F$ (i.e. $r(x,t)=-1$) and state-dependent $\sigma^2(x,t)=x^2$. **Solved live — see §7.**
 
 ## 4. Deriving the Black-Scholes formula
 
@@ -230,4 +230,48 @@ contained $\mathbb Q$. The resulting expectation splits into exactly the
 $\mathbb Q(S_T>K)$ and $\mathbb Q'(S_T>K)$ of
 [[02 - The Two-Period and n-Period BOPM]] §8. Tree route and PDE route meet
 here.
+
+## 7. Worked exercise: $F(T,x) = x^4$ (solved live, 2026-09-29)
+
+$$\frac{\partial F}{\partial t} + \frac14x\frac{\partial F}{\partial x} + \frac12x^2\frac{\partial^2F}{\partial x^2} + F = 0, \qquad F(T,x) = x^4.$$
+
+**Step 1 — read off the ingredients** against
+$F_t + \mu F_x + \tfrac12\sigma^2F_{xx} - rF = 0$:
+
+| | template | exercise | reading |
+|---|---|---|---|
+| $\mu$ | $\mu F_x$ | $\tfrac14xF_x$ | $\mu = \tfrac14x$ |
+| $\sigma$ | $\tfrac12\sigma^2F_{xx}$ | $\tfrac12x^2F_{xx}$ | $\sigma^2 = x^2 \Rightarrow \sigma = x$ |
+| $r$ | $-rF$ | $+F$ | $r = -1$ |
+| $\Phi$ | $F(T,x)$ | $x^4$ | $\Phi(x) = x^4$ |
+
+The process is a **GBM**: $dX_s = \tfrac14X_s\,ds + X_s\,dW_s$. ($r=-1$ is
+just the algebra: the "discount" factor $e^{-r\tau} = e^{\tau}$ grows.)
+Feynman-Kac:
+
+$$F(t,x) = e^{\tau}\,\mathbb E\big[X_T^4\mid X_t = x\big], \qquad \tau = T-t.$$
+
+**Step 2 — solve the GBM.** For $dX = aX\,ds + bX\,dW$,
+$X_T = x\exp\!\big((a-\tfrac12b^2)\tau + b\sqrt\tau Z\big)$. With
+$a=\tfrac14$, $b=1$:
+
+$$X_T = x\exp\!\left(-\tfrac14\tau + \sqrt\tau Z\right), \qquad X_T^4 = x^4\exp\!\left(-\tau + 4\sqrt\tau Z\right).$$
+
+> **Slip to watch:** the drift is a *rate* — it carries $\tau$. Writing
+> $-1$ instead of $-\tau$ fails the check $\tau=0 \Rightarrow X_T^4 = x^4$.
+
+**Step 3 — expectation.** With $\mathbb E[e^{cZ}] = e^{c^2/2}$, $c = 4\sqrt\tau$:
+
+$$\mathbb E[X_T^4] = x^4e^{-\tau}e^{8\tau} = x^4e^{7\tau}.$$
+
+**Step 4 — discount.** $F = e^{\tau}\cdot x^4e^{7\tau}$:
+
+$$\boxed{F(t,x) = x^4e^{8(T-t)}}$$
+
+> **Slip to watch:** $x^4e^{7\tau}$ is the expectation, not $F$ — the
+> discount factor must still be applied (same slip as the missing
+> $\tfrac1{1+r}$ in the binomial tree).
+
+**Verify.** $F_t = -8F$; $\tfrac14xF_x = F$; $\tfrac12x^2F_{xx} = 6F$;
+$+F$. Sum $= -8F+F+6F+F = 0$ ✓, and $F(T,x) = x^4$ ✓.
 

@@ -34,6 +34,8 @@ Solve $\dfrac{\partial F}{\partial t} + \tfrac14 x\dfrac{\partial F}{\partial x}
 Not attempted in the notebook. Note the state-dependent $\sigma^2(x,t)=x^2$
 and the $r(x,t)=-1$ read off the $+F$ term.
 
+**Done 2026-09-29** — $F = x^4e^{8(T-t)}$; now in Chapter 6 §7.
+
 ## 2026-09-27 — Live Socratic session, Chapters 1–3
 
 Worked through live: one-period replicating portfolio → $\Delta_0$ → $C_0$;
@@ -147,4 +149,18 @@ didn't land. Did moves 1, 3 unaided.
 - Called the surviving $dW$ term "the drift". The $dt$ term is the drift
   (it vanishes); the $dW$ term is the diffusion.
 - Final answer written $\mathbb E[\Phi(x)]$; must be $\mathbb E[\Phi(X_T)\mid X_t=x]$.
+
+## 2026-09-29 — The $x^4$ exercise solved (ref: [[06 - Feynman-Kac and the BSM Formula]] §7)
+
+Recognised the GBM immediately; got $\mathbb E[X_T^4] = x^4e^{7\tau}$.
+
+**Slips:**
+
+- $X_T^4$ exponent written $-1$ instead of $-\tau$ — drift is a rate.
+  Check: $\tau = 0$ must give $x^4$.
+- Stopped at the expectation; forgot the discount $e^{-r\tau} = e^{\tau}$.
+  Answer $F = x^4e^{8(T-t)}$. Recurring pattern: **after computing an
+  expectation, always ask "have I discounted?"**
+
+**All Working Notes exercises now closed.**
 
