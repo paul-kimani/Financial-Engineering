@@ -114,3 +114,12 @@ the PDE each time without slips.
 - Point to remember: in all three routes $\mu$ cancels (and $\mu_M$ too in
   CAPM) — that's *why* the PDE has $r$, not $\mu$.
 
+## 2026-09-29 — Chapter 5: log-price PDE (ref: [[05 - The PDE in Log-Price]] §5)
+
+Worked live. First derivative and $f'=-1/S^2$ done unaided; identified
+the $u_x$ coefficient as $r-\tfrac12\sigma^2$ straight away.
+
+**Sticking point:** $\frac{\partial}{\partial S}\left(\frac{\partial u}{\partial x}\right)$.
+Fix: call $w = u_x$ — it's just another function of $x$, so the same
+chain rule applies: $\partial_S w = \frac1S\,\partial_x w = \frac1S u_{xx}$.
+
