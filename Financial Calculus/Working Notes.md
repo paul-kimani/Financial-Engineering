@@ -123,3 +123,16 @@ the $u_x$ coefficient as $r-\tfrac12\sigma^2$ straight away.
 Fix: call $w = u_x$ — it's just another function of $x$, so the same
 chain rule applies: $\partial_S w = \frac1S\,\partial_x w = \frac1S u_{xx}$.
 
+## 2026-09-29 — Chapter 6: Feynman-Kac proof (ref: [[06 - Feynman-Kac and the BSM Formula]] §5)
+
+Worked live. Recognised the $ds$ bracket vanishes and that the Itô
+integral has zero expectation.
+
+**Sticking points / slips:**
+
+- Confused by what to differentiate with respect to: $t$ is fixed (today),
+  $s$ is the running clock — all derivatives are in $s$.
+- Called the $ds$ bracket "the Feynman-Kac"; it is the **PDE** (the
+  hypothesis). Feynman-Kac is the conclusion.
+- Dropped $e^{-r(s-t)}$ from the $dW$ term.
+

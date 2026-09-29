@@ -127,3 +127,66 @@ the Black-Scholes-Merton formula for a European call.
 [[../Stochastics/29 - Derivation of The Black Scholes merton formula]] cover
 the same PDE and formula from the Stochastics course's own route — useful
 for cross-checking notation and seeing a second derivation of $d_1,d_2$.
+
+---
+
+## 5. The proof, worked live (2026-09-29)
+
+**Two times.** $t$ is **fixed** — "today", the moment we want the price.
+$s$ is the **running clock**, moving from $t$ to $T$. All derivatives are
+with respect to $s$; $t$ is a constant in the exponent. The discount factor
+$e^{-r(s-t)}$ equals $1$ at $s=t$ and $e^{-r(T-t)}$ at $s=T$.
+
+**Strategy — the continuous Theorem 2.** Define the discounted value along
+the path, $Y_s := e^{-r(s-t)}F(s,X_s)$. Its endpoints are
+
+$$Y_t = F(t,x)\ \ (\text{today's price — wanted}), \qquad Y_T = e^{-r(T-t)}\Phi(X_T)\ \ (\text{discounted payoff — known}).$$
+
+If $Y$ has no drift, $Y_t = \mathbb E[Y_T]$ — and that *is* the theorem.
+
+**Step 1 — the deterministic factor.**
+$d\big(e^{-r(s-t)}\big) = -r\,e^{-r(s-t)}\,ds$ (ordinary calculus in $s$).
+
+**Step 2 — Itô on $F$.** Exactly Chapter 4's $dV$ with letters renamed:
+
+$$dF = \left(\frac{\partial F}{\partial s} + \mu\frac{\partial F}{\partial x} + \frac12\sigma^2\frac{\partial^2F}{\partial x^2}\right)ds + \sigma\frac{\partial F}{\partial x}\,dW_s.$$
+
+**Step 3 — product rule** (no cross term: the exponential has no $dW$):
+
+$$dY_s = e^{-r(s-t)}\underbrace{\left(\frac{\partial F}{\partial s} + \mu\frac{\partial F}{\partial x} + \frac12\sigma^2\frac{\partial^2F}{\partial x^2} - rF\right)}_{=\,0\ \text{— the PDE}}ds + e^{-r(s-t)}\,\sigma\frac{\partial F}{\partial x}\,dW_s.$$
+
+The $-rF$ comes from differentiating the discount factor — which is why
+the discount rate in the formula must match the $-rF$ in the PDE. The
+bracket is the **PDE** $F$ satisfies by hypothesis (Feynman-Kac is the
+*conclusion*). So $Y$ has no drift.
+
+> **Slip to watch:** keep the $e^{-r(s-t)}$ on the $dW$ term.
+
+**Step 4 — integrate and take expectations.**
+
+$$Y_T - Y_t = \int_t^T \underbrace{e^{-r(s-t)}\sigma\frac{\partial F}{\partial x}(s,X_s)}_{H_s}\,dW_s.$$
+
+*Why the Itô integral has zero expectation.* Discretise:
+$\sum_k H_{s_k}\Delta W_k$. $H_{s_k}$ is known at $s_k$; $\Delta W_k$ is
+independent of the past with mean zero. By the tower property,
+
+$$\mathbb E\big[H_{s_k}\Delta W_k\big] = \mathbb E\Big[H_{s_k}\,\underbrace{\mathbb E[\Delta W_k\mid\mathcal F_{s_k}]}_{=0}\Big] = 0.$$
+
+Same logic as Theorem 2 in [[03 - FTAP, Risk-Neutral Measure and Martingales]]:
+no position size ($H$ here, $\Delta_n$ there) extracts expected profit from
+a fair game. Rigorously this needs $\mathbb E\int_t^T H_s^2\,ds<\infty$, so
+the integral is a true martingale.
+
+Hence $\mathbb E[Y_T\mid X_t=x] = Y_t$, i.e.
+
+$$\boxed{F(t,x) = e^{-r(T-t)}\,\mathbb E\big[\Phi(X_T)\,\big|\,X_t = x\big]}$$
+
+**Where it lands.** Applied to the log-price PDE of
+[[05 - The PDE in Log-Price]] (drift $r-\tfrac12\sigma^2$, payoff
+$(e^x-K)^+$), the process Feynman-Kac produces drifts at $r$, not $\mu$ —
+**Feynman-Kac derives risk-neutral pricing**; the Chapter 4 PDE already
+contained $\mathbb Q$. The resulting expectation splits into exactly the
+$\mathbb Q(S_T>K)$ and $\mathbb Q'(S_T>K)$ of
+[[02 - The Two-Period and n-Period BOPM]] §8. Tree route and PDE route meet
+here.
+
