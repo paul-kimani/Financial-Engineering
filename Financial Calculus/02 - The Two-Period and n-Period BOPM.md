@@ -283,7 +283,92 @@ risk-neutral probability that you actually pay it.
 
 ### 8.4 Piece 1 and $d_1$
 
-*To be worked live next.*
+**A second probability measure.** Define
+
+$$p' := \frac{\tilde p\,u}{1+r}, \qquad q' := \frac{\tilde q\,d}{1+r}.$$
+
+Both are positive, and by $\tilde p u + \tilde q d = 1+r$ (Chapter 1 §6(c),
+the identity behind Theorem 1):
+
+$$p' + q' = \frac{\tilde p\,u + \tilde q\,d}{1+r} = 1.$$
+
+So $(p',q')$ is a genuine probability measure $\mathbb Q'$, and exactly as
+in Step A,
+
+$$\text{Piece 1} = S_0\,\mathbb Q'(J\ge a) = S_0\,\mathbb Q'(S_T > K).$$
+
+**What $\mathbb Q'$ means.** Piece 1 is the discounted value of *receiving
+the stock* if $S_T>K$: $e^{-rT}\tilde{\mathbb E}[S_T\mathbf 1_{\{S_T>K\}}]$.
+$S_T$ is random, so it cannot be pulled out of the expectation — instead
+it is absorbed into the probabilities. An up-move multiplies the stock by
+$u > 1+r$, so $\frac{u}{1+r}>1$ **boosts** the up-weight; a down-move
+multiplies by $d<1+r$, so $\frac{d}{1+r}<1$ **shrinks** the down-weight.
+$\mathbb Q'$ is $\mathbb Q$ reweighted by how much the stock grew along each
+path. This is the **stock measure** — pricing with the stock, not cash, as
+the unit of account. Expect $p' > \tilde p$, so a *higher* log-drift.
+
+**$p'$ to first order.** Only order $\sqrt{\Delta t}$ is needed (see the box
+below). $\frac{u}{1+r} = e^{\sigma\sqrt{\Delta t}}e^{-r\Delta t} \approx 1 + \sigma\sqrt{\Delta t}$, so
+
+$$p' \approx \left(\frac12 + \frac{(r-\frac12\sigma^2)\sqrt{\Delta t}}{2\sigma}\right)\big(1+\sigma\sqrt{\Delta t}\big) \approx \frac12 + \frac{\sigma^2\sqrt{\Delta t}}{2\sigma} + \frac{(r-\frac12\sigma^2)\sqrt{\Delta t}}{2\sigma} = \frac12 + \frac{\left(r+\frac12\sigma^2\right)\sqrt{\Delta t}}{2\sigma}.$$
+
+The reweighting adds exactly $\sigma^2$ to the bracket:
+$r-\tfrac12\sigma^2 \to r+\tfrac12\sigma^2$.
+
+> **Order counting — what to keep.** Keep whatever survives after summing
+> $N=T/\Delta t$ steps. The total mean is
+> $\frac{T}{\Delta t}\cdot\sigma\sqrt{\Delta t}\,(2p'-1)$, so a term of
+> order $\sqrt{\Delta t}$ in $p'$ contributes a finite amount ($\propto T$),
+> while a term of order $\Delta t$ contributes $\propto T\sqrt{\Delta t}\to0$.
+> E.g. the dropped cross term $\tfrac12(r-\tfrac12\sigma^2)\Delta t$
+> contributes $\sigma(r-\tfrac12\sigma^2)T\sqrt{\Delta t}\to 0$.
+>
+> In §7, $\tilde p$ was a *fraction* with denominator $2\sigma\sqrt{\Delta t}$;
+> dividing by $\sqrt{\Delta t}$ lowers every order by one half, so the
+> numerator had to be kept to order $\Delta t$ to get $\tilde p$ to order
+> $\sqrt{\Delta t}$. Here $p'$ is a *product* — nothing promotes a term — so
+> order $\Delta t$ is dropped at once. Both probabilities end up accurate
+> to the same order, $\sqrt{\Delta t}$. The same bookkeeping is behind Itô's
+> lemma: $dt^2$ and $dt\,dW$ vanish, $(dW)^2=dt$ survives.
+
+**Moments under $\mathbb Q'$ and the CLT.** As in §7:
+
+$$\mathbb E'[\xi_k] = \sigma\sqrt{\Delta t}\,(2p'-1) = \left(r+\tfrac12\sigma^2\right)\Delta t, \qquad \mathrm{Var}'[\xi_k]\approx\sigma^2\Delta t,$$
+
+$$X \sim \mathcal N\!\left(\left(r+\tfrac12\sigma^2\right)T,\ \sigma^2T\right)\quad\text{under }\mathbb Q'.$$
+
+(The variance is unchanged: $\xi_k^2 = \sigma^2\Delta t$ in both states,
+whatever the probabilities.)
+
+**Steps C–F, unchanged** — only the mean differs:
+
+$$\boxed{d_1 = \frac{\ln(S_0/K) + \left(r+\tfrac12\sigma^2\right)T}{\sigma\sqrt T}}, \qquad \text{Piece 1}\;\longrightarrow\; S_0\,\Phi(d_1).$$
+
+No discount factor remains: the $(1+r)^{-n}$ was absorbed into $p',q'$.
+
+**Relation between $d_1$ and $d_2$** (worked live):
+
+$$d_1 - d_2 = \frac{\left(r+\tfrac12\sigma^2\right)T - \left(r-\tfrac12\sigma^2\right)T}{\sigma\sqrt T} = \frac{\sigma^2 T}{\sigma\sqrt T} = \sigma\sqrt T.$$
+
+$d_1$ is $d_2$ shifted up by one standard deviation of the log-price — the
+$\sigma^2$ the change of measure added.
+
+### 8.5 The result
+
+$$\boxed{C_0 = S_0\,\Phi(d_1) - Ke^{-rT}\,\Phi(d_2)}$$
+
+Black-Scholes, derived entirely from the coin-toss tree.
+
+- $\Phi(d_2) = \mathbb Q(S_T>K)$ — probability of finishing in the money,
+  cash as unit of account.
+- $\Phi(d_1) = \mathbb Q'(S_T>K)$ — the same event, stock as unit of
+  account.
+- $\Phi(d_1)$ is also the **delta** $\partial C/\partial S_0$ — the
+  continuous version of the Chapter 1 hedge ratio.
+
+Compare with the PDE/Feynman-Kac route in
+[[06 - Feynman-Kac and the BSM Formula]]: same formula, entirely different
+machinery.
 
 ---
 

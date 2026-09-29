@@ -85,3 +85,19 @@ $\mathbb Q(S_T>K)$; standardising; symmetry; defining $d_2$.
 - $\mathbb P(Z>c) = \Phi(-c)$: follows from $\varphi(-z)=\varphi(z)$ — reflect the
   bell curve; right tail beyond $c$ = left tail beyond $-c$.
 
+## 2026-09-29 — Binomial to Black-Scholes, Piece 1 (ref: [[02 - The Two-Period and n-Period BOPM]] §8.4–8.5)
+
+Worked live: $p'+q'=1$ (recalled from Ch 1 §6(c)); the stock measure
+$\mathbb Q'$; $p'$ to order $\sqrt{\Delta t}$; $d_1$; $d_1-d_2=\sigma\sqrt T$ (got
+this one straight away).
+
+**Sticking points:**
+
+- The idea of a second measure $\mathbb Q'$ didn't click at first. Key
+  picture: $\frac{u}{1+r}>1$ boosts up-paths, $\frac{d}{1+r}<1$ shrinks
+  down-paths — $\mathbb Q'$ weights paths by how much the stock grew,
+  because Piece 1 *pays the stock*.
+- Why drop order $\Delta t$ in $p'$ but keep it in §7's numerator: keep
+  what survives after multiplying by $N=T/\Delta t$. §7 divided by
+  $\sqrt{\Delta t}$ (promotes terms); $p'$ is a product (doesn't).
+
