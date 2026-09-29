@@ -101,3 +101,16 @@ this one straight away).
   what survives after multiplying by $N=T/\Delta t$. §7 divided by
   $\sqrt{\Delta t}$ (promotes terms); $p'$ is a product (doesn't).
 
+## 2026-09-29 — Chapter 4: three derivations of the PDE (ref: [[04 - The Black-Scholes PDE (Hedging, Replication, CAPM)]] §5)
+
+Worked live: all three routes. Got $\Delta = a_t = \partial V/\partial S$ and
+the PDE each time without slips.
+
+**Needed explaining:**
+
+- The option's elasticity $\Omega = \frac{S}{V}\frac{\partial V}{\partial S}$ and
+  why $\beta_V = \Omega\beta_S$ — didn't have it in mind. Remember the ATM
+  example: $S=100, V=5, \Delta=0.5 \Rightarrow \Omega = 10$.
+- Point to remember: in all three routes $\mu$ cancels (and $\mu_M$ too in
+  CAPM) — that's *why* the PDE has $r$, not $\mu$.
+
