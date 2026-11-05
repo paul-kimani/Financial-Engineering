@@ -28,13 +28,13 @@ As model flexibility increases: bias tends to fall (the model can represent more
 
 For classification (see [[09 Logistic Regression and Classification]]), performance is judged via a **confusion matrix**: $f_{ij}$ = number of records truly in class $i$ that the model assigned to class $j$. By convention the class of interest is the **positive** class, the rest **negative**.
 
-| Metric | Formula | Meaning |
-|---|---|---|
-| Accuracy | $\dfrac{f_{11}+f_{00}}{f_{11}+f_{10}+f_{01}+f_{00}}$ | fraction of all predictions that were correct |
-| Error rate | $\dfrac{f_{10}+f_{01}}{f_{11}+f_{10}+f_{01}+f_{00}}$ | fraction of predictions that were wrong ($=1-$accuracy) |
-| Precision | $\dfrac{\text{TP}}{\text{TP}+\text{FP}}$ | of predicted-positives, what fraction were actually positive |
-| Recall | $\dfrac{\text{TP}}{\text{TP}+\text{FN}}$ | of actual positives, what fraction did the model catch |
-| F-measure | $\dfrac{2\cdot\text{Precision}\cdot\text{Recall}}{\text{Precision}+\text{Recall}}$ | harmonic mean, balances precision & recall |
+| Metric     | Formula                                                                            | Meaning                                                      |
+| ---------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| Accuracy   | $\dfrac{f_{11}+f_{00}}{f_{11}+f_{10}+f_{01}+f_{00}}$                               | fraction of all predictions that were correct                |
+| Error rate | $\dfrac{f_{10}+f_{01}}{f_{11}+f_{10}+f_{01}+f_{00}}$                               | fraction of predictions that were wrong ($=1-$accuracy)      |
+| Precision  | $\dfrac{\text{TP}}{\text{TP}+\text{FP}}$                                           | of predicted-positives, what fraction were actually positive |
+| Recall     | $\dfrac{\text{TP}}{\text{TP}+\text{FN}}$                                           | of actual positives, what fraction did the model catch       |
+| F-measure  | $\dfrac{2\cdot\text{Precision}\cdot\text{Recall}}{\text{Precision}+\text{Recall}}$ | harmonic mean, balances precision & recall                   |
 
 **Why accuracy alone can mislead:** with **class imbalance** (e.g. rare fraud cases, rare default events — common in finance), a model that just predicts "no fraud" every time can have very high accuracy while being completely useless. This is exactly why precision/recall/F-measure matter more than raw accuracy in most real financial classification problems.
 
@@ -87,3 +87,69 @@ This is just the ordinary sample-standard-deviation formula, applied across boot
 
 ---
 *Source: BSF 3216 Lecture Two — "Supervised Learning" (Model Assessment/Selection, Bias-Variance Decomposition, Resampling).*
+
+## 6. Additions from the lecture notes (bias–variance decomposition, worked derivation)
+
+**Setup.** $Y=f(X)+\varepsilon$ with $E(\varepsilon)=0$ and $\text{Var}(\varepsilon)=\sigma_\varepsilon^2$.
+- $f(x_0)$ is a fixed (unknown) number.
+- $\hat f(x_0)$ is **random**: it depends on which training sample was drawn.
+- $\bar f=E[\hat f(x_0)]$ is the centre of the "darts".
+- $\text{Err}(x_0)=E[(Y-\hat f(x_0))^2\mid X=x_0]$, averaged over both the new point's noise **and** the training samples.
+
+**Dartboard intuition.** Bias = how far the centre of the throws is from the bullseye. Variance = how scattered the throws are. Irreducible error = the bullseye itself wobbling.
+- A rigid model (a line fitted to a curve) is tight but off-centre: high bias, low variance.
+- A very flexible model is centred but sprays: low bias, high variance.
+
+**Step 1: noise vs estimation error.**
+- $Y-\hat f=\varepsilon+(f-\hat f)$, so $(Y-\hat f)^2=\varepsilon^2+2\varepsilon(f-\hat f)+(f-\hat f)^2$.
+- $E(\varepsilon^2)=\text{Var}(\varepsilon)+[E\varepsilon]^2=\sigma_\varepsilon^2$.
+- Cross term: $E[\varepsilon(f-\hat f)]=E(\varepsilon)\,E(f-\hat f)=0$. This needs **two** facts:
+  - **Independence** (the new point's noise wasn't in the training data) lets the expectation factor.
+  - **$E(\varepsilon)=0$** makes the product zero.
+  - "Orthogonal" is the conclusion, not the reason.
+- **On training data independence fails.** The model has fitted that noise, so the cross term is negative. That is why training error **underestimates** test error.
+
+**Step 2: Bias² + Variance.** Add and subtract $\bar f$: $f-\hat f=(f-\bar f)+(\bar f-\hat f)$.
+- $(f-\hat f)^2=(f-\bar f)^2+2(f-\bar f)(\bar f-\hat f)+(\bar f-\hat f)^2$.
+- $(f-\bar f)$ is a **constant**, so $E[(f-\bar f)^2]=(f-\bar f)^2$, and it comes out of the cross term.
+- $E(\bar f-\hat f)=\bar f-\bar f=0$: $\hat f$ moves up and down around $\bar f$ as a pivot. So the cross term is $2(f-\bar f)\cdot0=0$.
+
+**Result.**
+$$\text{Err}(x_0)=\underbrace{\sigma_\varepsilon^2}_{\text{irreducible}}+\underbrace{(\bar f-f)^2}_{\text{Bias}^2}+\underbrace{E[(\hat f-\bar f)^2]}_{\text{Variance}}$$
+- Step 2 is the general identity $E[(Z-c)^2]=\text{Var}(Z)+(EZ-c)^2$, with $Z=\hat f$ and $c=f$.
+
+**Lecturer's typos.** "Decompostion" should be Decomposition; "i.e" should be "i.e."; the notes don't state that $E$ is taken over training sets as well as noise, which is what makes the decomposition work.
+
+**Applications.**
+- In-sample backtest = training error and live P&L = test error. Over-tuned bots have low bias but high variance.
+- Walk-forward testing preserves the independence that Step 1 needs.
+- Volatility window choice is a bias–variance trade-off: 20-day (reactive, noisy) vs 250-day (stable, lagging).
+
+## 7. Additions from the lecture notes (model evaluation: confusion matrix and metrics)
+
+**Lecturer's layout.** $f_{ij}$ = number of records whose **actual** class is $i$ and **predicted** class is $j$. So the rows are actual and the columns are predicted.
+- $f_{11}=TP$, $f_{10}=FN$ (actual 1, predicted 0), $f_{01}=FP$ (actual 0, predicted 1), $f_{00}=TN$.
+- **Exam trap:** R's `table(pred, actual)` puts **predicted in the rows**, the transpose of this layout. Always label TP/FP/FN/TN before computing.
+
+**Metrics.**
+
+| Metric | Formula | Question it answers |
+|---|---|---|
+| Accuracy | $(f_{11}+f_{00})/n$ | how often is it right overall? |
+| Error rate | $(f_{10}+f_{01})/n=1-\text{acc}$ | how often is it wrong? |
+| Precision | $TP/(TP+FP)$ | when it says "positive", how often is it right? |
+| Recall (sensitivity, TPR) | $TP/(TP+FN)$ | of the actual positives, how many did it catch? |
+| Specificity (TNR) | $TN/(TN+FP)$ | of the actual negatives, how many did it clear? |
+| F1 | $2PR/(P+R)=2TP/(2TP+FP+FN)$ | balance of precision and recall |
+| Type I error (FPR) | $FP/(FP+TN)=1-\text{spec}$ | false alarms |
+| Type II error (FNR) | $FN/(TP+FN)=1-\text{recall}$ | misses |
+
+**Intuition.**
+- **Accuracy misleads with imbalance:** with 1% fraud, "never fraud" scores 99%. Always compare with the majority-class baseline.
+- **F1 is a harmonic mean, so it punishes imbalance between P and R.** Example: $P=1$, $R=0.01$ gives $F1\approx0.02$, whereas the simple average would be 0.505.
+- **Threshold trade-off:** raising the cut-off (e.g. 0.5 → 0.6) gives fewer, surer positive calls, so precision rises and recall falls.
+
+**Lecturer's typos.**
+1. Recall is defined as "proportion of **negative** tuples correctly identified". That is **specificity**. Recall is the proportion of **positive** tuples correctly identified (the formula given is correct).
+2. "ratio of the number of **classes** correctly predicted" should be "number of **records**".
+3. Type I/II errors and specificity are not defined here but are examined (e.g. Q6c).

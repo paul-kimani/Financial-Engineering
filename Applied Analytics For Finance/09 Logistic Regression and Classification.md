@@ -104,3 +104,45 @@ Predicting market direction (Up/Down) from lagged returns — accuracy $\approx5
 
 ---
 *Source: BSF 3216 Lecture Two — "Supervised Learning" (Logistic Regression, Naive Bayes Classifier).*
+
+## 6. Additions from the lecture notes (§1.1 logistic regression, worked from first principles)
+
+**Why not the LPM.** $p(X)=\beta_0+\beta_1X$ can leave $[0,1]$. The fix is to make a transform of $p$ with range $(-\infty,\infty)$ linear:
+
+| Quantity | Range |
+|---|---|
+| $p$ | $(0,1)$ |
+| odds $p/(1-p)$ | $(0,\infty)$ |
+| log-odds (logit) | $(-\infty,\infty)$ |
+
+**Logit to odds (worked).** With $p=\frac{e^\eta}{1+e^\eta}$, we get $1-p=\frac{1}{1+e^\eta}$.
+- **Divide first, then take logs:** $\frac{p}{1-p}=e^\eta$, because the common $(1+e^\eta)$ cancels. So $\ln\frac{p}{1-p}=\eta$.
+- Taking logs first gets stuck: $\ln(a+b)\ne\ln a+\ln b$.
+- **Odds ratio:** $\text{odds}(X+1)/\text{odds}(X)=e^{\beta_1}$, the same factor wherever you start.
+
+**Effect on $p$.** $dp/dX=\beta_1p(1-p)$. This is the sigmoid slope: steepest at $p=0.5$ (slope $\beta_1/4$, the "divide by 4" rule) and flat near 0 and 1.
+- $+1$ in $X$ adds $\beta_1$ to the log-odds and multiplies the odds by $e^{\beta_1}$, but changes $p$ by an amount that depends on where you are on the S.
+
+**Likelihood (worked).** Bernoulli: $P(Y_i=y_i)=p_i^{y_i}(1-p_i)^{1-y_i}$, where the exponent acts as a switch.
+- $L=\prod p_i^{Y_i}(1-p_i)^{1-Y_i}$ and $l=\sum[Y_i\ln p_i+(1-Y_i)\ln(1-p_i)]$.
+- Regroup: $Y_i\ln\frac{p_i}{1-p_i}+\ln(1-p_i)=Y_i\eta_i-\ln(1+e^{\eta_i})$. Note that the logit is $\eta_i$, not $p$.
+- $-l$ is **log loss / binary cross-entropy**. Confident wrong calls are punished hard ($\ln0.01=-4.6$).
+
+**Score (worked).** $\eta_i=x_i'\beta$ with $x_i=(1,X_i)'$, so $\partial\eta_i/\partial\beta=x_i$. Do it one coefficient at a time, then stack.
+- $\partial(Y_i\eta_i)/\partial\beta=Y_ix_i$.
+- $\partial\ln(1+e^{\eta_i})/\partial\beta=\frac{e^{\eta_i}}{1+e^{\eta_i}}x_i=p_ix_i$ (chain rule).
+- $$\frac{\partial l}{\partial\beta}=\sum_i x_i(Y_i-p_i)=0$$
+- **Meaning:** the "residuals" $Y_i-\hat p_i$ are orthogonal to every predictor. This is the logistic analogue of OLS's $X'(Y-X\hat\beta)=0$.
+- **Intercept row:** $\sum(Y_i-\hat p_i)=0$, so the mean fitted probability equals the observed fraction of 1's.
+- These equations are non-linear in $\beta$, so there is no closed form. Solve with Newton–Raphson.
+
+**Newton–Raphson.** 1-D: $\beta_{\text{new}}=\beta_{\text{old}}-g/g'$, i.e. follow the tangent of the score to zero.
+- Hessian $=-\sum x_ix_i'p_i(1-p_i)$. Same shape as OLS's $-X'X/\sigma^2$, with each point weighted by the sigmoid slope, so uncertain points carry the most information.
+- R's "Fisher scoring iterations" are these steps.
+- **Perfect separation** sends $\beta\to\infty$ and the iterations don't converge (a sign of overfitting).
+
+**Lecturer's typos.**
+1. "odds ratio $p/(1-p)$" is the **odds**. The odds ratio is $e^{\beta_1}$.
+2. "changes the log odds $\beta_1$" should read "**by** $\beta_1$".
+3. $X_i$ is used for both the scalar and the vector $(1,X_i)'$.
+4. "$\beta=0$ is Often"; "convergence is never guaranteed" should be "**not** guaranteed".
