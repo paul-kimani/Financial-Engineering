@@ -15,10 +15,10 @@ writing — not split per chapter.
 
 | #  | Chapter | Status |
 | -: | :--- | :--- |
-| 01 | [[01 The Data Life Cycle.]] — raw → cleaned → prepared data, EDA, wrangling vs. preprocessing | Core |
-| 02 | [[02 Data-sets]] — dataset anatomy, structured/semi/unstructured data, relational databases | Core |
-| 03 | [[03 Asset Returns.]] — simple vs. log returns, why log returns, KDE link | Core |
-| 04 | [[04 Supervised Learning Vs unsupervised learning.]] — supervised/unsupervised, SLR model & assumptions, full Gauss-Markov BLUE proof, unbiased error-variance estimator $\hat\sigma^2$ | Core |
+| 01 | [[01 The Data Life Cycle.]] — pipeline stages, survivorship/selection bias, MCAR-MAR-MNAR missingness, outliers vs. events, leakage & split order, look-ahead and point-in-time data | Core |
+| 02 | [[02 Data-sets]] — rows vs columns and degrees of freedom, wide/long and panel data, measurement scales (interval vs ratio, negative prices), dummy encoding and the dummy variable trap, ordinal coding, relational keys and point-in-time tables | Core |
+| 03 | [[03 Asset Returns.]] — simple vs. log returns, aggregation across time vs. assets, the $R^2/2$ gap, volatility drag and Kelly leverage, skewness/kurtosis, KDE | Core |
+| 04 | [[04 Supervised Learning Vs unsupervised learning.]] — supervised/unsupervised, SLR model & assumptions, OLS derivation & normal equations, worked Q8, full Gauss-Markov BLUE proof, unbiased error-variance estimator $\hat\sigma^2$, OLS = MLE | Core |
 | 05 | [[05 Multiple Linear Regression and the F-test]] — SSR/TSS/SSReg, F-statistic, R² & adjusted R² | Core |
 | 06 | [[06 CAPM and Multifactor Models]] — CAPM, beta, Fama-French 3-factor, R implementation | Core |
 | 07 | [[07 Model Assessment, Bias-Variance and Resampling]] — bias-variance tradeoff, classification metrics, CV, bootstrap | Core |

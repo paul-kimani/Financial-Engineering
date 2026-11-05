@@ -30,6 +30,8 @@ Under SL1–SL4, the Ordinary Least Squares (OLS) estimators $\hat\beta_0,\hat\b
 
 > [!question] Open item (from the unit's own to-do)
 > Show that the OLS regression formulas for $\hat\beta_0,\hat\beta_1$ are the same estimators you'd get from Maximum Likelihood Estimation (MLE) under a normal-errors assumption — this is a standard, worthwhile derivation to do by hand once, since it's exactly the same MLE machinery used later for [[09 Logistic Regression and Classification|logistic regression]]. (Note: this is a *different* derivation from the unbiasedness proof in §3 below — unbiasedness is a small-sample property that holds regardless of the error distribution; MLE-equivalence specifically requires assuming $\epsilon_i$ is Normally distributed.)
+>
+> **Resolved:** derived in §7.8 (2026-10-11).
 
 ## 3. Proof: OLS is BLUE (unbiased *and* best)
 
@@ -336,3 +338,531 @@ Data Life Cycle (01) → Datasets (02) → Asset Returns (03)
 ```
 
 [[05 Multiple Linear Regression and the F-test]]
+
+---
+
+## 7. Additions — study session 2026-10-11
+
+> Material worked through live that the sections above did not yet cover:
+> deriving OLS itself, the normal equations, a full worked example (Problem
+> Set Q8), the lever-arm reading of $\operatorname{Var}(\hat\beta_0)$, an
+> assumption inventory, and the OLS = MLE equivalence that closes the open
+> item in §2.
+
+### 7.1 Supervised vs. unsupervised — what actually decides it
+
+The deciding feature is not the algorithm but **whether an answer column
+$Y$ exists to check against**. Regime detection ("calm" vs "turbulent" days)
+from volatility alone is unsupervised (clustering); if someone hand-labels past
+days and you train on those labels, the *same task* becomes supervised
+classification.
+
+| Task | Type |
+| :--- | :--- |
+| Predict next month's bond yield from the Treasury rate | Supervised — regression |
+| Group NSE stocks by how their returns co-move, no labels | Unsupervised — clustering |
+| Predict whether gold closes Up or Down tomorrow | Supervised — classification |
+| Detect market regimes from volatility, no labels | Unsupervised |
+
+### 7.2 Diagnosing which assumption fails
+
+**Quick test:** SL1 is *error vs. error*; SL3 is *error vs. its own spread*;
+SL4 is *error vs. $X$*.
+
+- **Big errors follow big errors (volatility clustering)** → SL3 (variance
+  changes over time) and the independence behind SL1. Subtle point: the errors
+  themselves can be uncorrelated (sign unpredictable) while their *sizes* are
+  correlated — so strictly SL3 is what fails. Not SL4: no $X$ is involved.
+- **Bond-yield errors larger when rates are high** → SL3.
+- **Return regressed on volume, with news driving both** → SL4. The omitted
+  variable (news) sits inside $\epsilon$ and is correlated with $X$, so
+  $\operatorname{Cov}(X_i,\epsilon_i)\neq0$: **omitted variable bias**.
+
+**Normality is a separate, fifth assumption.** Problem Set Q2 writes
+$\epsilon\sim\text{iid }\mathcal N(0,\sigma^2)$; SL1–SL4 alone deliver
+unbiasedness and BLUE, while normality adds exact $t$/$F$ distributions, the
+MLE equivalence (§7.6) and the Cramér–Rao result.
+
+### 7.3 Deriving OLS: minimise the sum of squared residuals
+
+$$
+S(\beta_0,\beta_1)=\sum_{i=1}^{n}\big(Y_i-\beta_0-\beta_1X_i\big)^2
+$$
+
+**Why squared misses:** squares are positive, so over- and under-predictions
+cannot cancel; large misses are punished more than small ones; and $S$ is a
+smooth bowl, so calculus finds the minimum exactly. The cost is sensitivity to
+outliers.
+
+**First condition (chain rule):**
+
+$$
+\frac{\partial S}{\partial\beta_0}=-2\sum_i(Y_i-\beta_0-\beta_1X_i)=0
+\;\Longrightarrow\;
+\sum_iY_i-n\beta_0-\beta_1\sum_iX_i=0
+\;\Longrightarrow\;
+\hat\beta_0=\bar Y-\hat\beta_1\bar X
+$$
+
+Two consequences: **OLS residuals sum to zero** (with an intercept), and the
+fitted line **always passes through $(\bar X,\bar Y)$**.
+
+**Second condition:**
+
+$$
+\frac{\partial S}{\partial\beta_1}=-2\sum_iX_i(Y_i-\beta_0-\beta_1X_i)=0
+$$
+
+(the extra $X_i$ is the inner derivative). It says $\sum_iX_i\hat\epsilon_i=0$:
+**residuals are uncorrelated with $X$** — OLS removes every bit of *linear*
+information $X$ carries about $Y$. The two conditions are the **normal
+equations**.
+
+**Solving for the slope.** Substitute $\beta_0=\bar Y-\beta_1\bar X$ and use
+$\sum_iX_i=n\bar X$:
+
+$$
+\sum X_iY_i-n\bar X\bar Y+n\beta_1\bar X^2-\beta_1\sum X_i^2=0
+$$
+
+**Collect every term containing $\beta_1$ and factor it out**, then move it
+across and divide:
+
+$$
+\sum X_iY_i-n\bar X\bar Y=\beta_1\Big(\sum X_i^2-n\bar X^2\Big)
+\quad\Longrightarrow\quad
+\boxed{\hat\beta_1=\frac{\sum X_iY_i-n\bar X\bar Y}{\sum X_i^2-n\bar X^2}=\frac{S_{xy}}{S_{xx}}}
+$$
+
+The numerator holds the terms **without** $\beta_1$. Equivalent deviation
+form (the meaning — sample covariance over sample variance of $X$):
+
+$$
+\hat\beta_1=\frac{\sum(X_i-\bar X)(Y_i-\bar Y)}{\sum(X_i-\bar X)^2}
+$$
+
+**Interpretation.** $\hat\beta_1$ is the predicted change in $Y$ for a
+one-unit increase in $X$; $\hat\beta_0$ is the predicted $Y$ at $X=0$ —
+meaningful only if $X=0$ lies within or near the data.
+
+### 7.4 Two different "sums to zero"
+
+| Statement | Why it is zero |
+| :--- | :--- |
+| $\sum_i(X_i-\bar X)=0$ | **Definition of the mean**: $\sum X_i-n\bar X=n\bar X-n\bar X=0$. Pure algebra, any data. |
+| $\sum_i\hat\epsilon_i=0$ | **OLS normal equation** for $\beta_0$. True only because of how OLS chose the line. |
+
+Citing "because of OLS" for the first one is a common, mark-losing slip.
+
+**A related algebra rule** used in the BLUE proof: a sum of products is not a
+product of sums, $\sum a_ib_i\neq\sum a_i\cdot\sum b_i$ (e.g.
+$a=(1,2),b=(3,4)$: $11\neq21$). Only constants leave a sum. So
+
+$$
+\sum_iw_id_i=\frac{1}{S_{xx}}\sum_i(X_i-\bar X)d_i=\frac{1}{S_{xx}}\Big(\sum d_iX_i-\bar X\sum d_i\Big)=0
+$$
+
+uses **both** unbiasedness conditions on $d_i$. A "proof" that makes the
+cross term vanish without using them would prove it for *any* $d_i$ — a sign a
+step is wrong.
+
+### 7.5 Worked example — Problem Set Q8 (bond yield on Treasury rate)
+
+| Month | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
+| :--- | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| Treasury $X$ (%) | 5 | 6.5 | 7.2 | 8.0 | 8.3 | 8.5 | 9 | 9.5 |
+| Bond yield $Y$ (%) | 7.5 | 7.9 | 8.5 | 9.2 | 9.5 | 10.4 | 10.9 | 11.2 |
+
+$\sum X_i=62$, $\sum Y_i=75.1$, $\sum X_i^2=495.48$, $\sum X_iY_i=595.4$,
+$n=8$, so $\bar X=7.75$, $\bar Y=9.3875$.
+
+$$
+\hat\beta_1=\frac{595.4-8(7.75)(9.3875)}{495.48-8(7.75)^2}=\frac{595.4-582.025}{495.48-480.5}=\frac{13.375}{14.98}=0.8929
+$$
+
+$$
+\hat\beta_0=9.3875-0.8929(7.75)=2.4679\qquad\Longrightarrow\qquad\boxed{\hat Y=2.4679+0.8929X}
+$$
+
+**Interpretation.** Each 1 percentage-point rise in the Treasury rate goes with
+an average 0.89 pp rise in the 20-year yield — close to, but slightly less than,
+one-for-one. $\hat\beta_0$ is the predicted yield at a 0% Treasury rate, an
+extrapolation far outside the observed 5–9.5% range, so it anchors the line
+rather than forecasting anything. $R^2=0.904$.
+
+**Observations for Q8(c).** Strong positive, nearly linear relationship; the
+line passes through $(7.75,\,9.39)$; the residuals
+$(+0.57,-0.37,-0.40,-0.41,-0.38,+0.34,+0.40,+0.25)$ run positive–negative–
+positive, hinting at slight curvature (with 8 points, a hint rather than proof).
+
+**Slips to guard against:** $\sum Y_i$ mis-added (75.1, not 84.6) and the
+wrong $n$ (8, not 6). **Ten-second check:** the line must pass through
+$(\bar X,\bar Y)$, and $\bar Y$ must look like the middle of the $Y$ column;
+plugging one data point in should give a value near the actual.
+
+### 7.6 Reading $\operatorname{Var}(\hat\beta_0)$ as a lever arm
+
+$$
+\operatorname{Var}(\hat\beta_0)=\sigma^2\left(\frac1n+\frac{\bar X^2}{S_{xx}}\right)=\frac{\sigma^2\sum X_i^2}{nS_{xx}}
+$$
+
+(the second form follows from $S_{xx}+n\bar X^2=\sum X_i^2$). Since
+$\hat\beta_0=\bar Y-\hat\beta_1\bar X$ starts at the pivot $(\bar X,\bar Y)$
+and slides a distance $\bar X$ along the estimated slope back to $X=0$:
+
+$$
+\operatorname{Var}(\hat\beta_0)=\underbrace{\frac{\sigma^2}{n}}_{\text{pivot height }\bar Y}+\underbrace{\bar X^2\cdot\frac{\sigma^2}{S_{xx}}}_{(\text{distance})^2\times\operatorname{Var}(\hat\beta_1)}
+$$
+
+**Sanity check:** if $\bar X=0$ then $\hat\beta_0=\bar Y$ and
+$\operatorname{Var}(\hat\beta_0)=\sigma^2/n$ — the variance of a mean of $n$
+uncorrelated, equal-variance observations (SL1, SL3). This is why the Q8
+intercept is imprecise: $X=0$ is 7.75 units from the centre of the data.
+
+**Intuition for $\operatorname{Var}(\hat\beta_1)=\sigma^2/S_{xx}$:** spread-out
+$X$ values pin the line firmly (points bunched together let it wobble); each
+extra observation adds a non-negative term to $S_{xx}$; noisier errors raise
+the variance.
+
+**Gauss–Markov in one sentence:** under SL1–SL4, OLS has the smallest variance
+of all linear unbiased estimators. Equality
+$\operatorname{Var}(\tilde\beta_1)=\operatorname{Var}(\hat\beta_1)$ requires
+$\sum d_i^2=0$, i.e. every $d_i=0$ — the rival *is* OLS.
+
+### 7.7 Assumption inventory
+
+| Result | Assumptions used |
+| :--- | :--- |
+| $\hat\beta_1=\sum w_iY_i$ is linear with fixed weights | SL4 only (weights built from fixed $X$) |
+| $\mathbb E(\hat\beta_1)=\beta_1$, $\mathbb E(\hat\beta_0)=\beta_0$ | SL2, SL4 |
+| $\operatorname{Var}(\hat\beta_1)=\sigma^2/S_{xx}$ | SL1, SL3, SL4 |
+| OLS is BLUE | SL1–SL4 |
+| $\mathbb E\big[\sum(\epsilon_i-\bar\epsilon)^2\big]=(n-1)\sigma^2$ | SL1, SL2, SL3 |
+| $\hat\sigma^2=\text{RSS}/(n-2)$ unbiased | SL1–SL4 |
+| Exact $t$ and $F$ tests; OLS = MLE | Normality **on top of** SL1–SL4 |
+
+**Watch the labels in the $\hat\sigma^2$ proof:** $\operatorname{Var}(\bar\epsilon)=\sigma^2/n$
+uses SL1 (no covariance terms, so the variance of a sum is the sum of
+variances) and SL3 — not SL4, since no $X$ appears. And the expectation needs
+**both** pieces, $\mathbb E\big[\sum\epsilon_i^2\big]=n\sigma^2$ and
+$n\,\mathbb E(\bar\epsilon^2)=\sigma^2$. Alarm bell: a sum of squares can never
+have a negative expectation.
+
+**Same principle, one level down:** the $(n-1)$ in
+$\mathbb E\big[\sum(\epsilon_i-\bar\epsilon)^2\big]$ is why the ordinary sample
+variance divides by $n-1$ — estimating one mean costs one degree of freedom;
+regression estimates two parameters and loses two.
+
+### 7.8 OLS as maximum likelihood (closes the §2 open item)
+
+Add normality, $\epsilon_i\sim\text{iid }\mathcal N(0,\sigma^2)$, so
+$Y_i\sim\mathcal N(\beta_0+\beta_1X_i,\sigma^2)$ with density
+
+$$
+f(Y_i)=\frac{1}{\sqrt{2\pi\sigma^2}}\exp\!\left(-\frac{(Y_i-\beta_0-\beta_1X_i)^2}{2\sigma^2}\right)
+$$
+
+**Likelihood:** treat the data as fixed and ask which parameters make it most
+probable. Independence makes the joint density a product,
+$L=\prod_{i=1}^nf(Y_i)$. Logs turn the product into a sum (and, being
+increasing, leave the maximiser unchanged):
+
+$$
+\ell=\ln L=\sum_i\ln f(Y_i)=-\frac n2\ln(2\pi)-\frac n2\ln\sigma^2-\frac{1}{2\sigma^2}\sum_i(Y_i-\beta_0-\beta_1X_i)^2
+$$
+
+**Slope and intercept.** $\beta_0,\beta_1$ appear only in
+$-\frac{1}{2\sigma^2}S(\beta_0,\beta_1)$; since $\frac{1}{2\sigma^2}>0$,
+maximising $\ell$ is *identical* to minimising $S$. Hence
+
+$$
+\hat\beta_{0,\text{MLE}}=\hat\beta_{0,\text{OLS}},\qquad\hat\beta_{1,\text{MLE}}=\hat\beta_{1,\text{OLS}}
+$$
+
+— under normality. Without normality OLS is still BLUE (Gauss–Markov); with it,
+OLS is also the MLE.
+
+**Error variance.** Differentiating with respect to $\sigma^2$ and evaluating
+at the estimates, where the sum becomes residuals $\hat\epsilon_i$ (not true
+errors):
+
+$$
+\frac{\partial\ell}{\partial\sigma^2}=-\frac{n}{2\sigma^2}+\frac{1}{2\sigma^4}\sum_i\hat\epsilon_i^2=0
+\quad\Longrightarrow\quad
+\hat\sigma^2_{\text{MLE}}=\frac{\text{RSS}}{n}
+$$
+
+**Biased downward:** using $\mathbb E(\text{RSS})=(n-2)\sigma^2$,
+
+$$
+\mathbb E\big(\hat\sigma^2_{\text{MLE}}\big)=\frac{(n-2)\sigma^2}{n}=\sigma^2-\frac{2\sigma^2}{n}<\sigma^2
+$$
+
+Dividing the same RSS by a larger number ($n$ rather than $n-2$) must give a
+smaller answer. The bias is $2\sigma^2/n$, not a fixed amount: for Q8
+($n=8$) the MLE averages $6/8=75\%$ of the truth; for $n=252$, $250/252\approx99.2\%$.
+As $n\to\infty$ the bias vanishes — the MLE is **asymptotically unbiased**,
+typical of MLEs.
+
+---
+
+## 8. Finite-sample inference, confidence intervals and tests (lecture notes §2.1.3–2.1.4)
+
+> Worked through from the lecture notes, 2026-10-12. Intuition first; the
+> lecturer's typos are flagged where they appear.
+
+### 8.1 Why the estimate has a distribution
+
+$\hat\beta_1$ is built from the random $Y_i$, so a different sample (another 8
+months of Q8 data) gives a different slope. The spread of all the values it
+*could* take is its **sampling distribution**; inference reasons from the one
+estimate you have back to the true $\beta_1$ using that distribution.
+
+Chapter 4 already gave its **centre** ($\mathbb E(\hat\beta_1)=\beta_1$) and
+**width** ($\sigma^2/S_{xx}$). **SL5** ($\epsilon_i\sim\mathcal N(0,\sigma^2)$)
+gives its **shape**: $\hat\beta_1=\beta_1+\sum w_i\epsilon_i$ is a constant plus
+a fixed-weight sum of independent normals, and such a sum is normal. Same for
+$\hat\beta_0=\sum v_iY_i$ and for fitted values $\hat Y_i$.
+
+$$
+\hat\beta_1\sim\mathcal N\!\left(\beta_1,\frac{\sigma^2}{\sum(X_i-\bar X)^2}\right),\qquad
+\hat\beta_0\sim\mathcal N\!\left(\beta_0,\frac{\sigma^2\sum X_i^2}{n\sum(X_i-\bar X)^2}\right)
+$$
+
+"**Exact / finite sample**": true for any $n$ (even 8), not just
+approximately for large $n$ via the Central Limit Theorem. This is the first
+result in the course that genuinely needs SL5.
+
+**Typo (p.21, p.23–24):** the notes omit the $n$ in the denominator of
+$\operatorname{Var}(\hat\beta_0)$. Check: with $\bar X=0$, $\hat\beta_0=\bar Y$,
+whose variance must be $\sigma^2/n$ — only the corrected formula gives that.
+
+### 8.2 Standardising: a universal ruler
+
+$$
+Z=\frac{\hat\beta_1-\beta_1}{\sigma/\sqrt{S_{xx}}}\sim\mathcal N(0,1)
+$$
+
+$Z$ is "how many standard deviations the estimate is from the truth" — the same
+scale whatever the units. **Typo (p.24):** the notes put an extra $n$ under the
+square root; correct forms:
+
+$$
+\frac{(\hat\beta_1-\beta_1)\sqrt{\sum(X_i-\bar X)^2}}{\sigma}\sim\mathcal N(0,1),\qquad
+\frac{(\hat\beta_0-\beta_0)\sqrt{n\sum(X_i-\bar X)^2}}{\sigma\sqrt{\sum X_i^2}}\sim\mathcal N(0,1)
+$$
+
+### 8.3 Replacing $\sigma$ by $\hat\sigma$ gives a $t$
+
+$\sigma$ is unknown, so plug in $\hat\sigma=\text{SER}=\sqrt{\text{SSR}/(n-2)}$.
+The **standard error** $\hat\sigma_{\hat\beta_1}=\hat\sigma/\sqrt{S_{xx}}$ is the
+"Std. Error" column in R. Because $\hat\sigma$ itself wobbles (and is sometimes
+too small by chance), the ratio produces extreme values more often than a
+normal: same bell, **fatter tails** — Student's $t$ with $n-2$ degrees of
+freedom (the same $n-2$ as in $\hat\sigma^2$):
+
+$$
+t_{\hat\beta_1}=\frac{\hat\beta_1-\beta_1}{\hat\sigma_{\hat\beta_1}}\sim t_{n-2}
+$$
+
+Few df → fat tails (Q8, 6 df: 95% cutoff **2.447**, not 1.96); many df → almost
+normal. **Typo (p.25):** $\operatorname{Var}(t_\nu)=\nu/(\nu-2)$, i.e.
+$(n-2)/(n-4)$ for $t_{n-2}$, not $n/(n-2)$ — the point (variance $>1$) stands.
+
+### 8.4 Confidence interval
+
+The middle $1-\alpha$ of the $t$ bell:
+
+$$
+\mathbb P\!\left(-t_{n-2,1-\alpha/2}\le\frac{\hat\beta_1-\beta_1}{\hat\sigma_{\hat\beta_1}}\le t_{n-2,1-\alpha/2}\right)=1-\alpha
+$$
+
+(symmetry gives $t_{n-2,\alpha/2}=-t_{n-2,1-\alpha/2}$). Multiply through by the
+**standard error** (not its square), subtract $\hat\beta_1$, multiply by $-1$ —
+which **reverses the inequalities** ($2<5$ but $-2>-5$) — to isolate $\beta_1$:
+
+$$
+\hat\beta_1\pm t_{n-2,1-\alpha/2}\,\hat\sigma_{\hat\beta_1}\qquad(\text{same form for }\beta_0)
+$$
+
+**Idea in one line:** if the estimate is within $k$ SEs of the truth, the truth
+is within $k$ SEs of the estimate. **Meaning of 95%:** a property of the
+procedure — across repeated samples, 95% of such intervals capture the fixed
+true $\beta_1$.
+
+**Q8:** $0.8929\pm2.447\times0.1187=0.8929\pm0.2905\Rightarrow(0.602,\ 1.183)$.
+Contains 1 (one-for-one cannot be ruled out); excludes 0 (there is a
+relationship). Wide because $n=8$. *Slip to avoid:* $0.1187\times2.447=0.2905$,
+not $0.029$ — an interval of $\pm0.03$ from 8 points would be implausibly tight.
+
+### 8.5 Hypothesis tests
+
+**Courtroom logic.** $H_0$ is the default (often "no effect"); reject only if
+the data make it implausible. Otherwise **fail to reject** — never "accept":
+lack of evidence is not proof.
+
+| | $H_0$ true | $H_1$ true |
+| :--- | :--- | :--- |
+| Reject $H_0$ | **Type I** error (false alarm), probability $\alpha$ | correct |
+| Fail to reject | correct | **Type II** error (missed real effect) |
+
+$\alpha$ is chosen **before** seeing the data.
+
+**Test statistic** — how many SEs the estimate is from the hypothesised value
+$\beta_{10}$:
+
+$$
+t_{\hat\beta_1}=\frac{\hat\beta_1-\beta_{10}}{\hat\sigma_{\hat\beta_1}}\sim t_{n-2}\ \text{under }H_0\ (\text{SL1–SL5})
+$$
+
+Reject if $|t|>$ critical value, equivalently p-value $<\alpha$ (p-value = chance
+of an estimate at least this far from $\beta_{10}$ if $H_0$ were true).
+$\beta_{10}$ need not be 0.
+
+- **Two-sided** $H_1:\beta_1\neq\beta_{10}$: $\alpha$ split over both tails (Q8:
+  2.447).
+- **One-sided** $H_1:\beta_1>\beta_{10}$ (or $<$): all of $\alpha$ in one tail
+  (Q8: 1.943) — easier to reject, but only in the direction stated in advance.
+  The claim being tested goes in $H_1$, putting the burden of proof on it.
+
+**Typos (p.26):** "$H_0:\beta_1\neq0$" should be $H_1$; "$t=0$ if
+$\hat\beta_1\neq\beta_{10}$" should read $t\neq0$; "(SL1)(SL4)" means SL1–SL4.
+
+**Q8 worked tests.**
+
+- $H_0:\beta_1=0$: $t=0.8929/0.1187=7.52>2.447$ → reject; p $\approx0.0003$.
+- $H_0:\beta_1=1$ vs $\neq1$: $t=(0.8929-1)/0.1187=-0.902$, $|t|<2.447$ → **fail
+  to reject $H_0$** at 5%. Agrees with the CI containing 1 — a two-sided 5%
+  test and a 95% CI always agree.
+- **Why not "accept $\beta_1=1$":** $H_0:\beta_1=0.9$ or $0.8$ would *also* not
+  be rejected; you cannot accept several different values at once. The data are
+  merely *consistent* with 1.
+
+**R output (lecturer's p.19 example, `aaa_dif ~ cm10_dif`, 878 residual df ⇒
+$n=880$):** slope $t=0.615762/0.012117=50.82$ → overwhelmingly significant; a
+1-pt change in the 10-yr Treasury rate goes with ~0.62-pt change in AAA yields,
+95% CI $\approx(0.592,0.640)$. Intercept $t=-0.05$, p $=0.96$ → indistinguishable
+from 0. Each row of an R coefficient table is a test of $H_0:\beta_j=0$.
+
+### 8.6 Applications
+
+- **Stock beta:** CAPM $\hat\beta=1.19$ (AAPL) — the CI says whether the stock is
+  *really* more volatile than the market (interval above 1) or not
+  distinguishable.
+- **Hedge ratios** (pairs trading): a wide CI on the regression slope means the
+  hedge is shaky and residual market risk remains.
+- **Is a bot's edge real?** Regress strategy returns on a constant; one-sided
+  $H_1$: mean $>0$. A small $t$ means the backtest profit is indistinguishable
+  from luck.
+- **Type I in strategy mining:** test 100 random strategies at 5% and about 5
+  look significant by chance — data snooping with a number on it.
+- **Type II with small samples:** a real modest edge on 3 months of data often
+  fails to reject — "not significant" can mean "not enough data yet".
+- Beyond finance: poll margins of error and drug-trial effect intervals are the
+  same "estimate ± cutoff × SE".
+
+---
+
+## 9. ANOVA approach to simple regression (lecture notes §2.1.5)
+
+**Big idea.** $Y$ varies; ANOVA splits that total variation into the part the
+line explains and the part left over. For one point:
+
+$$
+\underbrace{Y_i-\bar Y}_{\text{total}}=\underbrace{(\hat Y_i-\bar Y)}_{\text{explained: line vs mean}}+\underbrace{(Y_i-\hat Y_i)}_{\text{residual: point vs line}}
+$$
+
+- **TSS** $=\sum(Y_i-\bar Y)^2$ — spread of $Y$ before any model.
+- **SSReg** $=\sum(\hat Y_i-\bar Y)^2$ — how far the line departs from just
+  predicting $\bar Y$ (explained).
+- **SSR** $=\sum(Y_i-\hat Y_i)^2$ — what the line still misses; the quantity
+  behind $\hat\sigma^2$.
+
+**Typo (p.27):** $Y_i-(\hat\beta_0-\hat\beta_1X_i)$ should be
+$Y_i-(\hat\beta_0+\hat\beta_1X_i)$.
+
+**Why the squares add (the step the notes skip).** Squaring gives a cross
+term $2\sum(\hat Y_i-\bar Y)(Y_i-\hat Y_i)$. Since
+$\hat Y_i-\bar Y=\hat\beta_1(X_i-\bar X)$, it equals
+$2\hat\beta_1\sum(X_i-\bar X)\hat\epsilon_i=0$ by the two normal equations
+($\sum\hat\epsilon_i=0$, $\sum X_i\hat\epsilon_i=0$). Intuition: residuals
+contain nothing the line could explain — explained and unexplained are at
+right angles, so it is Pythagoras: **TSS = SSReg + SSR**.
+
+**Degrees of freedom:** TSS $n-1$ (one used by $\bar Y$), SSReg 1 (one slope),
+SSR $n-2$ (two parameters); $n-1=1+(n-2)$.
+
+| Source | df | SS | MS | F |
+| :--- | :-: | :-: | :-: | :-: |
+| Regression | 1 | SSReg | MSReg = SSReg/1 | $F^*$ = MSReg/MSE |
+| Error | $n-2$ | SSR | MSE = SSR/$(n-2)$ | |
+| Total | $n-1$ | TSS | | |
+
+**MS = SS ÷ df** (variation per degree of freedom), so
+$F^*=\dfrac{\text{explained per parameter}}{\text{noise per spare observation}}$.
+If $X$ is useless both estimate noise and $F\approx1$; large $F$ → reject
+$\beta_1=0$. **In SLR, $F=t^2$** for the slope, so the F-test and the slope
+t-test always agree.
+
+**Q8 check:** SSReg $=\hat\beta_1S_{xy}=0.8929\times13.375=11.94$,
+SSR $=1.267$, MSE $=1.267/6=0.211$, so $F=11.94/0.211=56.6$, and
+$t^2=7.52^2=56.6$ ✓. $R^2=11.94/13.21=0.904$.
+
+**Applications.** CAPM risk decomposition: SSReg is systematic (market,
+undiversifiable) risk, SSR idiosyncratic (diversifiable) risk; $R^2$ is the
+market's share of a stock's risk (lecture examples: AAPL ≈ 57%, PFE ≈ 18%).
+A trading signal with tiny SSReg relative to SSR (low $F$) explains almost
+none of the return variation. In experiments the same split tests whether a
+treatment group differs from control — hence "analysis of variance".
+
+---
+
+## 10. Reading an ANOVA table; $R^2$ and adjusted $R^2$ (lecture notes p.28–29)
+
+**Lecturer's example (`aaa_dif ~ cm10_dif`).** SSReg $=11.21$, SSR $=3.81$,
+so TSS $=15.02$; df 1 and 878, so $n=880$. MSE $=3.81/878=0.00434$ (R prints
+"0.0" from rounding). $F=11.21/0.00434\approx2582$, matching
+$t^2=50.82^2$ — simple regression again.
+
+**Coefficient of determination.**
+
+$$
+R^2=\frac{\text{SSReg}}{\text{TSS}}=1-\frac{\text{SSR}}{\text{TSS}}=\frac{11.21}{15.02}=0.746
+$$
+
+— the 10-yr Treasury rate explains about 75% of the variation in AAA yield
+changes. $R=\sqrt{R^2}$ (here $0.864$) is the **coefficient of multiple
+correlation**: the correlation between $Y$ and the fitted $\hat Y$; in SLR it
+equals $|\text{corr}(X,Y)|$.
+
+**Why plain $R^2$ is a bad comparison tool.** Adding *any* variable, even pure
+noise, cannot raise SSR — OLS could set its coefficient to 0 and recover the
+old fit — so $R^2$ never falls.
+
+**Adjusted $R^2$** compares sums of squares *per degree of freedom*:
+
+$$
+\bar R^2=1-\frac{\text{SSR}/(n-p-1)}{\text{TSS}/(n-1)}=1-(1-R^2)\frac{n-1}{n-p-1}
+$$
+
+(SLR: $p=1$, giving the notes' $n-2$ version; **typo p.29:** that formula is
+labelled $R^2$ but is the adjusted one). Each variable costs a degree of
+freedom; one that barely lowers SSR makes $\text{SSR}/(n-p-1)$ *rise*, so
+$\bar R^2$ falls. It rewards only variables that earn their place.
+
+**The penalty depends on $p$ relative to $n$:**
+
+| Model | $R^2$ | $\bar R^2$ | Factor $\frac{n-1}{n-p-1}$ | Drop |
+| :--- | :-: | :-: | :-: | :-: |
+| AAA ($n=880$, $p=1$) | 0.7463 | 0.7461 | $879/878=1.001$ | 0.0003 |
+| Q8 bonds ($n=8$, $p=1$) | 0.904 | 0.888 | $7/6=1.167$ | 0.016 |
+
+The *drop* is about 50 times larger for Q8 because each parameter is a much
+bigger share of 8 observations — the degrees-of-freedom idea of
+[[02 Data-sets]] §2. (Compare drops, not levels: Q8's $\bar R^2$ is still
+higher than AAA's.)
+
+**Applications.** A bot model with 30 indicators shows a high $R^2$ almost
+automatically; a $\bar R^2$ well below $R^2$ signals overfitting. When
+comparing CAPM with Fama-French 3-factor, compare $\bar R^2$ — FF3 wins plain
+$R^2$ regardless, because it has two extra variables.

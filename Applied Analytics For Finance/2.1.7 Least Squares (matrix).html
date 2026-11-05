@@ -1,0 +1,49 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2.1.7 Least Squares</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<style>
+:root{--bg:#fff;--fg:#1a1a1a;--mut:#666;--card:#f5f5f2;--acc:#b5532a}
+@media (prefers-color-scheme:dark){:root{--bg:#1c1c1c;--fg:#eaeaea;--mut:#aaa;--card:#262626;--acc:#e08a5f}}
+body{background:var(--bg);color:var(--fg);font:17px/1.6 system-ui,sans-serif;max-width:760px;margin:0 auto;padding:24px 16px}
+h1{font-size:1.4em}h2{font-size:1.1em;color:var(--acc);margin-top:1.8em}
+.box{background:var(--card);border-radius:10px;padding:10px 16px;margin:10px 0;overflow-x:auto}
+.mut{color:var(--mut)}
+</style></head><body>
+<h1>2.1.7 Least squares in matrix form</h1>
+
+<h2>1. Objective</h2>
+<div class="box">$$S(\beta)=\sum_{i=1}^n (Y_i-X_i'\beta)^2=\varepsilon'\varepsilon=(Y-X\beta)'(Y-X\beta)$$</div>
+
+<h2>2. Expand</h2>
+<div class="box">$$S(\beta)=Y'Y-\beta'X'Y-Y'X\beta+\beta'X'X\beta$$</div>
+<p>The two middle terms are $1\times1$ numbers, and each is the transpose of the other, so they're equal:</p>
+<div class="box">$$S(\beta)=Y'Y-2\beta'X'Y+\beta'X'X\beta$$</div>
+
+<h2>3. Differentiate and set to zero</h2>
+<p>Rules (the second is the matrix version of $\tfrac{d}{dx}ax^2=2ax$):</p>
+<div class="box">$$\frac{\partial(\beta'a)}{\partial\beta}=a\qquad\frac{\partial(\beta'A\beta)}{\partial\beta}=2A\beta\ \ (A\text{ symmetric})$$</div>
+<div class="box">$$-2X'Y+2X'X\beta=0\;\Longrightarrow\;\boxed{X'X\hat\beta=X'Y}\;\Longrightarrow\;\hat\beta=(X'X)^{-1}X'Y$$</div>
+<p class="mut">The inverse exists by ML4. It's a minimum because the second derivative, $2X'X$, is positive definite.</p>
+
+<h2>4. Meaning: residuals ⟂ every column of X</h2>
+<div class="box">$$X'\hat e=0\quad\Rightarrow\quad \sum_i\hat e_i=0\ \text{(ones column)},\qquad \sum_i X_{ij}\hat e_i=0\ \text{(each }X_j)$$</div>
+
+<h2>5. Hat matrix</h2>
+<div class="box">$$H=X(X'X)^{-1}X',\qquad \hat Y=HY,\qquad \hat e=(I-H)Y,\qquad SSR=\hat e'\hat e=Y'(I-H)Y$$</div>
+<p>$\hat Y$ is the shadow of $Y$ on the column space of $X$, and $\hat e$ is the perpendicular drop from $Y$ to that shadow. The SSR form needs $H'=H$ and $HH=H$.</p>
+
+<h2>Typos on this page</h2>
+<div class="box">
+$Y-X'\beta\ \to\ Y-X\beta$<br>
+$-2\beta X'Y\ \to\ -2\beta'X'Y$<br>
+$(Y-X\hat\beta)X=0\ \to\ X'(Y-X\hat\beta)=0$
+</div>
+
+<h2>Your turn</h2>
+<div class="box">$$HH=X(X'X)^{-1}X'\,X(X'X)^{-1}X'=\;?$$</div>
+<p>Which piece in the middle collapses?</p>
+</body></html>

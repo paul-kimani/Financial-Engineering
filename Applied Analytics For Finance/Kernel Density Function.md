@@ -4,7 +4,7 @@ A KDE is essentially a mordenized, smoothed-out version of a histogram used to v
 To think of it intuitively, we need to look at the flaw of the histogram, it forces data into rigid, blocky bins. If you shift the bin edges slightly, the whole shape changes. KDE fixes this blockiness by abandoning bins entirely. Instead of dropping a datapoint into a bucket, KDE places a small, smooth curve called a kernel direcrtly on top of every single data point. It then adds all these overlapping little curves together to create one final, continuous master curve.
 
 For some data set $X_1,X_2, \dots,X_n$ the KDE is:
-$$\hat{f}(x) = \frac{1}{nb}\sum_{i=1}^{n}K(\frac{x-X_i}{{d}})$$
+$$\hat{f}(x) = \frac{1}{nb}\sum_{i=1}^{n}K(\frac{x-X_i}{b})$$
 
 Lets intuitively break down every component:
 - $\hat{f}(x)$: The final estimated probability density at a specific point $x$.
