@@ -116,3 +116,56 @@ Closed-book recall prompts:
 3. Why is "strictly endogenous" not a valid classification? What does "strictly" modify in this taxonomy, and why does endogenous have no further grading once it fails?
 4. State $H_0$ for the Chow/F poolability test precisely, and explain why it is a joint F-test rather than a test involving $\operatorname{Cov}(X,\alpha)$ directly.
 5. List, precisely, the three things rejecting the poolability test does NOT establish.
+
+---
+
+## 2026-10-19 — Restart session, Round 1: OVB (one-variable) + why differencing kills $\alpha_i$
+
+Closed-book recall prompts:
+
+1. Starting from $Y_i=\beta_0+\beta_1X_i+\gamma A_i+u_i$, expand $\operatorname{Cov}(X,Y)$ term by term and derive $\hat\beta_1\to\beta_1+\gamma\,\operatorname{Cov}(X,A)/\operatorname{Var}(X)$. State in words the two ingredients the bias needs.
+2. Write Firm A's equation for 2020 and 2021, subtract, and list the three things that happen ($\alpha_A$ cancels, $\beta_0$ cancels, $\beta_1$ survives). Why is $\alpha_A-\alpha_A=0$ algebra, not an assumption?
+3. Why does the OVB term become exactly zero in the differenced regression? (Write the omitted variable after differencing and plug it into the covariance.)
+4. What price do you pay for differencing — which variables' effects can no longer be estimated, and why?
+5. Differencing removes one source of bias but leaves a new condition. State it: what must be true of $\operatorname{Cov}(\Delta X,\Delta u)$, and what does that require about $X$ and $u$ across periods?
+
+---
+
+## 2026-10-25 — Week 1 paragraph: standard errors, estimator vs estimate + board-independence exercise
+
+Material added as ch.01 §8. Closed-book recall prompts:
+
+1. Why is the estimator random but the estimate fixed? What exactly has variance, and what doesn't?
+2. We never draw repeated samples, so how does a formula give the SE? Derive $\operatorname{Var}(\bar Y)=\sigma^2/n$, name the assumption behind each step, then say what the one sample contributes.
+3. Expand $\operatorname{Var}(Y_1+Y_2)$ without assuming independence. Where does the factor of 2 come from?
+4. Derive $\operatorname{Var}(\bar Y)=\frac{\sigma^2}{n}[1+(n-1)\rho]$. For $\rho=0.3$, $T=10$, by how much is the naive SE too small?
+5. Write $\hat\beta-\beta$ = bias + noise. Which part does the SE measure? Use $\text{MSE}=\operatorname{Var}+\text{Bias}^2$ to explain "precision is not validity".
+6. Write a full estimand (treatment unit, population, outcome measure, timing) for "does board independence raise bank liquidity creation?"
+7. Managerial quality is omitted. Sign each factor in $\gamma\delta$ and state the direction of bias. Why does an upward bias make a positive finding *less* convincing?
+8. $\hat\beta=0.08$: identify parameter, estimator (name which one), estimate, and interpret the effect of a +10 pp increase.
+
+**Spaced reviews:** 2026-10-26, 2026-10-28, 2026-11-01.
+
+---
+
+## 2026-11-02 — Week 1 lab + lecture §4–8: residuals vs errors, identification, OVB simulation, heteroskedasticity, functional form
+
+Material added as ch.01 §9–13. Closed-book recall prompts:
+
+1. Why do the residuals sum to *exactly* zero? Which first-order condition, and what breaks it?
+2. Do the true errors sum to zero in a sample? Write $\hat u_i$ in terms of $u_i$, $(\hat\beta_0-\beta_0)$ and $(\hat\beta_1-\beta_1)$.
+3. Derive $\operatorname{Corr}(x,\hat u)=0$ from the two normal equations. Why can't this test exogeneity?
+4. Name the population condition violated when managerial quality is omitted and correlated with sales. Write $\operatorname{Cov}(\text{lsales},u)$ in terms of $\gamma$ and $\operatorname{Cov}(\text{lsales},q)$.
+5. Why can't a high $R^2$ establish exogeneity? Give a high-fit/not-exogenous case and a low-fit/exogenous case.
+6. State the leverage/ROA identification problem: two stories, same data.
+7. List the four threats to exogeneity, each with its route to $\operatorname{Cov}(X,u)\neq0$.
+8. From the simulation DGP alone, predict the short coefficient (≈ −0.068) and the correlation (≈ −0.57).
+9. What happens to bias and to each model's SE when (a) $\delta=0$, (b) $\beta_2=0$?
+10. Start from $\operatorname{Var}(\hat\beta_1)=\sum(x_i-\bar x)^2\sigma_i^2/SST_x^2$ and derive the default formula. What do robust SEs put in place of $\sigma_i^2$?
+11. Using the seesaw, when is the robust SE bigger than the default, and when smaller? Which was ceosal1, and why?
+12. Three things BP doesn't tell you. What does the Koenker version fix?
+13. Derive $\Delta Y/h$ for the quadratic and take $h\to0$. Why is $\beta_1$ alone not "the effect"?
+14. In $Y=\beta_0+\beta_1X+\beta_2D+\beta_3XD$, what is the slope for $D=1$? Why is $\beta_3$ not the effect for that group?
+15. What does RESET detect, what doesn't it identify, and why is Stata's name `ovtest` misleading?
+
+**Spaced reviews:** 2026-11-03, 2026-11-05, 2026-11-09.
