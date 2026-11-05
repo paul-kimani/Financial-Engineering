@@ -1,0 +1,12 @@
+Greeks are measures of sensitivities of derivative values to small changes in the underlying parameters (the price of the underlying asset, time, volatility, dividends and risk free rate)
+
+We use greeks as risk management tools, for hedging and trading strategies.
+
+| **Greek** | **Greek Symbol & Formula**                        | **Mathematical Definition**                                                                                                                                                                                              |
+| --------- | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Delta     | $\Delta = \frac{\partial f}{\partial S}$          | $1^{st}$ partial derivative of the derivative contract<br>value with respect to the price of the underlying                                                                                                              |
+| Gamma     | $\Gamma = \frac{\partial^2 f}{\partial S^2}$      | $2^{nd}$ partial derivative of the derivative contract with respect to price of the underlying.(sensitivity of delta to the underlying price)                                                                            |
+| Vega      | $\mathbf{v} = \frac{\partial f}{\partial \sigma}$ | $1^{st}$ partial derivative of the derivative contract w.r.t volatility.                                                                                                                                                 |
+| Theta     | $\theta = \frac{\partial f}{\partial t}$          | $1^{st}$ partial derivative of the derivative contract value with respect to time.<br>**NB:** *This value is often reported as time decay so its typically negative *                                                    |
+| Rho       | $\rho = \frac{\partial f}{\partial r}$            | $1^{st}$ Partial derivative of the derivative contract value w.r.t the risk free rate.                                                                                                                                   |
+| Lambda    | $\lambda = \frac{\partial f}{\partial q}$         | $1^{st}$ derivative of the derivative contract w.r.t dividends.<br><br>**NB:** *depending on context:*<br>*a) Sensitivity to dividend yield q ;or*<br>*b) elasticity($\%$ change in option per $\%$ change in dividend)* |
